@@ -1,0 +1,4 @@
+FLASK_APP=app
+FLASK_ENV=development
+SECRET_KEY=lkasjdf09ajsdkfljalsiorj12n3490re9485309iicuwn,u90818734902139489229
+DATABASE_URL=postgresql://zipnodes_dev@localhost/zipnodes
