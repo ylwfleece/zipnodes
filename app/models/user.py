@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
   score = db.Column(db.Integer, nullable = False, default=0)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+  orders = db.relationship("Order", back_populates="nonprofit", cascade="all, delete-orphan")
 
   @property
   def password(self):
