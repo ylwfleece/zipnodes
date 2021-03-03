@@ -1,6 +1,6 @@
-const SET_ORDERS = "posts/setOrders";
-const REMOVE_ORDERS = "posts/removeOrders";
-const CREATE_ORDER = "posts/createOrder";
+const SET_ORDERS = "orders/setOrders";
+const REMOVE_ORDERS = "orders/removeOrders";
+const ADD_ORDER = "orders/addOrder";
 
 const setOrders = (orders) => {
   return {
@@ -9,16 +9,16 @@ const setOrders = (orders) => {
   };
 };
 
+const addOrder = (order) => {
+    return {
+        type: ADD_ORDER,
+        payload: order
+    }
+}
+
 const removeOrders = () => {
   return {
     type: REMOVE_ORDERS,
-  };
-};
-
-const createOrder = (order) => {
-  return {
-    type: CREATE_ORDER,
-    payload: order,
   };
 };
 
@@ -37,22 +37,24 @@ export const clearOrders = () => async (dispatch) => {
   return "removed orders on logout";
 };
 
-// export const createOrder = (caption, photoFile) => async (dispatch) => {
-//   const formData = new FormData();
-//   formData.append("caption", caption);
-//   if (photoFile) {
-//     formData.append("feed_photo_file", photoFile);
-//   } else {
-//     return "Failed to attach a photo";
-//   }
-//   let res = await fetch(`/api/orders/`, {
-//     method: "POST",
-//     body: formData,
-//   });
-//   const post = await res.json();
-//   dispatch(createOnePost(post));
-//   return post;
-// };
+export const createOrder = (nonprofitId, title, description, location, startTime, duration, karma, virtual) => async (dispatch) => {
+  let res = await fetch(`/api/orders/`, {
+    method: "POST",
+    body: {
+        "nonprofit_id": nonprofitId,
+        title,
+        description,
+        location,
+        duration,
+        karma,
+        // "start_time": startTime,
+        virtual
+    },
+  });
+  const order = await res.json();
+  dispatch(addOrder(order));
+  return order;
+};
 
 // export const deletePost = (postId) => async (dispatch) => {
 //   await fetch(`/api/posts/delete/${postId}`);
@@ -80,7 +82,7 @@ const ordersReducer = (state = initialState, action) => {
     case REMOVE_ORDERS:
       newState = [];
       return newState;
-    case CREATE_ORDER:
+    case ADD_ORDER:
       newState = [...state]
       if(newState){
           newState.unshift(action.payload); 

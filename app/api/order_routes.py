@@ -6,6 +6,17 @@ from flask_login import current_user, login_user, logout_user, login_required
 order_routes = Blueprint('orders', __name__)
 
 
+@order_routes.route('/', methods=['GET'])
+def get_orders():
+    """
+    Gets all orders.
+    """
+    orders = Order.all()
+    for order in orders:
+        print('>>>>>>>>> order: ', order.title)
+    return jsonify(orders)
+    
+
 @order_routes.route('/', methods=['POST'])
 def create_order():
     """
@@ -23,7 +34,7 @@ def create_order():
             title = form.data['title'],
             description = form.data['description'],
             location = form.data['location'],
-            start_time = form.data['start_time'],
+            # start_time = form.data['start_time'],
             duration = form.data['duration'],
             karma = form.data['karma'],
             virtual = virtual_bool
