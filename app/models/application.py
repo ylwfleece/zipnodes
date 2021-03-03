@@ -13,19 +13,13 @@ class Application(db.Model, UserMixin):
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   order = db.relationship("Order", back_populates="applications")
   node = db.relationship("User", back_populates="applications")
-
+  review = db.relationship("Review", back_populates="application")
 
   def to_dict(self):
     return {
       "id": self.id,
-      "nonprofit_id": self.nonprofit_id,
-      "title": self.title,
-      "description": self.description,
-      "location": self.location,
-      "start_time": self.start_time,
-      "duration": self.duration,
-      "karma": self.karma,
-      "virtual": self.virtual,
+      "node_id": self.node_id,
+      "order_id": self.order_id,
       "status": self.status,
-      "updated_at": self.updated_at
+      "updated_at": self.updated_at,
     }
