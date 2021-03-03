@@ -3,7 +3,11 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
-  const [username, setUsername] = useState("");
+  const [nonprofit, setNonprofit] = useState(false);
+  const [name, setName] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -11,15 +15,31 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
+      const user = await signUp(nonprofit, name, email, password, zipCode);
       if (!user.errors) {
         setAuthenticated(true);
       }
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateNonprofit = (e) => {
+    setNonprofit(!nonprofit);
+  };
+
+  const updateName = (e) => {
+    setName(e.target.value);
+  };
+
+  const updateZipCode = (e) => {
+    setZipCode(e.target.value);
+  };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -44,16 +64,61 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         <div className='container'>
           <img  alt='logo' style={{ padding: '5px 5rem' }} />
           <div className='paragraph-container'>
-            <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px' }}>Sign up to see pet photos and videos from your friends.</p>
+            <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px' }}>Sign up to help more.</p>
           </div>
           <form onSubmit={onSignUp}>
+          <div className='field-inputs'>
+            <label for="nonprofit">
+                Sign up as nonprofit?
+            </label>
+            <input
+              type="checkbox"
+              name="nonprofit"
+              placeholder='First name'
+              onChange={updateNonprofit}
+              value={nonprofit}
+            ></input>
+          </div>
+            {nonprofit ? 
+              <>
+                <div className='field-inputs'>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder='Name'
+                  onChange={updateName}
+                  value={name}
+                ></input>
+                </div> 
+              </> : 
+              <>
+                <div className='field-inputs'>
+                  <input
+                    type="text"
+                    name="firstname"
+                    placeholder='First name'
+                    onChange={updateFirstName}
+                    value={firstName}
+                  ></input>
+                </div>
+                <div className='field-inputs'>
+                  <input
+                    type="text"
+                    name="lastname"
+                    placeholder='Last name'
+                    onChange={updateLastName}
+                    value={lastName}
+                  ></input>
+                </div>
+              </>
+            }
             <div className='field-inputs'>
               <input
                 type="text"
-                name="username"
-                placeholder='Username'
-                onChange={updateUsername}
-                value={username}
+                name="zipCode"
+                placeholder='Zip Code'
+                onChange={updateZipCode}
+                value={zipCode}
               ></input>
             </div>
             <div className='field-inputs'>

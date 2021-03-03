@@ -4,6 +4,7 @@ import { login } from "../../services/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
+  // const [nonprofit, setNonprofit] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,6 +17,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       setErrors(user.errors);
     }
   };
+
+  // const updateNonprofit = (e) => {
+  //   setNonprofit(!nonprofit);
+  // };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);

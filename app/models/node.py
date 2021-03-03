@@ -3,17 +3,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import datetime
 
-class User(db.Model, UserMixin):
-  __tablename__ = 'users'
+
+class Node(db.Model, UserMixin):
+  __tablename__ = 'nodes'
 
   id = db.Column(db.Integer, primary_key = True)
-  nonprofit = db.Column(db.Boolean, nullable = False)
-  username = db.Column(db.String(40), nullable = False)
+  full_name = db.Column(db.String(40), nullable = False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
   zip_code = db.Column(db.String(40), nullable = False)
-  karma = db.Column(db.Integer, nullable = False, default=0)
-  score = db.Column(db.Integer, nullable = False, default=0)
+  karma = db.Column(db.Integer, nullable = False)
+  score = db.Column(db.Integer, nullable = False)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
@@ -34,8 +34,7 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "nonprofit": self.nonprofit,
-      "username": self.username,
+      "full_name": self.full_name,
       "email": self.email,
       "zip_code": self.zip_code,
       "karma": self.karma,
