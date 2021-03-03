@@ -33,6 +33,7 @@ export const logout = async () => {
 
 export const signUp = async (nonprofit, username, email, password, zipCode) => {
   console.log(zipCode)
+  console.log(username)
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {

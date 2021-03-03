@@ -18,6 +18,6 @@ class SignUpForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired()])
-    nonprofit = BooleanField('nonprofit', validators=[DataRequired()])
+    nonprofit = StringField('nonprofit', validators=[DataRequired()])
     zip_code = StringField('zip_code', validators=[DataRequired()])
 

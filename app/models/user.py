@@ -7,11 +7,11 @@ class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
   id = db.Column(db.Integer, primary_key = True)
-  nonprofit = db.Column(db.Boolean, nullable = False)
+  nonprofit = db.Column(db.Boolean, nullable = False, default=False)
   username = db.Column(db.String(40), nullable = False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  zip_code = db.Column(db.String(40), nullable = False)
+  zip_code = db.Column(db.String(40), nullable=False, default='1234')
   karma = db.Column(db.Integer, nullable = False, default=0)
   score = db.Column(db.Integer, nullable = False, default=0)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

@@ -15,7 +15,13 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(nonprofit, name, email, password, zipCode);
+      let user;
+      if (nonprofit) {
+        // sending nonprofit as string because having issues validating booleanfield
+        user = await signUp("True", name, email, password, zipCode)
+      } else {
+        user = await signUp("False", `${firstName} ${lastName}`, email, password, zipCode)
+      }
       if (!user.errors) {
         setAuthenticated(true);
       }

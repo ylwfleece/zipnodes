@@ -60,14 +60,15 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    print('>>>>>>>>>>>> in user signup')
     form = SignUpForm()
-    print('>>>>>>>>>>>>', form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('>>>>>>>>>>>> validated', form.data)
+        if (form.data['nonprofit'] == "False"):
+            np_bool = False
+        else:
+            np_bool = True
         user = User(
-            nonprofit=form.data['nonprofit'],
+            nonprofit=np_bool,
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
@@ -78,6 +79,8 @@ def sign_up():
         login_user(user)
         print(user.to_dict)
         return user.to_dict()
+    else:
+        print('>>>>>>>>>> form invalid')
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
