@@ -9,7 +9,7 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
 
   const onPost = async (e) => {
     e.preventDefault();
-    dispatch(createPost(caption, photoFile));
+    // dispatch(createPost(caption, photoFile));
     history.push('/')
   };
 
