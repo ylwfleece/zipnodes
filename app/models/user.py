@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   orders = db.relationship("Order", back_populates="nonprofit", cascade="all, delete-orphan")
+  applications = db.relationship("Application", back_populates="node", cascade="all, delete-orphan")
 
   @property
   def password(self):

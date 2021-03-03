@@ -2,23 +2,18 @@ from .db import db
 from flask_login import UserMixin
 import datetime
 
-class Order(db.Model, UserMixin):
-  __tablename__ = 'orders'
+class Application(db.Model, UserMixin):
+  __tablename__ = 'applications'
 
   id = db.Column(db.Integer, primary_key = True)
-  nonprofit_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  title = db.Column(db.String(40), nullable = False)
-  description = db.Column(db.String(255), nullable = False)
-  location = db.Column(db.String(255), nullable = False)
-  start_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-  duration = db.Column(db.Integer, nullable = False, default=0)
-  karma = db.Column(db.Integer, nullable = False, default=0)
-  virtual = db.Column(db.Boolean, nullable = False)
+  node_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+  order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
   status = db.Column(db.String(10), nullable = False)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-  nonprofit = db.relationship("User", back_populates="orders")
-  applications = db.relationship("Application", back_populates="order")
+  order = db.relationship("Order", back_populates="applications")
+  node = db.relationship("User", back_populates="applications")
+
 
   def to_dict(self):
     return {
