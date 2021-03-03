@@ -45,7 +45,7 @@ function App() {
             exact={true}
             authenticated={authenticated}
           >
-            <NavBar setAuthenticated={setAuthenticated} />
+            {/* <NavBar setAuthenticated={setAuthenticated} /> */}
             <OrderForm />
           </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>

@@ -38,19 +38,24 @@ export const clearOrders = () => async (dispatch) => {
 };
 
 export const createOrder = (nonprofitId, title, description, location, startTime, duration, karma, virtual) => async (dispatch) => {
-  let res = await fetch(`/api/orders/`, {
+    console.log(nonprofitId, title, description, location, startTime, duration, karma, virtual)
+    let res = await fetch(`/api/orders/`, {
     method: "POST",
-    body: {
+    headers: {
+        'Content-Type': 'application/json',
+      },
+    body: JSON.stringify({
         "nonprofit_id": nonprofitId,
         title,
         description,
         location,
         duration,
         karma,
-        // "start_time": startTime,
+        "start_time": startTime,
         virtual
-    },
+    }),
   });
+  console.log(res)
   const order = await res.json();
   dispatch(addOrder(order));
   return order;

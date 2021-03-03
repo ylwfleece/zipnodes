@@ -27,7 +27,9 @@ def create_order():
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('>>>>>>> form data:', form.data)
     if form.validate_on_submit():
+        print('>>>>>>> form validated:', form.data)
         virtual_bool = form.data['virtual'] != "False"
         order = Order(
             nonprofit_id = form.data['nonprofit_id'],
@@ -42,5 +44,5 @@ def create_order():
         db.session.add(order)
         db.session.commit()
         return order.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return 'invalid form'
 
