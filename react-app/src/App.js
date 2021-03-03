@@ -6,6 +6,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import OrderForm from "./components/OrderForm";
+
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -38,6 +40,14 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
+        <ProtectedRoute
+            path="/orders/new"
+            exact={true}
+            authenticated={authenticated}
+          >
+            {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+            <OrderForm />
+          </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />
           <UsersList/>
