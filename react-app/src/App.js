@@ -10,6 +10,7 @@ import OrderForm from "./components/OrderForm";
 import ApplicationForm from "./components/ApplicationForm";
 import ReviewForm from "./components/ReviewForm";
 import Feed from "./components/Feed";
+import ApplicationProfile from "./components/ApplicationProfile";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -66,6 +67,14 @@ function App() {
         >
           {/* <NavBar setAuthenticated={setAuthenticated} /> */}
           <ApplicationForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/application/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
+          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <ApplicationProfile />
         </ProtectedRoute>
         <ProtectedRoute
           path="/reviews/new"
