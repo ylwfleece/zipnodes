@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import OrderForm from "./components/OrderForm";
 import ApplicationForm from "./components/ApplicationForm";
+import ReviewForm from "./components/ReviewForm";
 
 import { authenticate } from "./services/auth";
 
@@ -56,6 +57,14 @@ function App() {
         >
           {/* <NavBar setAuthenticated={setAuthenticated} /> */}
           <ApplicationForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/reviews/new"
+          exact={true}
+          authenticated={authenticated}
+        >
+          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <ReviewForm />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />

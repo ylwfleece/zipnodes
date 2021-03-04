@@ -32,7 +32,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   if (authenticated) {
     // return <Redirect to="/" />;
-    return <Redirect to="/applications/new" />;
+    return <Redirect to="/reviews/new" />;
   }
 
   return (
