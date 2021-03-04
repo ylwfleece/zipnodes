@@ -11,10 +11,11 @@ def get_orders():
     """
     Gets all orders.
     """
-    orders = Order.all()
+    orders = Order.query.all()
+    return_orders = []
     for order in orders:
-        print('>>>>>>>>> order: ', order.title)
-    return jsonify(orders)
+        return_orders.append(order.to_dict())
+    return jsonify(return_orders)
     
 
 @order_routes.route('/', methods=['POST'])
