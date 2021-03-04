@@ -4,10 +4,15 @@ from app.models import db, Application
 def seed_applications():
 
     app1 = Application(order_id=1, 
-    node_id=1,
-    status="Pending")
+    node_id=1)
+    app2 = Application(order_id=2, 
+    node_id=1)
+    app3 = Application(order_id=3, 
+    node_id=1)
 
     db.session.add(app1)
+    db.session.add(app2)
+    db.session.add(app3)
 
     db.session.commit()
 

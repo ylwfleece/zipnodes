@@ -9,18 +9,26 @@ import User from "./components/User";
 import OrderForm from "./components/OrderForm";
 import ApplicationForm from "./components/ApplicationForm";
 import ReviewForm from "./components/ReviewForm";
+import { getOrders } from "./store/orders";
+import { getApplications } from "./store/applications";
+import { getReviews } from "./store/reviews";
 
 import { authenticate } from "./services/auth";
+import { useDispatch } from "react-redux";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
+        dispatch(getOrders);
+        dispatch(getApplications());
+        dispatch(getReviews());
       }
       setLoaded(true);
     })();

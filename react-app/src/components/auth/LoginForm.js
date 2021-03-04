@@ -31,8 +31,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    // return <Redirect to="/" />;
-    return <Redirect to="/reviews/new" />;
+    return <Redirect to="/" />;
+    // return <Redirect to="/reviews/new" />;
   }
 
   return (
