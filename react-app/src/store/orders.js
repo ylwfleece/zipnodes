@@ -29,6 +29,7 @@ export const getOrders = () => async (dispatch) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
 //     })
   dispatch(setOrders(orders));
+  console.log(orders)
   return orders;
 };
 

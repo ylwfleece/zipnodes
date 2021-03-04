@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import { Home, FavoriteBorder, Search, MailOutline, Explore } from '@material-ui/icons'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getOrders } from '../store/orders';
 
 const NavBar = ({ setAuthenticated }) => {
 
@@ -10,6 +11,18 @@ const NavBar = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user)
+
+  useEffect(() => {
+    (async () => {
+      // const user = await authenticate();
+      // if (!user.errors) {
+        //setAuthenticated(true);
+        let orders = dispatch(getOrders());
+        console.log(orders)
+      // }
+      // setLoaded(true);
+    })();
+  }, [dispatch]);
 
   const [searchTerm, setSearchTerm] = useState('');
 
