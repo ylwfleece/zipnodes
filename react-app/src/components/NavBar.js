@@ -14,13 +14,8 @@ const NavBar = ({ setAuthenticated }) => {
 
   useEffect(() => {
     (async () => {
-      // const user = await authenticate();
-      // if (!user.errors) {
-        //setAuthenticated(true);
         let orders = dispatch(getOrders());
         console.log(orders)
-      // }
-      // setLoaded(true);
     })();
   }, [dispatch]);
 
