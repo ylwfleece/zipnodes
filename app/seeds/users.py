@@ -8,9 +8,19 @@ def seed_users():
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=False)
     demo_nonprofit = User(username='Nonprofit Demo', email='np_demo@aa.io',
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    nu = User(username="Nutritious U Food Pantry", email='nu@aa.io', 
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    tcfj = User(username="TC Food Justice", email='tcfj@aa.io', 
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    rjca = User(username="Restorative Justice Community Action", email='rjca@aa.io', 
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    
 
     db.session.add(demo_node)
     db.session.add(demo_nonprofit)
+    db.session.add(nu)
+    db.session.add(tcfj)
+    db.session.add(rjca)
 
     db.session.commit()
 
