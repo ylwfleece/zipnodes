@@ -9,6 +9,7 @@ import User from "./components/User";
 import OrderForm from "./components/OrderForm";
 import ApplicationForm from "./components/ApplicationForm";
 import ReviewForm from "./components/ReviewForm";
+import Feed from "./components/Feed";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -32,7 +33,7 @@ function App() {
       }
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -83,7 +84,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />
-          <h1>My Home Page</h1>
+          <Feed />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -2,24 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
 
-function MainFeed() {
+function Feed() {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session.user)
     const orders = useSelector((state) => state.orders)
     const applications = useSelector((state) => state.applications)
-    const reivews = useSelector((state) => state.reivews)
+    const reviews = useSelector((state) => state.reviews)
 
-    const applications_display = [];
+    let applicationsArr = [];
     if (applications) {
-        applications_display = applications.filter(app => app.node_id === user.id);
+        applicationsArr = applications.filter(app => app.node_id === user.id);
     }
 
-    if (posts && comments) {
-        commentsArr = posts.map((post) => {
-            let unfiltered = comments.filter(comment => comment.postId == post.id)
-            return unfiltered.slice(0, 3)
-        })
-    }
+
 
     return (<>
         {orders &&
@@ -28,28 +23,11 @@ function MainFeed() {
                     <div className='homepage-feed'>
                         {orders.map((order) =>
                             <div key={order.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                                <div className='post-user-info'>
-                                    <div className='rounded-img-container comments-profile-pictures' style={{ alignSelf: 'flex-start' }}>
-                                    </div>
-                                    <div className='username-comments-container'>
-                                    </div>
-                                </div>
-                                <div className='post-image-container'>
-            
-                                </div>
-                                <div className='flex-left-container' style={{ width: '100%', height: '40px' }}>
-                                    <div className='icons-container'>
-                                    
-                                    </div>
-                                </div>
-                                <div className='caption-section'>
-                                    <div className='username-comments-container'>
-                                       
-                                    </div>
-                                    <div className='post-caption-container'>
-                                        <p className='normalize-text caption'></p>
-                                    </div>
-                                </div>
+                                <div>{order.title}</div>
+                                <div>{order.description}</div>
+                                <div>starts: {order.start_time}</div>
+                                <div>virtual: {order.virtual.toString()}</div>
+                                <div>karma: {order.karma}</div>
                             </div>
                         )}
                     </div>
@@ -59,4 +37,4 @@ function MainFeed() {
     </>)
 }
 
-export default MainFeed
+export default Feed
