@@ -21,6 +21,9 @@ class Order(db.Model, UserMixin):
   applications = db.relationship("Application", back_populates="order")
 
   def to_dict(self):
+    app_node_ids = []
+    for app in self.applications:
+      app_node_ids.append(app.node_id)
     return {
       "id": self.id,
       "nonprofit_id": self.nonprofit_id,
@@ -32,5 +35,6 @@ class Order(db.Model, UserMixin):
       "karma": self.karma,
       "virtual": self.virtual,
       "status": self.status,
-      "updated_at": self.updated_at
+      "updated_at": self.updated_at,
+      "app_node_ids": app_node_ids
     }

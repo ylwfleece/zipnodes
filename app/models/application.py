@@ -22,4 +22,6 @@ class Application(db.Model, UserMixin):
       "order_id": self.order_id,
       "status": self.status,
       "updated_at": self.updated_at,
+      "nonprofit_id": self.order.nonprofit_id,
+      "order_title": self.order.title
     }

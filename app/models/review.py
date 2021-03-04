@@ -23,4 +23,6 @@ class Review(db.Model, UserMixin):
       "content": self.content,
       "score": self.score,
       "updated_at": self.updated_at,
+      "nonprofit_id": self.application.order.nonprofit_id,
+      "node_id": self.application.node_id
     }

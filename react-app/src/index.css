@@ -395,3 +395,7 @@ input:focus {
     top: 55px;
     min-width: 220px;
 }
+
+.toggle-bar {
+  padding-bottom: 15px;
+}

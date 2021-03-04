@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { Home, FavoriteBorder, Search, MailOutline, Explore } from '@material-ui/icons'
 import { useState, useEffect } from 'react';
 import { getOrders } from '../store/orders';
+import { getApplications } from '../store/applications';
+import { getReviews } from '../store/reviews';
 
 const NavBar = ({ setAuthenticated }) => {
 
@@ -14,16 +16,11 @@ const NavBar = ({ setAuthenticated }) => {
 
   useEffect(() => {
     (async () => {
-        let orders = dispatch(getOrders());
-        console.log(orders)
+        dispatch(getOrders());
+        dispatch(getApplications());
+        dispatch(getReviews());
     })();
   }, [dispatch]);
-
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const updateSearchTerm = (e) => {
-    setSearchTerm(e.target.value);
-  };
 
   const iconStyles = { fontSize: '30px', color: 'rgb(38, 38, 38)' }
 
@@ -34,34 +31,6 @@ const NavBar = ({ setAuthenticated }) => {
           <NavLink to="/" exact={true} activeClassName="active">
             <img alt='logo' style={{ maxHeight: '50px' }}></img>
           </NavLink>
-        </div>
-        <div className='search'>
-          {/* <Search style={{ textAlign: 'center', color: 'rgb(142, 142, 142)', fontSize: '18px' }} /> */}
-          {/* <form onSubmit={onSearch} >
-            <div>
-              <input onChange={updateSearchTerm} type='search' placeholder='Search by username' style={{ border: 'none' }}></input>
-            </div>
-          </form> */}
-        </div>
-        <div className='user-buttons'>
-          <div className='icons-container'>
-            <NavLink to="/" exact={true} activeClassName="active">
-              {/* <Home style={iconStyles} /> */}
-              Home
-            </NavLink>
-          </div>
-          {/* <div className='icons-container'>
-            <MailOutline style={iconStyles} />
-          </div>
-          <div className='icons-container'>
-            <Explore style={iconStyles} />
-          </div>
-          <div className='icons-container'>
-            <FavoriteBorder style={iconStyles} />
-          </div> */}
-          {/* <div style={{ padding: '0 12px' }}>
-            <ProfileButton user={user} setAuthenticated={setAuthenticated} />
-          </div> */}
         </div>
       </div>
     </nav>
