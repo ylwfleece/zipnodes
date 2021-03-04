@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
 
 function Feed() {
     const dispatch = useDispatch()
+    const history = useHistory();
     const user = useSelector((state) => state.session.user)
     const orders = useSelector((state) => state.orders)
     const applications = useSelector((state) => state.applications)
@@ -20,7 +22,7 @@ function Feed() {
         if (user.nonprofit) {
             ords = orders.filter(ord => ord.status == "Unfilled")
         } else {
-            ords = orders.filter(ord => ord.status == "Unfilled")
+            ords = orders.filter(ord => (ord.status == "Unfilled" && !ord.app_node_ids.includes(user.id)))
         }
     }
 
@@ -32,7 +34,7 @@ function Feed() {
             apps = applications.filter(app => app.node_id == user.id);
         }
     }
-
+    
     let revs = [];
     if (reviews && user) {
         if (user.nonprofit) {
@@ -40,6 +42,13 @@ function Feed() {
         } else {
             revs = reviews.filter(rev => rev.node_id == user.id);
         }
+    }
+
+    const openApp = (e) => {
+        const orderId = parseInt(e.target.id, 10);
+        console.log(orderId)
+        localStorage.setItem("orderId", orderId);
+        history.push('/applications/new');
     }
 
     return (<>
@@ -59,6 +68,9 @@ function Feed() {
                                 <div>starts: {order.start_time}</div>
                                 <div>virtual: {order.virtual.toString()}</div>
                                 <div>karma: {order.karma}</div>
+                                {!user.nonprofit && 
+                                    <button id={order.id} onClick={openApp}>apply</button>
+                                }
                             </div>
                         )}
                     </div>
