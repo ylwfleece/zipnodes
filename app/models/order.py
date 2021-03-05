@@ -14,7 +14,7 @@ class Order(db.Model, UserMixin):
   duration = db.Column(db.Integer, nullable = False, default=0)
   karma = db.Column(db.Integer, nullable = False, default=0)
   virtual = db.Column(db.Boolean, nullable = False)
-  status = db.Column(db.String(10), nullable = False, default="Unfilled")
+  status = db.Column(db.String(20), nullable = False, default="Unfilled")
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   nonprofit = db.relationship("User", back_populates="orders")
@@ -22,8 +22,10 @@ class Order(db.Model, UserMixin):
 
   def to_dict(self):
     app_node_ids = []
+    apps = []
     for app in self.applications:
       app_node_ids.append(app.node_id)
+      apps.append(app.to_dict())
     return {
       "id": self.id,
       "nonprofit_id": self.nonprofit_id,
@@ -36,5 +38,6 @@ class Order(db.Model, UserMixin):
       "virtual": self.virtual,
       "status": self.status,
       "updated_at": self.updated_at,
-      "app_node_ids": app_node_ids
+      "app_node_ids": app_node_ids,
+      "apps": apps
     }

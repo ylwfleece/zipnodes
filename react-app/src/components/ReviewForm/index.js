@@ -14,8 +14,9 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createReview(2, 1, content, score));
-    // history.push('/')
+    const appId = localStorage.getItem("appId");
+    const rev = await dispatch(createReview(user.id, appId, content, score));
+    history.push(`/review/${rev.id}`);
   };
 
   const updateContent = (e) => {

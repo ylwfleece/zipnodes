@@ -19,8 +19,9 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createOrder(user.id, title, description, location, startTime, duration, karma, virtual));
-    // history.push('/')
+    const order = await dispatch(createOrder(user.id, title, description, location, startTime, duration, karma, virtual));
+    console.log(order.title)
+    history.push(`/order/${order.id}`)
   };
 
   const updateTitle = (e) => {

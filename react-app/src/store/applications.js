@@ -59,14 +59,14 @@ export const createApplication = (node_id, order_id) => async (dispatch) => {
 //   return 'deleted post ' + postId;
 // }
 
-// export const editPost = (postId, caption) => async (dispatch) => {
-//   await fetch(`/api/posts/edit/${postId}`, {
-//     method: "POST",
-//     body: caption,
-//   });
-//   dispatch(getPostsForUser());
-//   return 'edited post';
-// }
+export const updateApplication = (appId) => async (dispatch) => {
+  const res = await fetch(`/api/applications/update/${appId}`, {
+    method: "POST",
+  });
+  const app = await res.json();
+  dispatch(getApplications());
+  return 'updated app';
+}
 
 const initialState = [];
 
