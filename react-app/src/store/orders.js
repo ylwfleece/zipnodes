@@ -55,7 +55,6 @@ export const createOrder = (nonprofitId, title, description, location, startTime
         virtual
     }),
   });
-  console.log(res)
   const order = await res.json();
   dispatch(addOrder(order));
   return order;

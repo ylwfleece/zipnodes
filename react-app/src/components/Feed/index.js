@@ -47,7 +47,6 @@ function Feed() {
 
     const openApp = (e) => {
         const orderId = parseInt(e.target.id, 10);
-        console.log(orderId)
         localStorage.setItem("orderId", orderId);
         history.push('/applications/new');
     }

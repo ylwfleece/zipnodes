@@ -31,6 +31,11 @@ const NavBar = ({ setAuthenticated }) => {
           <NavLink to="/" exact={true} activeClassName="active">
             <img alt='logo' style={{ maxHeight: '50px' }}></img>
           </NavLink>
+          {user.nonprofit && 
+            <NavLink to="/orders/new" exact={true} activeClassName="active">
+              new order
+            </NavLink>
+          }
         </div>
       </div>
     </nav>
