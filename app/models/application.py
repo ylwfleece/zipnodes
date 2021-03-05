@@ -8,7 +8,7 @@ class Application(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key = True)
   node_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
-  status = db.Column(db.String(10), nullable = False, default="Pending")
+  status = db.Column(db.String(20), nullable = False, default="Pending")
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   order = db.relationship("Order", back_populates="applications")

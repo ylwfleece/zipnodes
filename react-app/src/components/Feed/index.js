@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
+import { updateApplication } from "../../store/applications";
 
 function Feed() {
     const dispatch = useDispatch()
@@ -51,6 +52,12 @@ function Feed() {
         history.push('/applications/new');
     }
 
+    const accept = (e) => {
+        const appId = parseInt(e.target.id, 10);
+        dispatch(updateApplication(appId));
+        // remove option to accept other apps for same order
+    }
+
     return (<>
         {(view == "orders" && orders) &&
             <div className='homepage'>
@@ -90,6 +97,9 @@ function Feed() {
                             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div>{app.node_id}</div>
                                 <div>{app.status}</div>
+                                {user.nonprofit &&
+                                    <button id={app.id} onClick={accept}>accept</button>
+                                }
                             </div>
                         )}
                     </div>

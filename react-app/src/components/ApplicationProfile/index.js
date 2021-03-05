@@ -12,9 +12,14 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
       <div>
         <div className='container'>
           {application && 
-            <div>
-                {application.status}
-            </div>
+            <>
+                <div>
+                    {application.order_title}
+                </div>
+                <div>
+                    {application.status}
+                </div>
+            </>
           }
         </div>
       </div>

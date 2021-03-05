@@ -39,3 +39,16 @@ def create_application():
         return application.to_dict()
     return 'invalid form'
 
+
+@application_routes.route('/update/<int:app_id>', methods=['POST'])
+def update_application(app_id):
+    """
+    Updates an application.
+    """
+    application = Application.query.filter(Application.id == app_id).first()
+    application.status = "Accepted"
+    application.order.status = "In Progress"
+    db.session.add(application)
+    db.session.commit()
+    return jsonify(application.to_dict())
+
