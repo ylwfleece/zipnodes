@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { updateApplication } from "../../store/applications";
+import { createReview, getReviews } from '../../store/reviews';
 
 function Feed() {
     const dispatch = useDispatch()
@@ -57,6 +58,13 @@ function Feed() {
         // remove option to accept other apps for same order
     }
 
+    const addReview = (e) => {
+        const appId = parseInt(e.target.id, 10);
+        localStorage.setItem("appId", appId);
+        history.push('/reviews/new');
+        // remove option to accept other apps for same order
+    }
+
     return (<>
         {(view == "orders" && orders) &&
             <div className='homepage'>
@@ -96,8 +104,11 @@ function Feed() {
                             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div>{app.node_id}</div>
                                 <div>{app.status}</div>
-                                {user.nonprofit &&
+                                {(user.nonprofit && app.status == 'Pending') &&
                                     <button id={app.id} onClick={accept}>accept</button>
+                                }
+                                {(user.nonprofit && app.status == 'Accepted') &&
+                                    <button id={app.id} onClick={addReview}>review</button>
                                 }
                             </div>
                         )}

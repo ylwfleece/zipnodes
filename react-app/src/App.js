@@ -12,6 +12,7 @@ import ReviewForm from "./components/ReviewForm";
 import Feed from "./components/Feed";
 import ApplicationProfile from "./components/ApplicationProfile";
 import OrderProfile from "./components/OrderProfile";
+import ReviewProfile from "./components/ReviewProfile";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -92,6 +93,14 @@ function App() {
         >
           {/* <NavBar setAuthenticated={setAuthenticated} /> */}
           <ReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/review/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
+          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <ReviewProfile />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />
