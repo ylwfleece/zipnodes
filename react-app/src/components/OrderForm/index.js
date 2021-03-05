@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from '../../store/orders';
+import DateTimePicker from 'react-datetime-picker'
 
 const OrderForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const order = await dispatch(createOrder(user.id, title, description, location, startTime, duration, karma, virtual));
-    console.log(order.title)
     history.push(`/order/${order.id}`)
   };
 
@@ -37,7 +37,8 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
   };
 
   const updateStartTime = (e) => {
-    setStartTime(e.target.value);
+    console.log(e)
+    setStartTime(e);
   };
 
   const updateDuration = (e) => {
@@ -49,7 +50,7 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
   };
 
   const updateVirtual = (e) => {
-    setVirtual(e.target.value);
+    setVirtual(e.target.checked);
   };
 
 
@@ -96,13 +97,14 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                   />
                 </div>
                 <div className='field-inputs'>
-                  <input
+                  {/* <input
                     type="text"
                     name="startTime"
                     placeholder='start time'
                     onChange={updateStartTime}
                     value={startTime}
-                  />
+                  /> */}
+    
                 </div>
                 <div className='field-inputs'>
                   <input
@@ -123,17 +125,23 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                   />
                 </div>
                 <div className='field-inputs'>
+                  <label htmlFor="virtual">virtual: </label>
                   <input
-                    type="text"
+                    type="checkbox"
                     name="virtual"
                     placeholder='virtual'
                     onChange={updateVirtual}
                     value={virtual}
                   />
                 </div>
+                <DateTimePicker 
+                      onChange={updateStartTime}
+                      value={startTime}
+                    />
                 <div className='submit-button-container' style={{ marginTop: '18px' }}>
                   <button type="submit" className='blue-submit-button'>Submit Order</button>
                 </div>
+                
               </form>
             </div>
             <div className='errors-container'>

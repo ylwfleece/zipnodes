@@ -39,6 +39,11 @@ export const clearOrders = () => async (dispatch) => {
 
 export const createOrder = (nonprofitId, title, description, location, startTime, duration, karma, virtual) => async (dispatch) => {
     console.log(nonprofitId, title, description, location, startTime, duration, karma, virtual)
+    if (virtual) {
+      virtual = "True";
+    } else {
+      virtual = "False"
+    }
     let res = await fetch(`/api/orders/`, {
     method: "POST",
     headers: {

@@ -28,16 +28,14 @@ def create_order():
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('>>>>>>> form data:', form.data)
     if form.validate_on_submit():
-        print('>>>>>>> form validated:', form.data)
-        virtual_bool = form.data['virtual'] != "False"
+        virtual_bool = form.data['virtual'] == "True"
         order = Order(
             nonprofit_id = form.data['nonprofit_id'],
             title = form.data['title'],
             description = form.data['description'],
             location = form.data['location'],
-            # start_time = form.data['start_time'],
+            start_time = form.data['start_time'],
             duration = form.data['duration'],
             karma = form.data['karma'],
             virtual = virtual_bool
