@@ -13,6 +13,7 @@ import Feed from "./components/Feed";
 import ApplicationProfile from "./components/ApplicationProfile";
 import OrderProfile from "./components/OrderProfile";
 import ReviewProfile from "./components/ReviewProfile";
+import OrderAppsProfile from "./components/OrderAppsProfile";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -69,6 +70,14 @@ function App() {
         >
           {/* <NavBar setAuthenticated={setAuthenticated} /> */}
           <OrderProfile />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/order/:id/apps"
+          exact={true}
+          authenticated={authenticated}
+        >
+          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <OrderAppsProfile />
         </ProtectedRoute>
         <ProtectedRoute
           path="/applications/new"

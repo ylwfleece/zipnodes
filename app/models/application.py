@@ -23,5 +23,6 @@ class Application(db.Model, UserMixin):
       "status": self.status,
       "updated_at": self.updated_at,
       "nonprofit_id": self.order.nonprofit_id,
-      "order_title": self.order.title
+      "order_title": self.order.title,
+      "node": self.node.to_dict()
     }
