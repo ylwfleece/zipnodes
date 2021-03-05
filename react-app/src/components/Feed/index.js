@@ -114,7 +114,8 @@ function Feed() {
                     <div className='homepage-feed'>
                         {apps.map((app) =>
                             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                                <div>{app.node_id}</div>
+                                <div>{app.order_title}</div>
+                                <div>{app.order_start_time}</div>
                                 <div>{app.status}</div>
                                 {(user.nonprofit && app.status == 'Pending') &&
                                     <button id={app.id} onClick={accept}>accept</button>
@@ -139,6 +140,8 @@ function Feed() {
                     <div className='homepage-feed'>
                         {revs.map((rev) =>
                             <div key={rev.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                                <div>{rev.order_title}</div>
+                                <div>{rev.order_start_time}</div>
                                 <div>{rev.content}</div>
                                 <div>{rev.score}</div>
                             </div>
