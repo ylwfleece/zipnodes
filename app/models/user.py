@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   orders = db.relationship("Order", back_populates="nonprofit", cascade="all, delete-orphan")
   applications = db.relationship("Application", back_populates="node", cascade="all, delete-orphan")
+  reviews = db.relationship("Review", back_populates="writer", cascade="all, delete-orphan")
 
   @property
   def password(self):

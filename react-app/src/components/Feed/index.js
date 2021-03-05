@@ -91,11 +91,15 @@ function Feed() {
                                 {!user.nonprofit && 
                                     <button id={ord.id} onClick={openApp}>apply</button>
                                 }
-                                {(user.nonprofit && ord.app_node_ids.length > 0) && 
-                                    <>
-                                        <p>applications: {ord.app_node_ids.length}</p>
-                                        <button id={ord.id} onClick={viewApps}>view</button>
-                                    </>
+                                {(user.nonprofit && ord.app_node_ids.length == 1) && 
+                                    // <>
+                                        <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
+                                    // </>
+                                }
+                                {(user.nonprofit && ord.app_node_ids.length > 1) && 
+                                    // <>
+                                        <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
+                                    // </>
                                 }
                             </div>
                         )}
@@ -115,6 +119,7 @@ function Feed() {
                         {apps.map((app) =>
                             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div>{app.order_title}</div>
+                                <div>{app.node.username}</div>
                                 <div>{app.order_start_time}</div>
                                 <div>{app.status}</div>
                                 {(user.nonprofit && app.status == 'Pending') &&
@@ -144,6 +149,10 @@ function Feed() {
                                 <div>{rev.order_start_time}</div>
                                 <div>{rev.content}</div>
                                 <div>{rev.score}</div>
+                                <div>by {rev.writer.username}</div>
+                                {(!rev.response_id && rev.writer_id != user.id) && 
+                                    <button id={rev.application_id} onClick={addReview}>add review</button>
+                                }
                             </div>
                         )}
                     </div>

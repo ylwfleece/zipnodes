@@ -6,16 +6,20 @@ import { createReview, getReviews } from '../../store/reviews';
 const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const appId = localStorage.getItem("appId");
   const user = useSelector((state) => state.session.user);
+  const review = useSelector((state) => state.reviews).filter(rev => rev.app_id == appId)[0]
+  let responseId = null;
+  if (review) {
+    responseId = review.id;
+  }
   
   const [content, setContent] = useState("");
   const [score, setScore] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const appId = localStorage.getItem("appId");
-    const rev = await dispatch(createReview(user.id, appId, content, score));
+    const rev = await dispatch(createReview(user.id, appId, content, score, responseId));
     history.push(`/review/${rev.id}`);
   };
 
@@ -26,10 +30,6 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const updateScore = (e) => {
     setScore(e.target.value);
   };
-
-  const getRevs = async (e) => {
-    dispatch(getReviews())
-  }
 
   return (
     <div className='page-container'>
@@ -68,9 +68,6 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
                   <button type="submit" className='blue-submit-button'>Submit Review</button>
                 </div>
               </form>
-            </div>
-            <div>
-              <button onClick={getRevs}>get reviews</button>
             </div>
             <div className='errors-container'>
               {/* {errors.map((error) => (

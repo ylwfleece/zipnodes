@@ -60,7 +60,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <OrderForm />
         </ProtectedRoute>
         <ProtectedRoute
@@ -68,7 +68,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <OrderProfile />
         </ProtectedRoute>
         <ProtectedRoute
@@ -76,7 +76,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <OrderAppsProfile />
         </ProtectedRoute>
         <ProtectedRoute
@@ -84,7 +84,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <ApplicationForm />
         </ProtectedRoute>
         <ProtectedRoute
@@ -92,7 +92,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <ApplicationProfile />
         </ProtectedRoute>
         <ProtectedRoute
@@ -100,7 +100,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <ReviewForm />
         </ProtectedRoute>
         <ProtectedRoute
@@ -108,7 +108,7 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+          <NavBar setAuthenticated={setAuthenticated} />
           <ReviewProfile />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>

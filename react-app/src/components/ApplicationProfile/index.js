@@ -17,6 +17,9 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
                     {application.order_title}
                 </div>
                 <div>
+                    {application.order_start_time}
+                </div>
+                <div>
                     {application.status}
                 </div>
             </>
