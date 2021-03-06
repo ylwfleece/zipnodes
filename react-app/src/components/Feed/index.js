@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { updateApplication } from "../../store/applications";
 import { createReview, getReviews } from '../../store/reviews';
+import { updateOrder } from "../../store/orders";
 
 function Feed() {
     const dispatch = useDispatch()
@@ -42,7 +43,7 @@ function Feed() {
         if (user.nonprofit) {
             revs = reviews.filter(rev => rev.nonprofit_id == user.id);
         } else {
-            revs = reviews.filter(rev => rev.node_id == user.id);
+            revs = reviews.filter(rev => rev.node_id == user.id && !rev.response_id && rev.writer_id != user.id);
         }
     }
 
@@ -52,9 +53,10 @@ function Feed() {
         history.push('/applications/new');
     }
 
-    const accept = (e) => {
+    const accept = async (e) => {
         const appId = parseInt(e.target.id, 10);
-        dispatch(updateApplication(appId));
+        const app = await dispatch(updateApplication(appId));
+        dispatch(updateOrder(app.order_id))
         // remove option to accept other apps for same order
     }
 
@@ -143,7 +145,7 @@ function Feed() {
                         <button value="reviews" onClick={toggleView}>reviews</button>
                     </div>
                     <div className='homepage-feed'>
-                        {revs.map((rev) =>
+                        {revs.map((rev) => 
                             <div key={rev.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div>{rev.order_title}</div>
                                 <div>{rev.order_start_time}</div>

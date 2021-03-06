@@ -71,14 +71,14 @@ export const createOrder = (nonprofitId, title, description, location, startTime
 //   return 'deleted post ' + postId;
 // }
 
-// export const editPost = (postId, caption) => async (dispatch) => {
-//   await fetch(`/api/posts/edit/${postId}`, {
-//     method: "POST",
-//     body: caption,
-//   });
-//   dispatch(getPostsForUser());
-//   return 'edited post';
-// }
+export const updateOrder = (order_id) => async (dispatch) => {
+  const order = await fetch(`/api/orders/update/${order_id}`, {
+    method: "POST",
+    // body: caption,
+  });
+  dispatch(getOrders());
+  return order;
+}
 
 const initialState = [];
 

@@ -51,7 +51,8 @@ export const createReview = (writer_id, application_id, content, score, response
     }),
   });
   const review = await res.json();
-  dispatch(addReview(review));
+  // dispatch(addReview(review));
+  dispatch(getReviews());
   return review;
 };
 
