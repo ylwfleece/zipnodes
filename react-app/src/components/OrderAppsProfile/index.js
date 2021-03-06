@@ -7,11 +7,11 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const ordId = useParams().orderId;
+  const params = useParams();
 
   const user = useSelector((state) => state.session.user);
-  const apps = useSelector((state) => state.applications).list.filter(app => app.order_id == ordId);
-  const order = useSelector((state) => state.orders[ordId]);
+  const apps = useSelector((state) => state.applications).list.filter(app => app.order_id == params.id);
+  const order = useSelector((state) => state.orders[params.id]);
 
   const acceptApp = async (e) => {
     const appId = parseInt(e.target.id, 10);
