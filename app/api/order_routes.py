@@ -53,6 +53,7 @@ def update_order(order_id):
     """
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
+    # new_status = request.data.decode('ascii')
     order = Order.query.filter(Order.id == order_id).first()
     if order.status == "Unfilled":
         order.status = "In Progress"

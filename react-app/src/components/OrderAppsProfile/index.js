@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { updateApplication } from "../../store/applications";
 
 const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const ordId = localStorage.getItem('ordId');
+  const params = useParams();
 
   const user = useSelector((state) => state.session.user);
-  const apps = useSelector((state) => state.applications).filter(app => app.order_id == ordId);
-  const order = useSelector((state) => state.orders[ordId - 1]);
+  const apps = useSelector((state) => state.applications).list.filter(app => app.order_id == params.id);
+  const order = useSelector((state) => state.orders[params.id]);
 
   const acceptApp = async (e) => {
     const appId = parseInt(e.target.id, 10);
@@ -20,8 +20,7 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
 
   const addReview = async (e) => {
     const appId = parseInt(e.target.id, 10);
-    localStorage.setItem("appId", appId);
-    history.push('/reviews/new');
+    history.push(`/reviews/new/${appId}`);
   }
   
 

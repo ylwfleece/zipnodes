@@ -16,7 +16,7 @@ const addApplication = (application) => {
     }
 }
 
-const removeApplications = () => {
+const removeApplication = () => {
   return {
     type: REMOVE_APPLICATION,
   };
@@ -33,7 +33,7 @@ export const getApplications = () => async (dispatch) => {
 };
 
 export const clearApplications = () => async (dispatch) => {
-  dispatch(removeApplications());
+  // dispatch(removeApplications());
   return "removed applications on logout";
 };
 
@@ -74,20 +74,29 @@ const applicationsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_APPLICATIONS:
-      newState = action.payload;
-      return newState;
+      const newApps = {};
+      action.payload.forEach(app => {
+        newApps[app.id] = app;
+      })
+      return {
+        ...state,
+        ...newApps,
+        list: action.payload
+      }
     case REMOVE_APPLICATION:
-      newState = [];
+      const newState = { ...state };
+      delete newState[action.payload];
       return newState;
     case ADD_APPLICATION:
-      newState = [...state]
-      if(newState){
-          newState.unshift(action.payload); 
-          return newState; 
-      }
-      else{
-          newState = [action.payload];
-          return newState;
+      if (!state[action.payload.id]) {
+        const newState = {
+          ...state,
+          [action.payload.id]: action.payload
+        };
+        return newState;
+      } else {
+        state[action.payload.id] = action.payload
+        return { state }
       }
     default:
       return state;

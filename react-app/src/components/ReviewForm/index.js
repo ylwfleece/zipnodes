@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews } from '../../store/reviews';
 
 const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const appId = localStorage.getItem("appId");
+  const appId = useParams().appId;
   const user = useSelector((state) => state.session.user);
-  const review = useSelector((state) => state.reviews).filter(rev => rev.app_id == appId)[0]
+  const review = useSelector((state) => state.reviews).list.filter(rev => rev.app_id == appId)[0]
   let responseId = null;
   if (review) {
     responseId = review.id;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import {Redirect} from "react-router-dom";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createApplication, getApplications } from '../../store/applications';
 
@@ -10,7 +10,7 @@ const ApplicationForm = ({ authenticated, setAuthenticated }) => {
   const user = useSelector((state) => state.session.user);
   const orders = useSelector((state) => state.orders);
 
-  const orderId = localStorage.getItem('orderId');
+  const orderId = useParams().orderId 
   
   let order;
   if (orders) {
