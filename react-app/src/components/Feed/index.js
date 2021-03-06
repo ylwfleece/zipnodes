@@ -74,13 +74,15 @@ function Feed() {
     }
 
     return (<>
-        {(view == "orders" && ords) &&
+        {(view == "orders" && ords && user) &&
             <div className='homepage'>
                 <div className='page-container homepage-container'>
                     <div className='toggle-bar'>
                         <button value="orders" onClick={toggleView}>orders</button>
                         <button value="applications" onClick={toggleView}>applications</button>
-                        <button value="reviews" onClick={toggleView}>reviews</button>
+                        {!user.nonprofit && 
+                            <button value="reviews" onClick={toggleView}>reviews</button>
+                        }                       
                     </div>
                     <div className='homepage-feed'>
                         {ords.map((ord) =>
@@ -115,7 +117,9 @@ function Feed() {
                     <div className='toggle-bar'>
                         <button value="orders" onClick={toggleView}>orders</button>
                         <button value="applications" onClick={toggleView}>applications</button>
-                        <button value="reviews" onClick={toggleView}>reviews</button>
+                        {!user.nonprofit && 
+                            <button value="reviews" onClick={toggleView}>reviews</button>
+                        } 
                     </div>
                     <div className='homepage-feed'>
                         {apps.map((app) =>
@@ -142,7 +146,9 @@ function Feed() {
                     <div className='toggle-bar'>
                         <button value="orders" onClick={toggleView}>orders</button>
                         <button value="applications" onClick={toggleView}>applications</button>
-                        <button value="reviews" onClick={toggleView}>reviews</button>
+                        {!user.nonprofit && 
+                            <button value="reviews" onClick={toggleView}>reviews</button>
+                        } 
                     </div>
                     <div className='homepage-feed'>
                         {revs.map((rev) => 
