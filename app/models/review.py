@@ -10,9 +10,11 @@ class Review(db.Model, UserMixin):
   writer_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   content = db.Column(db.String(225), nullable=False)
   score = db.Column(db.Integer, nullable = False)
+  response_id = db.Column(db.Integer, nullable = True, default=None)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   application = db.relationship("Application", back_populates="review")
+  writer = db.relationship("User", back_populates="reviews")
 
 
   def to_dict(self):
@@ -26,5 +28,7 @@ class Review(db.Model, UserMixin):
       "nonprofit_id": self.application.order.nonprofit_id,
       "node_id": self.application.node_id,
       "order_title": self.application.order.title,
-      "order_start_time": self.application.order.start_time
+      "order_start_time": self.application.order.start_time,
+      "response_id": self.response_id,
+      "writer": self.writer.to_dict()
     }

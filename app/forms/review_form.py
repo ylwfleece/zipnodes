@@ -9,7 +9,7 @@ class ReviewForm(FlaskForm):
     application_id = IntegerField('application_id', validators=[DataRequired()])
     content = TextAreaField('content', validators=[DataRequired()])
     score = IntegerField('score', validators=[DataRequired()])
-    
+        
 
 
 

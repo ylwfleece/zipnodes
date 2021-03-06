@@ -65,7 +65,7 @@ export const updateApplication = (appId) => async (dispatch) => {
   });
   const app = await res.json();
   dispatch(getApplications());
-  return 'updated app';
+  return app;
 }
 
 const initialState = [];

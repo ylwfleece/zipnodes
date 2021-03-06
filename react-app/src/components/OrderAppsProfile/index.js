@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { updateApplication } from "../../store/applications";
 
 const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const ordId = localStorage.getItem('ordId');
 
   const user = useSelector((state) => state.session.user);
   const apps = useSelector((state) => state.applications).filter(app => app.order_id == ordId);
   const order = useSelector((state) => state.orders[ordId - 1]);
+
+  const acceptApp = async (e) => {
+    const appId = parseInt(e.target.id, 10);
+    const app = await dispatch(updateApplication(appId))
+  }
+
+  const addReview = async (e) => {
+    const appId = parseInt(e.target.id, 10);
+    localStorage.setItem("appId", appId);
+    history.push('/reviews/new');
+  }
   
 
   return (
@@ -24,10 +38,10 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
                     <div>karma: {app.node.karma}</div>
                     <div>{app.status}</div>
                     {(user.nonprofit && app.status == 'Pending') &&
-                        <button id={app.id} >accept</button>
+                        <button id={app.id} onClick={acceptApp}>accept</button>
                     }
                     {(user.nonprofit && app.status == 'Accepted') &&
-                        <button id={app.id} >review</button>
+                        <button id={app.id} onClick={addReview}>review</button>
                     }
                 </div>
             )}

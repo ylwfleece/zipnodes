@@ -29,6 +29,7 @@ def create_review():
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        app_id = form.data['application_id']
         review = Review(
             writer_id = form.data['writer_id'],
             application_id = form.data['application_id'],
@@ -37,6 +38,11 @@ def create_review():
         )
         db.session.add(review)
         db.session.commit()
+        original = Review.query.filter(Review.application_id == app_id).first()
+        if original:
+            original.response_id = review.id
+            db.session.add(original)
+            db.session.commit()
         return review.to_dict()
     return 'invalid form'
 

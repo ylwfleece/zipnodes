@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { updateApplication } from "../../store/applications";
 import { createReview, getReviews } from '../../store/reviews';
+import { updateOrder } from "../../store/orders";
 
 function Feed() {
     const dispatch = useDispatch()
@@ -42,7 +43,7 @@ function Feed() {
         if (user.nonprofit) {
             revs = reviews.filter(rev => rev.nonprofit_id == user.id);
         } else {
-            revs = reviews.filter(rev => rev.node_id == user.id);
+            revs = reviews.filter(rev => rev.node_id == user.id && !rev.response_id && rev.writer_id != user.id);
         }
     }
 
@@ -52,9 +53,10 @@ function Feed() {
         history.push('/applications/new');
     }
 
-    const accept = (e) => {
+    const accept = async (e) => {
         const appId = parseInt(e.target.id, 10);
-        dispatch(updateApplication(appId));
+        const app = await dispatch(updateApplication(appId));
+        dispatch(updateOrder(app.order_id))
         // remove option to accept other apps for same order
     }
 
@@ -91,11 +93,15 @@ function Feed() {
                                 {!user.nonprofit && 
                                     <button id={ord.id} onClick={openApp}>apply</button>
                                 }
-                                {(user.nonprofit && ord.app_node_ids.length > 0) && 
-                                    <>
-                                        <p>applications: {ord.app_node_ids.length}</p>
-                                        <button id={ord.id} onClick={viewApps}>view</button>
-                                    </>
+                                {(user.nonprofit && ord.app_node_ids.length == 1) && 
+                                    // <>
+                                        <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
+                                    // </>
+                                }
+                                {(user.nonprofit && ord.app_node_ids.length > 1) && 
+                                    // <>
+                                        <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
+                                    // </>
                                 }
                             </div>
                         )}
@@ -115,6 +121,7 @@ function Feed() {
                         {apps.map((app) =>
                             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div>{app.order_title}</div>
+                                <div>{app.node.username}</div>
                                 <div>{app.order_start_time}</div>
                                 <div>{app.status}</div>
                                 {(user.nonprofit && app.status == 'Pending') &&
@@ -138,12 +145,16 @@ function Feed() {
                         <button value="reviews" onClick={toggleView}>reviews</button>
                     </div>
                     <div className='homepage-feed'>
-                        {revs.map((rev) =>
+                        {revs.map((rev) => 
                             <div key={rev.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div>{rev.order_title}</div>
                                 <div>{rev.order_start_time}</div>
                                 <div>{rev.content}</div>
                                 <div>{rev.score}</div>
+                                <div>by {rev.writer.username}</div>
+                                {(!rev.response_id && rev.writer_id != user.id) && 
+                                    <button id={rev.application_id} onClick={addReview}>add review</button>
+                                }
                             </div>
                         )}
                     </div>
