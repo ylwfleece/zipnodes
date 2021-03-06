@@ -6,7 +6,7 @@ def seed_applications():
     app1 = Application(order_id=1, 
     node_id=1)
     app2 = Application(order_id=2, 
-    node_id=1)
+    node_id=6)
     app3 = Application(order_id=3, 
     node_id=1)
 

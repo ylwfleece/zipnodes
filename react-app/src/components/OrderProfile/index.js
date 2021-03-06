@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const OrderProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -24,6 +24,9 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
             </>
           }
         </div>
+        <div>
+            <Link to='/'>back to open orders</Link>
+          </div>
       </div>
     </div>
   );

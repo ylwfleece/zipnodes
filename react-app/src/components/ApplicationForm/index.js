@@ -3,28 +3,26 @@ import React, { useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createApplication, getApplications } from '../../store/applications';
+import { getOrders } from "../../store/orders";
 
 const ApplicationForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
-  const orders = useSelector((state) => state.orders);
-
-  const orderId = useParams().orderId 
-  
-  let order;
-  if (orders) {
-    order = orders[orderId - 1];
-  }
+  const params = useParams();
+  const order = useSelector((state) => state.orders[params.orderId]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const app = await dispatch(createApplication(user.id, order.id));
+    dispatch(getOrders());
     history.push(`/application/${app.id}`);
   };
 
   return (
+    
     <div className='page-container'>
+      {order &&
       <div className='container'>
         <div>
           <div className='form-container'>
@@ -48,13 +46,11 @@ const ApplicationForm = ({ authenticated, setAuthenticated }) => {
               </form>
             </div>
             <div className='errors-container'>
-              {/* {errors.map((error) => (
-              <div className='errors'>{error}</div>
-            ))} */}
             </div>
           </div>
         </div>
       </div>
+    }
     </div>
   );
 };

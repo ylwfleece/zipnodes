@@ -14,6 +14,12 @@ def seed_users():
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     rjca = User(username="Restorative Justice Community Action", email='rjca@aa.io', 
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    js = User(username="Joe Shmo", email='js@aa.io',
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=False)
+    sw = User(username="Streetworks", email='sw@aa.io',
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    fmsc = User(username="Feed My Starving Children", email='fmsc@aa.io',
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     
 
     db.session.add(demo_node)
@@ -21,6 +27,9 @@ def seed_users():
     db.session.add(nu)
     db.session.add(tcfj)
     db.session.add(rjca)
+    db.session.add(js)
+    db.session.add(sw)
+    db.session.add(fmsc)
 
     db.session.commit()
 

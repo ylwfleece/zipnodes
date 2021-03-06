@@ -5,16 +5,16 @@ def seed_reviews():
 
     review1 = Review(writer_id=3,
     application_id=1, 
-    content="Did a great job!",
+    content="Did a great job! Would recommend for any manual task!",
     score=5)
     review2 = Review(writer_id=4,
     application_id=2, 
-    content="Didn't show up!",
+    content="Didn't show up...",
     score=1)
     review3 = Review(writer_id=5,
     application_id=3, 
-    content="Was thoughtful and a great contributor!",
-    score=5)
+    content="Was a thoughtful and great contributor!",
+    score=4)
 
     db.session.add(review1)
     db.session.add(review2)
