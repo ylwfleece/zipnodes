@@ -1,5 +1,5 @@
 const SET_ORDERS = "orders/setOrders";
-const REMOVE_ORDERS = "orders/removeOrders";
+const REMOVE_ORDER = "orders/removeOrder";
 const ADD_ORDER = "orders/addOrder";
 
 const setOrders = (orders) => {
@@ -16,9 +16,9 @@ const addOrder = (order) => {
     }
 }
 
-const removeOrders = () => {
+const removeOrder = () => {
   return {
-    type: REMOVE_ORDERS,
+    type: REMOVE_ORDER,
   };
 };
 
@@ -29,11 +29,12 @@ export const getOrders = () => async (dispatch) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
 //     })
   dispatch(setOrders(orders));
+  console.log(orders)
   return orders;
 };
 
 export const clearOrders = () => async (dispatch) => {
-  dispatch(removeOrders());
+  // dispatch(removeOrders());
   return "removed orders on logout";
 };
 
@@ -80,26 +81,35 @@ export const updateOrder = (order_id) => async (dispatch) => {
   return order;
 }
 
-const initialState = [];
+const initialState = {};
 
 const ordersReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_ORDERS:
-      newState = action.payload;
-      return newState;
-    case REMOVE_ORDERS:
-      newState = [];
+      const newOrders = {};
+      action.payload.forEach(order => {
+        newOrders[order.id] = order;
+      })
+      return {
+        ...state,
+        ...newOrders,
+        list: action.payload
+      }
+    case REMOVE_ORDER:
+      const newState = { ...state };
+      delete newState[action.payload];
       return newState;
     case ADD_ORDER:
-      newState = [...state]
-      if(newState){
-          newState.unshift(action.payload); 
-          return newState; 
-      }
-      else{
-          newState = [action.payload];
-          return newState;
+      if (!state[action.payload.id]) {
+        const newState = {
+          ...state,
+          [action.payload.id]: action.payload
+        };
+        return newState;
+      } else {
+        state[action.payload.id] = action.payload
+        return { state }
       }
     default:
       return state;

@@ -21,36 +21,36 @@ function Feed() {
     }
 
     let ords = [];
-    if (orders && user) {
+    if (orders.list && user) {
         if (user.nonprofit) {
-            ords = orders.filter(ord => ord.status == "Unfilled")
+            ords = orders.list.filter(ord => ord.status == "Unfilled")
         } else {
-            ords = orders.filter(ord => (ord.status == "Unfilled" && !ord.app_node_ids.includes(user.id)))
+            ords = orders.list.filter(ord => (ord.status == "Unfilled" && !ord.app_node_ids.includes(user.id)))
         }
     }
 
     let apps = [];
-    if (applications && user) {
+    if (applications.list && user) {
         if (user.nonprofit) {
-            apps = applications.filter(app => app.nonprofit_id == user.id);
+            apps = applications.list.filter(app => app.nonprofit_id == user.id);
         } else {
-            apps = applications.filter(app => app.node_id == user.id);
+            apps = applications.list.filter(app => app.node_id == user.id);
         }
     }
     
     let revs = [];
-    if (reviews && user) {
+    if (reviews.list && user) {
         if (user.nonprofit) {
-            revs = reviews.filter(rev => rev.nonprofit_id == user.id);
+            revs = reviews.list.filter(rev => rev.nonprofit_id == user.id);
         } else {
-            revs = reviews.filter(rev => rev.node_id == user.id && !rev.response_id && rev.writer_id != user.id);
+            revs = reviews.list.filter(rev => rev.node_id == user.id && !rev.response_id && rev.writer_id != user.id);
         }
     }
 
     const openApp = (e) => {
         const orderId = parseInt(e.target.id, 10);
-        localStorage.setItem("orderId", orderId);
-        history.push('/applications/new');
+        // localStorage.setItem("orderId", orderId);
+        history.push(`/applications/new/${orderId}`);
     }
 
     const accept = async (e) => {
@@ -62,14 +62,14 @@ function Feed() {
 
     const addReview = (e) => {
         const appId = parseInt(e.target.id, 10);
-        localStorage.setItem("appId", appId);
-        history.push('/reviews/new');
+        // localStorage.setItem("appId", appId);
+        history.push(`/reviews/new/${appId}`);
         // remove option to accept other apps for same order
     }
 
     const viewApps = (e) => {
         const ordId = parseInt(e.target.id, 10);
-        localStorage.setItem("ordId", ordId);
+        // localStorage.setItem("ordId", ordId);
         history.push(`/order/${ordId}/apps`);
     }
 

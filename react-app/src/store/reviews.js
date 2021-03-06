@@ -16,7 +16,7 @@ const addReview = (review) => {
     }
 }
 
-const removeReviews = () => {
+const removeReview = () => {
   return {
     type: REMOVE_REVIEW,
   };
@@ -33,7 +33,7 @@ export const getReviews = () => async (dispatch) => {
 };
 
 export const clearReviews = () => async (dispatch) => {
-  dispatch(removeReviews());
+  // dispatch(removeReviews());
   return "removed reviews on logout";
 };
 
@@ -77,20 +77,29 @@ const reviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_REVIEWS:
-      newState = action.payload;
-      return newState;
+      const newReviews = {};
+      action.payload.forEach(rev => {
+        newReviews[rev.id] = rev;
+      })
+      return {
+        ...state,
+        ...newReviews,
+        list: action.payload
+      }
     case REMOVE_REVIEW:
-      newState = [];
+      const newState = { ...state };
+      delete newState[action.payload];
       return newState;
     case ADD_REVIEW:
-      newState = [...state]
-      if(newState){
-          newState.unshift(action.payload); 
-          return newState; 
-      }
-      else{
-          newState = [action.payload];
-          return newState;
+      if (!state[action.payload.id]) {
+        const newState = {
+          ...state,
+          [action.payload.id]: action.payload
+        };
+        return newState;
+      } else {
+        state[action.payload.id] = action.payload
+        return { state }
       }
     default:
       return state;

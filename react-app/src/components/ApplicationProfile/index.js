@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-  const application = useSelector((state) => state.applications[0]);
+  const params = useParams()
+  const application = useSelector((state) => state.applications[params.id]);
 
   return (
     <div className='page-container'>

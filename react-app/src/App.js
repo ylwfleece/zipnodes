@@ -80,7 +80,7 @@ function App() {
           <OrderAppsProfile />
         </ProtectedRoute>
         <ProtectedRoute
-          path="/applications/new"
+          path="/applications/new/:orderId"
           exact={true}
           authenticated={authenticated}
         >
@@ -96,7 +96,7 @@ function App() {
           <ApplicationProfile />
         </ProtectedRoute>
         <ProtectedRoute
-          path="/reviews/new"
+          path="/reviews/new/:appId"
           exact={true}
           authenticated={authenticated}
         >

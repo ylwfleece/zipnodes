@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const OrderProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-  const order = useSelector((state) => state.orders[0]);
+  const params = useParams()
+  const order = useSelector((state) => state.orders[params.id]);
 
   return (
     <div className='page-container'>
