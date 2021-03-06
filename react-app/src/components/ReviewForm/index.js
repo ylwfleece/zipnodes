@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews } from '../../store/reviews';
+import { getApplications } from "../../store/applications";
 
 const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const rev = await dispatch(createReview(user.id, appId, content, score, responseId));
+    dispatch(getApplications())
     history.push(`/review/${rev.id}`);
   };
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { updateApplication } from "../../store/applications";
 
 const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
@@ -47,6 +47,9 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
             </div>
           }
         </div>
+        <div>
+            <Link to='/'>back to open orders</Link>
+          </div>
       </div>
     </div>
   );

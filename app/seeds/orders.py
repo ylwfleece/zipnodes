@@ -30,9 +30,39 @@ def seed_orders():
     virtual=False,
     status="Unfilled")
 
+    order4 = Order(nonprofit_id=2, 
+    title="General volunteer event",
+    description="Looking for a general volunteer",
+    location="100 Somewhere Place", 
+    duration=1,
+    karma=3,
+    virtual=False,
+    status="Unfilled")
+
+    order5 = Order(nonprofit_id=7, 
+    title="Help pack outreach supply bags",
+    description="Looking for someone to help bag snacks and sanitation supplies for outreach workers to distribute",
+    location="450 Nipsey Ln", 
+    duration=1,
+    karma=2,
+    virtual=False,
+    status="Unfilled")
+
+    order6 = Order(nonprofit_id=8, 
+    title="Help pack meals for village in Haiti",
+    description="Looking for someone to help pack meals for our latest shipment to Haitian village",
+    location="200 Chance Ln", 
+    duration=1,
+    karma=3,
+    virtual=False,
+    status="Unfilled")
+
     db.session.add(order1)
     db.session.add(order2)
     db.session.add(order3)
+    db.session.add(order4)
+    db.session.add(order5)
+    db.session.add(order6)
 
     db.session.commit()
 
