@@ -6,6 +6,8 @@ import LogoutButton from './auth/LogoutButton'
 const ProfileButton = ({ user, setAuthenticated }) => {
     const [showMenu, setShowMenu] = useState(false);
 
+    // comment for heroku
+
     let sessionButtons = (
         <div className="dropdown-menu popout">
             {/* <li className='dropdown-item'>{user.username}</li>

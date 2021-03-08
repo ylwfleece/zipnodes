@@ -23,7 +23,7 @@ const removeOrder = () => {
 };
 
 export const getOrders = () => async (dispatch) => {
-  let orders = await fetch(`/api/orders/`);
+  let orders = await fetch(`/api/orders`);
   orders = await orders.json();
 //   orders.sort((post1, post2) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
@@ -45,7 +45,7 @@ export const createOrder = (nonprofitId, title, description, location, startTime
     } else {
       virtual = "False"
     }
-    let res = await fetch(`/api/orders/`, {
+    let res = await fetch(`/api/orders`, {
     method: "POST",
     headers: {
         'Content-Type': 'application/json',

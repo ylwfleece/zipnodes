@@ -23,7 +23,7 @@ const removeReview = () => {
 };
 
 export const getReviews = () => async (dispatch) => {
-  let reviews = await fetch(`/api/reviews/`);
+  let reviews = await fetch(`/api/reviews`);
   reviews = await reviews.json();
 //   REVIEW.sort((post1, post2) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
@@ -38,7 +38,7 @@ export const clearReviews = () => async (dispatch) => {
 };
 
 export const createReview = (writer_id, application_id, content, score, response_id) => async (dispatch) => {
-    let res = await fetch(`/api/reviews/`, {
+    let res = await fetch(`/api/reviews`, {
     method: "POST",
     headers: {
         'Content-Type': 'application/json',
