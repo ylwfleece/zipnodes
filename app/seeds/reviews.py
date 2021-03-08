@@ -4,14 +4,17 @@ from app.models import db, Review
 def seed_reviews():
 
     review1 = Review(writer_id=3,
+    reviewee_id=1,
     application_id=1, 
     content="Did a great job! Would recommend for any manual task!",
     score=5)
     review2 = Review(writer_id=4,
+    reviewee_id=1,
     application_id=2, 
     content="Didn't show up...",
     score=1)
     review3 = Review(writer_id=5,
+    reviewee_id=1,
     application_id=3, 
     content="Was a thoughtful and great contributor!",
     score=4)

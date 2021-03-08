@@ -14,6 +14,7 @@ import ApplicationProfile from "./components/ApplicationProfile";
 import OrderProfile from "./components/OrderProfile";
 import ReviewProfile from "./components/ReviewProfile";
 import OrderAppsProfile from "./components/OrderAppsProfile";
+import UserProfile from "./components/UserProfile";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -64,6 +65,14 @@ function App() {
         >
           <NavBar setAuthenticated={setAuthenticated} />
           <OrderForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/users/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <UserProfile />
         </ProtectedRoute>
         <ProtectedRoute
           path="/order/:id"
@@ -117,9 +126,9 @@ function App() {
           <NavBar setAuthenticated={setAuthenticated} />
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        {/* <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />
           <Feed />

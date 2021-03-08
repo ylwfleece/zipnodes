@@ -10,6 +10,7 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const appId = useParams().appId;
   const user = useSelector((state) => state.session.user);
   const review = useSelector((state) => state.reviews).list.filter(rev => rev.app_id == appId)[0]
+  const app = useSelector((state) => state.applications)[appId];
   let responseId = null;
   if (review) {
     responseId = review.id;
@@ -20,7 +21,7 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const rev = await dispatch(createReview(user.id, appId, content, score, responseId));
+    const rev = await dispatch(createReview(user.id, app.node_id, appId, content, score, responseId));
     dispatch(getApplications())
     history.push(`/review/${rev.id}`);
   };

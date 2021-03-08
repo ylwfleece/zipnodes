@@ -37,7 +37,7 @@ export const clearReviews = () => async (dispatch) => {
   return "removed reviews on logout";
 };
 
-export const createReview = (writer_id, application_id, content, score, response_id) => async (dispatch) => {
+export const createReview = (writer_id, reviewee_id, application_id, content, score, response_id) => async (dispatch) => {
     let res = await fetch(`/api/reviews/`, {
     method: "POST",
     headers: {
@@ -45,6 +45,7 @@ export const createReview = (writer_id, application_id, content, score, response
       },
     body: JSON.stringify({
         writer_id, 
+        reviewee_id,
         application_id, 
         content, 
         score

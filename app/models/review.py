@@ -8,6 +8,7 @@ class Review(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key = True)
   application_id = db.Column(db.Integer, db.ForeignKey("applications.id"), nullable=False)
   writer_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+  reviewee_id = db.Column(db.Integer, nullable=False)
   content = db.Column(db.String(225), nullable=False)
   score = db.Column(db.Integer, nullable = False)
   response_id = db.Column(db.Integer, nullable = True, default=None)
@@ -21,9 +22,11 @@ class Review(db.Model, UserMixin):
     return {
       "id": self.id,
       "writer_id": self.writer_id,
+      "reviewee_id": self.reviewee_id,
       "application_id": self.application_id,
       "content": self.content,
       "score": self.score,
+      "karma": self.application.order.karma,
       "updated_at": self.updated_at,
       "nonprofit_id": self.application.order.nonprofit_id,
       "node_id": self.application.node_id,
