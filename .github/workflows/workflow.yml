@@ -25,8 +25,8 @@ jobs:
     - name: DB Upgrade
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku flask db upgrade -a zipnodes web
+      run: heroku run -a zipnodes flask db upgrade
     - name: DB Seed 
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku flask seed all -a zipnodes web
+      run: heroku run -a zipnodes flask seed all
