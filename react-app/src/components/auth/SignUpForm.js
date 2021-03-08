@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
+import { addUser } from "../../store/session";
+import { useDispatch } from "react-redux";
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [nonprofit, setNonprofit] = useState(false);
@@ -12,18 +14,22 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
       let user;
       if (nonprofit) {
-        // sending nonprofit as string because having issues validating booleanfield
+        // sending nonprofit bool as string because having issues validating booleanfield
         user = await signUp("True", name, email, password, zipCode)
       } else {
         user = await signUp("False", `${firstName} ${lastName}`, email, password, zipCode)
       }
       if (!user.errors) {
         setAuthenticated(true);
+        dispatch(addUser(user));
+        //return <Redirect to="/" />;
       }
     }
   };

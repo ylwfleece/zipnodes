@@ -23,7 +23,7 @@ const removeReview = () => {
 };
 
 export const getReviews = () => async (dispatch) => {
-  let reviews = await fetch(`/api/reviews/`);
+  let reviews = await fetch(`/api/reviews`);
   reviews = await reviews.json();
 //   REVIEW.sort((post1, post2) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)

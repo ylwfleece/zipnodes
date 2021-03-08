@@ -22,7 +22,7 @@ export const login = async (email, password) => {
 }
 
 export const logout = async () => {
-  const response = await fetch("/api/auth/logout/", {
+  const response = await fetch("/api/auth/logout", {
     headers: {
       "Content-Type": "application/json",
     }
@@ -31,8 +31,8 @@ export const logout = async () => {
 };
 
 
-export const signUp = async (nonprofit, username, email, password, zipCode) => {
-  const response = await fetch("/api/auth/signup/", {
+export const signUp = async (nonprofit, username, email, password, zip_code) => {
+  const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const signUp = async (nonprofit, username, email, password, zipCode) => {
       username,
       email,
       password,
-      "zip_code": zipCode
+      zip_code
     }),
   });
   return await response.json();

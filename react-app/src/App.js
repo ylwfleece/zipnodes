@@ -17,6 +17,7 @@ import OrderAppsProfile from "./components/OrderAppsProfile";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
+import { addUser } from "./store/session";
 
 import { authenticate } from "./services/auth";
 import { useDispatch } from "react-redux";
@@ -31,6 +32,7 @@ function App() {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
+        dispatch(addUser(user));
         dispatch(getOrders);
         dispatch(getApplications());
         dispatch(getReviews());

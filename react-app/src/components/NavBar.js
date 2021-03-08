@@ -7,6 +7,7 @@ import { getOrders } from '../store/orders';
 import { getApplications } from '../store/applications';
 import { getReviews } from '../store/reviews';
 // import ProfileButton from "./ProfileButton";
+import LogoutButton from "./auth/LogoutButton";
 
 const NavBar = ({ setAuthenticated }) => {
 
@@ -38,7 +39,7 @@ const NavBar = ({ setAuthenticated }) => {
               new order
             </NavLink>
           }
-          {/* <ProfileButton /> */}
+          <LogoutButton setAuthenticated={setAuthenticated} />
         </div>
       </div>
     </nav>
