@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { getOrders } from '../store/orders';
 import { getApplications } from '../store/applications';
 import { getReviews } from '../store/reviews';
+// import ProfileButton from "./ProfileButton";
 
 const NavBar = ({ setAuthenticated }) => {
 
@@ -28,15 +29,16 @@ const NavBar = ({ setAuthenticated }) => {
     <nav>
       <div className='menu'>
         <div className='logo'>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink style={{ paddingRight: '15px' }} to="/" exact={true} activeClassName="active">
             {/* <img alt='logo' style={{ maxHeight: '50px' }}></img> */}
             home
           </NavLink>
           {user.nonprofit && 
-            <NavLink to="/orders/new" exact={true} activeClassName="active">
+            <NavLink style={{ paddingRight: '15px' }} to="/orders/new" exact={true} activeClassName="active">
               new order
             </NavLink>
           }
+          {/* <ProfileButton /> */}
         </div>
       </div>
     </nav>
