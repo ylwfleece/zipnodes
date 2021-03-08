@@ -23,7 +23,7 @@ const removeApplication = () => {
 };
 
 export const getApplications = () => async (dispatch) => {
-  let applications = await fetch(`/api/applications`);
+  let applications = await fetch(`/api/applications/`);
   applications = await applications.json();
 //   application.sort((post1, post2) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
@@ -38,7 +38,7 @@ export const clearApplications = () => async (dispatch) => {
 };
 
 export const createApplication = (node_id, order_id) => async (dispatch) => {
-    let res = await fetch(`/api/applications`, {
+    let res = await fetch(`/api/applications/`, {
     method: "POST",
     headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const createApplication = (node_id, order_id) => async (dispatch) => {
 // }
 
 export const updateApplication = (appId) => async (dispatch) => {
-  const res = await fetch(`/api/applications/update/${appId}`, {
+  const res = await fetch(`/api/applications/update/${appId}/`, {
     method: "POST",
   });
   const app = await res.json();
