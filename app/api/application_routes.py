@@ -5,6 +5,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 application_routes = Blueprint('applications', __name__)
 
+# heroku push comment
+
 
 @application_routes.route('/', methods=['GET'])
 def get_applications():
