@@ -23,9 +23,9 @@ function Feed() {
     let ords = [];
     if (orders.list && user) {
         if (user.nonprofit) {
-            ords = orders.list.filter(ord => ord.status == "Unfilled")
+            ords = orders.list.filter(ord => ord.status == "Open")
         } else {
-            ords = orders.list.filter(ord => (ord.status == "Unfilled" && !ord.app_node_ids.includes(user.id)))
+            ords = orders.list.filter(ord => (ord.status == "Open" && !ord.app_node_ids.includes(user.id)))
         }
     }
 
@@ -49,7 +49,6 @@ function Feed() {
 
     const openApp = (e) => {
         const orderId = parseInt(e.target.id, 10);
-        // localStorage.setItem("orderId", orderId);
         history.push(`/applications/new/${orderId}`);
     }
 
@@ -57,19 +56,15 @@ function Feed() {
         const appId = parseInt(e.target.id, 10);
         const app = await dispatch(updateApplication(appId));
         dispatch(updateOrder(app.order_id))
-        // remove option to accept other apps for same order
     }
 
     const addReview = (e) => {
         const appId = parseInt(e.target.id, 10);
-        // localStorage.setItem("appId", appId);
         history.push(`/reviews/new/${appId}`);
-        // remove option to accept other apps for same order
     }
 
     const viewApps = (e) => {
         const ordId = parseInt(e.target.id, 10);
-        // localStorage.setItem("ordId", ordId);
         history.push(`/order/${ordId}/apps`);
     }
 
@@ -96,14 +91,10 @@ function Feed() {
                                     <button id={ord.id} onClick={openApp}>apply</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length == 1) && 
-                                    // <>
-                                        <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
-                                    // </>
+                                    <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length > 1) && 
-                                    // <>
-                                        <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
-                                    // </>
+                                    <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
                                 }
                             </div>
                         )}
