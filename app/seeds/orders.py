@@ -99,6 +99,69 @@ def seed_orders():
     location="200 Somewhere Place", 
     duration=1,
     karma=4,
+    virtual=True,
+    status="Open")
+
+    order12 = Order(nonprofit_id=4, 
+    title="Pickup food from Breaking Bread",
+    description="Pickup food that will be at front door, deliver it to Senior Community Center @ 190 Selinger Way",
+    location="230 Intillo Lane", 
+    duration=1,
+    karma=4,
+    virtual=False,
+    status="Open")
+
+    order13 = Order(nonprofit_id=4, 
+    title="Pickup food from Seward Co-op",
+    description="Pickup food that will be at back door, deliver it to Senior Community Center @ 190 Selinger Way",
+    location="390 Cabasi Way", 
+    duration=1,
+    karma=4,
+    virtual=False,
+    status="Open")
+
+    order14 = Order(nonprofit_id=4, 
+    title="Pickup food from Franklin Community Co-op",
+    description="Pickup food that will be in kitchen (ask for Sarah at front desk), deliver it to Nutritious U Food Pantry @ 100 University Ave",
+    location="230 Intillo Lane", 
+    duration=1,
+    karma=4,
+    virtual=False,
+    status="Open")
+
+    order15 = Order(nonprofit_id=9, 
+    title="Tutor group of ninth graders in algebra",
+    description="Requires comfort with solving quadratic equations. Registration with Literacy Minnesota required. Must have functional computer camera and microphone for live stream.",
+    location="https://zoomlink.lmn/34238", 
+    duration=1.5,
+    karma=5,
+    virtual=True,
+    status="Open")
+
+    order16 = Order(nonprofit_id=3, 
+    title="Greet students at pantry reception desk (first shift)",
+    description="Looking for a someone to greet students during pantry open hours",
+    location="100 University Ave", 
+    duration=1,
+    karma=3,
+    virtual=False,
+    status="Open")
+
+    order17 = Order(nonprofit_id=3, 
+    title="Greet students at pantry reception desk (second shift)",
+    description="Looking for a someone to greet students during pantry open hours",
+    location="100 University Ave", 
+    duration=1,
+    karma=3,
+    virtual=False,
+    status="Open")
+
+    order18 = Order(nonprofit_id=3, 
+    title="Greet students at pantry reception desk (third shift",
+    description="Looking for a someone to greet students during pantry open hours",
+    location="100 University Ave", 
+    duration=1,
+    karma=3,
     virtual=False,
     status="Open")
 
@@ -113,6 +176,13 @@ def seed_orders():
     db.session.add(order9)
     db.session.add(order10)
     db.session.add(order11)
+    db.session.add(order12)
+    db.session.add(order13)
+    db.session.add(order14)
+    db.session.add(order15)
+    db.session.add(order16)
+    db.session.add(order17)
+    db.session.add(order18)
 
     db.session.commit()
 

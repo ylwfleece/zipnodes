@@ -7,9 +7,9 @@ class Order(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   nonprofit_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  title = db.Column(db.String(40), nullable = False)
+  title = db.Column(db.String(100), nullable = False)
   description = db.Column(db.String(255), nullable = False)
-  location = db.Column(db.String(255), nullable = False)
+  location = db.Column(db.String(100), nullable = False)
   start_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   duration = db.Column(db.Integer, nullable = False, default=0)
   karma = db.Column(db.Integer, nullable = False, default=0)
