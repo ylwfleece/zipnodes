@@ -75,7 +75,7 @@
     color: rgb(255, 255, 255);
     border-radius: 5px;
     cursor: pointer;
-    background-color: rgb(72, 84, 245);
+    background-color: rgb(14,164,227);
     padding: 5px;
     margin-top: 4px;
     font-weight: 500;
@@ -88,21 +88,29 @@
   }
 
   .order-title {
-    font-size: 16px;
+    font-size: 24px;
+    /* font-weight: bold; */
+    padding: 4px;
   }
 
   .order-desc {
     font-size: 14px;
+    padding: 4px;
   }
   .order-start {
-    font-size: 12px;
+    font-size: 20px;
+    padding: 4px;
   }
 
   .order-virtual {
-    font-size: 11px;
+    font-size: 18px;
+    padding: 2px;
+    color:rgb(107, 107, 107)
   }
   .order-karma {
-    font-size: 11px;
+    font-size: 18px;
+    padding: 2px;
+    color:rgb(107, 107, 107)
   }
   
   .submit-button-container {
@@ -121,7 +129,7 @@
     align-items: center;
     height: 90vh;
     width: 100vw;
-    margin-top: 6vh;
+    margin-top: 2vh;
   }
 
   .application-form-page-container {
@@ -461,7 +469,7 @@ input:focus {
 }
 
 .toggle-bar {
-  margin-top: 100px;
+  margin-top: 75px;
   margin-left: 36%;
   width: 28%;
   display: flex;
@@ -474,7 +482,7 @@ input:focus {
 .toggle-button {
   width: 100px;
   border: none;
-  color: rgb(70, 118, 252);
+  color: rgb(14,164,227);
   border-radius: 1px;
   /* border: 1px; */
   /* border-color:  rgb(13, 173, 93); */
@@ -488,7 +496,7 @@ input:focus {
 .logout-button {
   width: 100px;
   border: none;
-  color: rgb(70, 118, 252);
+  color: rgb(14,164,227);
   border-radius: 1px;
   /* border: 1px; */
   /* border-color:  rgb(13, 173, 93); */

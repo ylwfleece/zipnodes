@@ -81,10 +81,11 @@ function Feed() {
                         {ords.map((ord) =>
                             <div key={ord.id} className='container posts'>
                                 <div className="order-title">{ord.title}</div>
-                                {/* <div className="order-desc">{ord.description}</div> */}
-                                <div className="order-start">starts: {ord.start_time}</div>
-                                <div className="order-virtual">virtual: {ord.virtual.toString()}</div>
+                                <div className="order-start">{ord.start_time}</div>
                                 <div className="order-karma">karma: {ord.karma}</div>
+                                {ord.virtual && 
+                                    <div className="order-virtual">(virtual)</div>
+                                }
                                 {!user.nonprofit && 
                                     <button className="blue-button" id={ord.id} onClick={viewOrderProfile} >view details</button>
                                 }
