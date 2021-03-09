@@ -59,10 +59,25 @@ export const createApplication = (node_id, order_id) => async (dispatch) => {
 //   return 'deleted post ' + postId;
 // }
 
-export const updateApplication = (appId) => async (dispatch) => {
+export const updateApplication = (appId, new_status) => async (dispatch) => {
   const res = await fetch(`/api/applications/update/${appId}/`, {
     method: "POST",
+    body: new_status
   });
+  const app = await res.json();
+  dispatch(getApplications());
+  return app;
+}
+
+export const confirmApplication = (appId) => async (dispatch) => {
+  const res = await fetch(`/api/applications/confirm/${appId}`);
+  const app = await res.json();
+  dispatch(getApplications());
+  return app;
+}
+
+export const cancelApplication = (appId) => async (dispatch) => {
+  const res = await fetch(`/api/applications/cancel/${appId}`);
   const app = await res.json();
   dispatch(getApplications());
   return app;

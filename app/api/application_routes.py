@@ -8,6 +8,54 @@ application_routes = Blueprint('applications', __name__)
 # heroku push comment
 
 
+@application_routes.route('/update/<int:app_id>', methods=['POST'])
+def update_application(app_id):
+    """
+    Updates an application.
+    """
+    new_status = request.data.decode('ascii')
+    print('===============>>>>>> ', new_status)
+    application = Application.query.filter(Application.id == app_id).first()
+    application.status = new_status
+    if application.status == "Confirmed":
+        application.order.status = "In Progress"
+        # np can write review whenever (after start time + duration)
+    elif application.status == "Accepted":
+        application.order.status = "Pending"
+        # ndoe can confirm application
+    elif application.status == "Cancelled" and application.order.status == "Pending":
+        application.order.status = "Open"
+    db.session.add(application)
+    db.session.commit()
+    return jsonify(application.to_dict())
+
+
+@application_routes.route('/confirm/<int:app_id>', methods=['GET'])
+def confirm_application(app_id):
+    """
+    Confirms an application.
+    """
+    application = Application.query.filter(Application.id == app_id).first()
+    application.status = "Confirmed"
+    application.order.status = "In Progress"
+    db.session.add(application)
+    db.session.commit()
+    return jsonify(application.to_dict())
+
+
+@application_routes.route('/cancel/<int:app_id>', methods=['GET'])
+def cancel_application(app_id):
+    """
+    Cancels an application.
+    """
+    application = Application.query.filter(Application.id == app_id).first()
+    application.status = "Cancelled"
+    application.order.status = "Open"
+    db.session.add(application)
+    db.session.commit()
+    return jsonify(application.to_dict())
+
+
 @application_routes.route('/', methods=['GET'])
 def get_applications():
     """
@@ -42,15 +90,5 @@ def create_application():
     return 'invalid form'
 
 
-@application_routes.route('/update/<int:app_id>', methods=['POST'])
-def update_application(app_id):
-    """
-    Updates an application.
-    """
-    application = Application.query.filter(Application.id == app_id).first()
-    application.status = "Accepted"
-    application.order.status = "In Progress"
-    db.session.add(application)
-    db.session.commit()
-    return jsonify(application.to_dict())
+
 

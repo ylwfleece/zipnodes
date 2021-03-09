@@ -89,7 +89,7 @@
 
   .order-title {
     font-size: 24px;
-    /* font-weight: bold; */
+    font-weight: 600;
     padding: 4px;
   }
 
@@ -100,6 +100,7 @@
   }
 
   .app-order-title {
+    font-weight: 600;
     margin-top: 5px;
     font-size: 22px;
     /* font-weight: bold; */
@@ -634,8 +635,14 @@ input:focus {
   color: green;
 }
 
+.confirm-link:hover, .cancel-link:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
 .apply-link:hover {
   font-size: 18px;
+  
 }
 
 .apply-link-container, .link-container {
@@ -651,10 +658,10 @@ input:focus {
   color: goldenrod;
 }
 
-.complete-status {
+.complete-status, .cancel-status {
   color: darkred;
 }
 
-.open-status, .pending-status, .complete-status {
+.open-status, .pending-status, .complete-status, .cancel-status {
   font-weight: bold;
 }
