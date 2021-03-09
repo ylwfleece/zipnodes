@@ -20,6 +20,8 @@ def seed_users():
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     fmsc = User(username="Feed My Starving Children", email='fmsc@aa.io',
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    lmn = User(username="Literacy", email='lm@aa.io',
+                password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     
 
     db.session.add(demo_node)
@@ -30,6 +32,7 @@ def seed_users():
     db.session.add(js)
     db.session.add(sw)
     db.session.add(fmsc)
+    db.session.add(lmn)
 
     db.session.commit()
 
