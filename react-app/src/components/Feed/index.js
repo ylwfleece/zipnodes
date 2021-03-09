@@ -47,9 +47,9 @@ function Feed() {
         }
     }
 
-    const openApp = (e) => {
+    const viewOrderProfile = (e) => {
         const orderId = parseInt(e.target.id, 10);
-        history.push(`/applications/new/${orderId}`);
+        history.push(`/order/${orderId}`);
     }
 
     const accept = async (e) => {
@@ -71,24 +71,22 @@ function Feed() {
     return (<>
         {(view == "orders" && ords && user) &&
             <div className='homepage'>
+                <div className='toggle-bar'>
+                    <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
+                    <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
+                    <button className="toggle-button" value="reviews" onClick={toggleView}>reviews</button>                 
+                </div>
                 <div className='page-container homepage-container'>
-                    <div className='toggle-bar'>
-                        <button value="orders" onClick={toggleView}>orders</button>
-                        <button value="applications" onClick={toggleView}>applications</button>
-                        {!user.nonprofit && 
-                            <button value="reviews" onClick={toggleView}>reviews</button>
-                        }                       
-                    </div>
                     <div className='homepage-feed'>
                         {ords.map((ord) =>
-                            <div key={ord.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                                <div>{ord.title}</div>
-                                <div>{ord.description}</div>
-                                <div>starts: {ord.start_time}</div>
-                                <div>virtual: {ord.virtual.toString()}</div>
-                                <div>karma: {ord.karma}</div>
+                            <div key={ord.id} className='container posts'>
+                                <div className="order-title">{ord.title}</div>
+                                {/* <div className="order-desc">{ord.description}</div> */}
+                                <div className="order-start">starts: {ord.start_time}</div>
+                                <div className="order-virtual">virtual: {ord.virtual.toString()}</div>
+                                <div className="order-karma">karma: {ord.karma}</div>
                                 {!user.nonprofit && 
-                                    <button id={ord.id} onClick={openApp}>apply</button>
+                                    <button className="blue-button" id={ord.id} onClick={viewOrderProfile} >view details</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length == 1) && 
                                     <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
@@ -104,21 +102,19 @@ function Feed() {
         }
         {(view == "applications" && apps) &&
             <div className='homepage'>
+                <div className='toggle-bar'>
+                    <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
+                    <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
+                    <button className="toggle-button" value="reviews" onClick={toggleView}>reviews</button>
+                </div>
                 <div className='page-container homepage-container'>
-                    <div className='toggle-bar'>
-                        <button value="orders" onClick={toggleView}>orders</button>
-                        <button value="applications" onClick={toggleView}>applications</button>
-                        {!user.nonprofit && 
-                            <button value="reviews" onClick={toggleView}>reviews</button>
-                        } 
-                    </div>
                     <div className='homepage-feed'>
                         {apps.map((app) =>
                             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                                <div>{app.order_title}</div>
-                                <div>{app.node.username}</div>
-                                <div>{app.order_start_time}</div>
-                                <div>{app.status}</div>
+                                <div className="order-title">{app.order_title}</div>
+                                <div className="order-title">{app.node.username}</div>
+                                <div className="order-title">{app.order_start_time}</div>
+                                <div className="order-title">{app.status}</div>
                                 {(user.nonprofit && app.status == 'Pending') &&
                                     <button id={app.id} onClick={accept}>accept</button>
                                 }
@@ -133,14 +129,12 @@ function Feed() {
         }
         {(view == "reviews" && revs) &&
             <div className='homepage'>
+                <div className='toggle-bar'>
+                    <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
+                    <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
+                    <button className="toggle-button" value="reviews" onClick={toggleView}>reviews</button>
+                </div>
                 <div className='page-container homepage-container'>
-                    <div className='toggle-bar'>
-                        <button value="orders" onClick={toggleView}>orders</button>
-                        <button value="applications" onClick={toggleView}>applications</button>
-                        {!user.nonprofit && 
-                            <button value="reviews" onClick={toggleView}>reviews</button>
-                        } 
-                    </div>
                     <div className='homepage-feed'>
                         {revs.map((rev) => 
                             <div key={rev.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>

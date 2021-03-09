@@ -19,7 +19,25 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
                     {order.title}
                 </div>
                 <div>
+                    {order.description}
+                </div>
+                <div>
+                    {order.start_time}
+                </div>
+                <div>
+                    {order.location}
+                </div>
+                <div>
+                    {order.virtual}
+                </div>
+                <div>
+                    {order.karma}
+                </div>
+                <div>
                     {order.status}
+                </div>
+                <div>
+                  <Link to={`/applications/new/${order.id}`}>apply</Link>
                 </div>
             </>
           }

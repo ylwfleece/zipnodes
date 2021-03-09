@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createApplication, getApplications } from '../../store/applications';
 import { getOrders } from "../../store/orders";
+import logo from "../auth/zipnodes_logo.png"
 
 const ApplicationForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -25,10 +26,10 @@ const ApplicationForm = ({ authenticated, setAuthenticated }) => {
       {order &&
       <div className='container'>
         <div>
-          <div className='form-container'>
-            <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <img alt='logo' style={{ padding: '5px 5rem' }} />
-            </div>
+          <div className='application-form-container'>
+            {/* <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <img src={logo} alt='logo' style={{ padding: '5px 5rem', width: '10px', height: '10px' }} />
+            </div> */}
             <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
               <div style={{ width: '80%' }}>
                 <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '20px', textAlign: 'center' }}>Apply to fill order:</p>
