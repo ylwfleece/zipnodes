@@ -46,9 +46,11 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
                     <p className='complete-status'>{order.status}</p>
                   }
                 </div>
-                <div className='apply-link-container'> 
-                  <Link className='apply-link' to={`/applications/new/${order.id}`}>> apply</Link>
-                </div>
+                {order.status == 'Open' && 
+                  <div className='apply-link-container'> 
+                    <Link className='apply-link' to={`/applications/new/${order.id}`}>> apply</Link>
+                  </div>
+                }
             </>
           }
         </div>

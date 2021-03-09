@@ -89,7 +89,7 @@
 
   .order-title {
     font-size: 24px;
-    /* font-weight: bold; */
+    font-weight: 600;
     padding: 4px;
   }
 
@@ -100,6 +100,7 @@
   }
 
   .app-order-title {
+    font-weight: 600;
     margin-top: 5px;
     font-size: 22px;
     /* font-weight: bold; */
@@ -171,7 +172,7 @@
     color:rgb(107, 107, 107)
   }
 
-  .order-status {
+  .order-status, .app-status {
     font-size: 18px;
     padding: 5px;
     /* color:rgb(107, 107, 107) */
@@ -210,7 +211,7 @@
     margin-top: 30px;
   }
 
-  .order-profile-container {
+  .order-profile-container, .app-profile-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -240,7 +241,7 @@
     align-items: center;
   }
 
-  .order-profile {
+  .order-profile, .app-profile {
     border: 1px solid rgb(219, 219, 219);
     padding: 20px;
     margin-bottom: 15px;
@@ -626,11 +627,25 @@ input:focus {
   color: rgb(14,164,227);
 }
 
-.apply-link:hover {
-  font-size: 18px;
+.cancel-link {
+  color: red;
 }
 
-.apply-link-container {
+.confirm-link {
+  color: green;
+}
+
+.confirm-link:hover, .cancel-link:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.apply-link:hover {
+  font-size: 18px;
+  
+}
+
+.apply-link-container, .link-container {
   padding: 4px;
   /* margin-left: 2px; */
 }
@@ -643,6 +658,10 @@ input:focus {
   color: goldenrod;
 }
 
-.complete-status {
+.complete-status, .cancel-status {
   color: darkred;
+}
+
+.open-status, .pending-status, .complete-status, .cancel-status {
+  font-weight: bold;
 }
