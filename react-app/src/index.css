@@ -211,6 +211,16 @@
     margin-top: 30px;
   }
 
+  .form-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 90vh;
+      width: 100vw;
+      margin-top: 30px;
+  }
+  
   .order-profile-container, .app-profile-container, .rev-profile-container {
     display: flex;
     flex-direction: column;
@@ -221,7 +231,7 @@
     margin-top: 75px;
   }
 
-  .application-form-page-container {
+  .application-form-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -229,6 +239,16 @@
     height: 90vh;
     width: 200vw;
     margin-top: 10vh;
+  }
+
+  .order-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 90vh;
+    width: 200vw;
+    margin-top: 2vh;
   }
   
   .container {

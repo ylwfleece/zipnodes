@@ -14,7 +14,7 @@ class Order(db.Model, UserMixin):
   duration = db.Column(db.Integer, nullable = False, default=0)
   karma = db.Column(db.Integer, nullable = False, default=0)
   virtual = db.Column(db.Boolean, nullable = False)
-  status = db.Column(db.String(20), nullable = False, default="Unfilled")
+  status = db.Column(db.String(20), nullable = False, default="Open")
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   nonprofit = db.relationship("User", back_populates="orders")

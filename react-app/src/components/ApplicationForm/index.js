@@ -36,7 +36,7 @@ const ApplicationForm = ({ authenticated, setAuthenticated }) => {
                 <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>{order.title}</p>
                 <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>{order.start_time}</p>
                 <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>{order.location}</p>
-                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>{order.karma}</p>
+                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>karma: {order.karma}</p>
               </div>
             </div>
             <div className='flex-container' style={{ justifyContent: 'center' }}>
