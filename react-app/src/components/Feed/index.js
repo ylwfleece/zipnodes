@@ -145,14 +145,17 @@ function Feed() {
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
                         {revs.map((rev) => 
-                            <div key={rev.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                                <div className='order-title'>{rev.order_title}</div>
-                                <div>{rev.order_start_time}</div>
-                                <div>{rev.content}</div>
-                                <div>{rev.score}</div>
-                                <div>by {rev.writer.username}</div>
+                            <div key={rev.id} className='container revs' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                                <div style={{ marginTop: '7px' }} className='order-title'>{rev.order_title}</div>
+                                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{rev.order_start_time}</div>
+                                <div>__________</div>
+                                <div className='rev-data'>
+                                    <div className='rev-content'>{rev.content}</div>
+                                    <div className='rev-writer'>author: {rev.writer.username}</div>
+                                    <div className='rev-score'>score: {rev.score}</div>
+                                </div>
                                 {(!rev.response_id && rev.writer_id != user.id) && 
-                                    <button id={rev.application_id} onClick={addReview}>add review</button>
+                                    <button className='blue-button' id={rev.application_id} onClick={addReview}>respond with review</button>
                                 }
                             </div>
                         )}

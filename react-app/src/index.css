@@ -93,6 +93,12 @@
     padding: 4px;
   }
 
+  .rev-order-title {
+    font-size: 24px;
+    /* font-weight: bold; */
+    padding: 4px;
+  }
+
   .app-order-title {
     margin-top: 5px;
     font-size: 22px;
@@ -107,6 +113,31 @@
   .order-start {
     font-size: 20px;
     padding: 4px;
+  }
+
+  .rev-data {
+    /* margin-left: 5px; */
+    /* border: .5px solid rgb(94, 92, 92); */
+    margin: 2px;
+    padding: 10px;
+  }
+
+  .rev-content {
+    font-size: 24px;
+    padding: 3px;
+  }
+
+  .rev-score {
+    margin-top: 2px;
+    font-size: 20px;
+    padding: 3px;
+    color:rgb(107, 107, 107);
+  }
+
+  .rev-writer {
+    font-size: 20px;
+    padding: 3px;
+    color:rgb(107, 107, 107);
   }
 
   .app-order-start {
@@ -155,7 +186,7 @@
     align-items: center;
     height: 90vh;
     width: 100vw;
-    margin-top: 2vh;
+    margin-top: 23px;
   }
 
   .application-form-page-container {
@@ -262,6 +293,10 @@
   .apps {
     padding-top: 8px;
     width: 550px;
+  }
+
+  .revs {
+    width: 625px;
   }
   
   .post-user-info {
@@ -500,9 +535,9 @@ input:focus {
 }
 
 .toggle-bar {
-  margin-top: 75px;
-  margin-left: 36%;
-  width: 28%;
+  margin-top: 70px;
+  margin-left: 33%;
+  width: 34%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
