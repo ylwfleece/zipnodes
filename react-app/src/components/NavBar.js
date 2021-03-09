@@ -42,12 +42,10 @@ const NavBar = ({ setAuthenticated }) => {
           
         </div>
         <div>
-          <LogoutButton setAuthenticated={setAuthenticated} />
-        </div>
-        <div>
-          <NavLink style={{ paddingRight: '5px' }} to={`/users/${user.id}`}exact={true} activeClassName="active">
+          <NavLink style={{ paddingRight: '15px', paddingLeft: '5px', color: 'rgb(14,164,227)'}} to={`/users/${user.id}`}exact={true} activeClassName="active">
             profile
           </NavLink>
+          <LogoutButton setAuthenticated={setAuthenticated} />
         </div>
       </div>
     </nav>
