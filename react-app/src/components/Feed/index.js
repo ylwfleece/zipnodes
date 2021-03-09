@@ -83,7 +83,7 @@ function Feed() {
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
-                        {ords.map((ord) =>
+                        {ords.length > 0 ? ords.map((ord) =>
                             <div key={ord.id} className='container ords'>
                                 <div className="order-title">{ord.title}</div>
                                 <div className="order-start">{ord.start_time}</div>
@@ -101,7 +101,7 @@ function Feed() {
                                     <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
                                 }
                             </div>
-                        )}
+                        ) : <div style={{marginTop: '100px'}}>no open orders at this time</div>}
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@ function Feed() {
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
-                        {apps.map((app) =>
+                        {apps.length > 0 ? apps.map((app) =>
                             <div key={app.id} className='container apps' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div className="app-order-title">{app.order_title}</div>
                                 <div className="app-order-start">{app.order_start_time}</div>
@@ -130,7 +130,7 @@ function Feed() {
                                     <button id={app.id} onClick={addReview}>review</button>
                                 }
                             </div>
-                        )}
+                        ) : <div style={{marginTop: '100px'}}>no apps need attention atm</div>}
                     </div>
                 </div>
             </div>
@@ -144,21 +144,21 @@ function Feed() {
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
-                        {revs.map((rev) => 
+                        {revs.length > 0 ? revs.map((rev) => 
                             <div key={rev.id} className='container revs' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                                 <div style={{ marginTop: '7px' }} className='order-title'>{rev.order_title}</div>
                                 <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{rev.order_start_time}</div>
                                 <div>__________</div>
                                 <div className='rev-data'>
-                                    <div className='rev-content'>{rev.content}</div>
-                                    <div className='rev-writer'>author: {rev.writer.username}</div>
+                                    <div style={{ marginBottom: '4px'}}className='rev-content'>"{rev.content}"</div>
+                                    <div className='rev-writer'>– {rev.writer.username}</div>
                                     <div className='rev-score'>score: {rev.score}</div>
                                 </div>
                                 {(!rev.response_id && rev.writer_id != user.id) && 
                                     <button className='blue-button' id={rev.application_id} onClick={addReview}>respond with review</button>
                                 }
                             </div>
-                        )}
+                        ) : <div style={{marginTop: '100px'}}>no reviews need attention atm</div>}
                     </div>
                 </div>
             </div>

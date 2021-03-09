@@ -103,14 +103,21 @@
     margin-top: 5px;
     font-size: 22px;
     /* font-weight: bold; */
-    padding: 3px;
+    padding: 5px;
   }
 
   .order-desc {
-    font-size: 14px;
-    padding: 4px;
+    font-size: 22px;
+    padding: 5px;
   }
+
+  .order-location {
+    font-size: 20px;
+    padding: 5px;
+  }
+
   .order-start {
+    margin-top: 6px;
     font-size: 20px;
     padding: 4px;
   }
@@ -123,21 +130,27 @@
   }
 
   .rev-content {
+    font-weight: 300;
     font-size: 24px;
+    font-style: italic;
     padding: 3px;
   }
 
   .rev-score {
+    /* margin-left: 75%; */
+    font-weight: bold;
     margin-top: 2px;
-    font-size: 20px;
+    font-size: 18px;
     padding: 3px;
-    color:rgb(107, 107, 107);
+    color: rgb(14,164,227);
   }
 
   .rev-writer {
-    font-size: 20px;
+    font-weight: 300;
+    margin-left: 50%;
+    font-size: 18px;
     padding: 3px;
-    color:rgb(107, 107, 107);
+    /* color:rgb(107, 107, 107); */
   }
 
   .app-order-start {
@@ -148,13 +161,20 @@
 
   .order-virtual {
     font-size: 20px;
-    padding: 2px;
+    padding: 5px;
     color:rgb(107, 107, 107)
   }
+
   .order-karma {
-    font-size: 20px;
-    padding: 2px;
+    font-size: 18px;
+    padding: 5px;
     color:rgb(107, 107, 107)
+  }
+
+  .order-status {
+    font-size: 18px;
+    padding: 5px;
+    /* color:rgb(107, 107, 107) */
   }
 
   .app-username {
@@ -169,6 +189,7 @@
     padding: 2px;
     padding-bottom: 3px;
   }
+
   
   .submit-button-container {
     margin-top: 18px;
@@ -186,7 +207,17 @@
     align-items: center;
     height: 90vh;
     width: 100vw;
-    margin-top: 23px;
+    margin-top: 30px;
+  }
+
+  .order-profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 90vh;
+    width: 100vw;
+    margin-top: 75px;
   }
 
   .application-form-page-container {
@@ -207,6 +238,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .order-profile {
+    border: 1px solid rgb(219, 219, 219);
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
   }
   
   .field-inputs,
@@ -449,10 +490,6 @@ input:focus {
     color: black;
 }
 
-
-
-
-
 #dropdown-menu-button {
     display: flex;
     justify-content: center;
@@ -573,6 +610,39 @@ input:focus {
   font-size: 16px;
 }
 
-/* .order-form-container {
-  display: flex;
-} */
+.back-link {
+  color: rgb(14,164,227);
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.back-link-container {
+  margin-left: 2px;
+}
+
+.apply-link {
+  color: rgb(14,164,227);
+}
+
+.apply-link:hover {
+  font-size: 18px;
+}
+
+.apply-link-container {
+  padding: 4px;
+  /* margin-left: 2px; */
+}
+
+.open-status {
+  color: green;
+}
+
+.pending-status {
+  color: goldenrod;
+}
+
+.complete-status {
+  color: darkred;
+}

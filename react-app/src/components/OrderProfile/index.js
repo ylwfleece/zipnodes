@@ -10,40 +10,50 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
   const order = useSelector((state) => state.orders[params.id]);
 
   return (
-    <div className='page-container'>
+    <div className='order-profile-container'>
       <div>
-        <div className='container'>
+        <div className='order-profile'>
           {order && 
             <>
-                <div>
+                <div className='order-title'>
                     {order.title}
                 </div>
-                <div>
+                <div className='order-desc'>
                     {order.description}
                 </div>
-                <div>
-                    {order.start_time}
+                <div className='order-start'>
+                    start time: {order.start_time}
                 </div>
-                <div>
-                    {order.location}
+                <div className='order-location'>
+                    location: {order.location}
                 </div>
-                <div>
-                    {order.virtual}
+                {order.virtual &&
+                  <div className='order-virtual'> 
+                    (virtual)
+                  </div>
+                }
+                <div className='order-karma'>
+                    karma: {order.karma}
                 </div>
-                <div>
-                    {order.karma}
+                <div className='order-status'>
+                  {(order.status == 'Open') &&
+                    <p className='open-status'>{order.status}</p>
+                  }
+                  {(order.status == 'Pending' || order.status == 'In Progress') &&
+                    <p className='pending-status'>{order.status}</p>
+                  }
+                  {(order.status == 'Complete') &&
+                    <p className='complete-status'>{order.status}</p>
+                  }
                 </div>
-                <div>
-                    {order.status}
-                </div>
-                <div>
-                  <Link to={`/applications/new/${order.id}`}>apply</Link>
+                <div className='apply-link-container'> 
+                  <Link className='apply-link' to={`/applications/new/${order.id}`}>> apply</Link>
                 </div>
             </>
           }
         </div>
-        <div>
-            <Link to='/'>back to open orders</Link>
+        <div className='back-link-container'>
+            <Link className='back-link'to='/'>back to open orders</Link>
           </div>
       </div>
     </div>
