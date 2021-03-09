@@ -70,7 +70,7 @@
   }
 
   .blue-button {
-    width: 45%;
+    width: 35%;
     border: none;
     color: rgb(255, 255, 255);
     border-radius: 5px;
@@ -93,6 +93,13 @@
     padding: 4px;
   }
 
+  .app-order-title {
+    margin-top: 5px;
+    font-size: 22px;
+    /* font-weight: bold; */
+    padding: 3px;
+  }
+
   .order-desc {
     font-size: 14px;
     padding: 4px;
@@ -102,13 +109,19 @@
     padding: 4px;
   }
 
+  .app-order-start {
+    font-size: 20px;
+    /* font-weight: bold; */
+    padding: 4px;
+  }
+
   .order-virtual {
-    font-size: 18px;
+    font-size: 20px;
     padding: 2px;
     color:rgb(107, 107, 107)
   }
   .order-karma {
-    font-size: 18px;
+    font-size: 20px;
     padding: 2px;
     color:rgb(107, 107, 107)
   }
@@ -119,9 +132,11 @@
   }
 
   .app-status {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
+    color:rgb(107, 107, 107);
+    /* font-weight: bold; */
     padding: 2px;
+    padding-bottom: 3px;
   }
   
   .submit-button-container {
@@ -155,7 +170,7 @@
   
   .container {
     border: 1px solid rgb(219, 219, 219);
-    padding: 20px;
+    padding: 12px;
     margin-bottom: 15px;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -240,12 +255,13 @@
     height: 36px !important;
   }
   
-  .posts {
-    width: 750px;
+  .ords {
+    width: 725px;
   }
 
   .apps {
-    width: 600px;
+    padding-top: 8px;
+    width: 550px;
   }
   
   .post-user-info {
@@ -518,8 +534,8 @@ input:focus {
   cursor: pointer;
   padding: 5px;
   margin-top: 4px;
-  font-weight: 500;
-  font-size: 14px;
+  /* font-weight: 500; */
+  font-size: 16px;
 }
 
 /* .order-form-container {

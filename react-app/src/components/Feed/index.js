@@ -68,6 +68,11 @@ function Feed() {
         history.push(`/order/${ordId}/apps`);
     }
 
+    const viewAppProfile = (e) => {
+        const appId = parseInt(e.target.id, 10);
+        history.push(`/application/${appId}`);
+    }
+
     return (<>
         {(view == "orders" && ords && user) &&
             <div className='homepage'>
@@ -79,7 +84,7 @@ function Feed() {
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
                         {ords.map((ord) =>
-                            <div key={ord.id} className='container posts'>
+                            <div key={ord.id} className='container ords'>
                                 <div className="order-title">{ord.title}</div>
                                 <div className="order-start">{ord.start_time}</div>
                                 <div className="order-karma">karma: {ord.karma}</div>
@@ -112,9 +117,12 @@ function Feed() {
                     <div className='homepage-feed'>
                         {apps.map((app) =>
                             <div key={app.id} className='container apps' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                                <div className="order-title">{app.order_title}</div>
-                                <div className="order-start">{app.order_start_time}</div>
-                                <div className="app-status">{app.status}</div>
+                                <div className="app-order-title">{app.order_title}</div>
+                                <div className="app-order-start">{app.order_start_time}</div>
+                                <div className="app-status">status: {app.status.toLowerCase()}</div>
+                                {!user.nonprofit && 
+                                    <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>
+                                }
                                 {(user.nonprofit && app.status == 'Pending') &&
                                     <button id={app.id} onClick={accept}>accept</button>
                                 }
