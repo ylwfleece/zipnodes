@@ -9,10 +9,28 @@ def seed_applications():
     node_id=6)
     app3 = Application(order_id=3, 
     node_id=1)
+    app4 = Application(order_id=4, 
+    node_id=1, status="Accepted")
+    app5 = Application(order_id=5, 
+    node_id=6, status="Accepted")
+    app6 = Application(order_id=6, 
+    node_id=1, status="Confirmed")
+    app7 = Application(order_id=7, 
+    node_id=1, status="Confirmed")
+    app8 = Application(order_id=8, 
+    node_id=6, status="Confirmed")
+    app9 = Application(order_id=9, 
+    node_id=1, status="Confirmed")
 
     db.session.add(app1)
     db.session.add(app2)
     db.session.add(app3)
+    db.session.add(app4)
+    db.session.add(app5)
+    db.session.add(app6)
+    db.session.add(app7)
+    db.session.add(app8)
+    db.session.add(app9)
 
     db.session.commit()
 

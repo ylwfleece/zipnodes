@@ -10,7 +10,7 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Unfilled")
+    status="Open")
 
     order2 = Order(nonprofit_id=3, 
     title="Help stock shelves before pantry opens",
@@ -19,7 +19,7 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Unfilled")
+    status="Complete")
 
     order3 = Order(nonprofit_id=5, 
     title="Attend conference as community member",
@@ -28,7 +28,7 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Unfilled")
+    status="Open")
 
     order4 = Order(nonprofit_id=2, 
     title="General volunteer event",
@@ -37,7 +37,7 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Unfilled")
+    status="Open")
 
     order5 = Order(nonprofit_id=7, 
     title="Help pack outreach supply bags",
@@ -46,7 +46,7 @@ def seed_orders():
     duration=1,
     karma=2,
     virtual=False,
-    status="Unfilled")
+    status="Open")
 
     order6 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Haiti",
@@ -55,7 +55,52 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Unfilled")
+    status="Complete")
+
+    order7 = Order(nonprofit_id=2, 
+    title="General volunteer event",
+    description="Looking for a general volunteer",
+    location="200 Somewhere Place", 
+    duration=1,
+    karma=4,
+    virtual=False,
+    status="Open")
+
+    order8 = Order(nonprofit_id=7, 
+    title="Help pack outreach supply bags",
+    description="Looking for someone to help bag snacks and sanitation supplies for outreach workers to distribute",
+    location="450 Nipsey Ln", 
+    duration=1,
+    karma=2,
+    virtual=False,
+    status="In Progress")
+
+    order9 = Order(nonprofit_id=8, 
+    title="Help pack meals for village in Haiti",
+    description="Looking for someone to help pack meals for our latest shipment to Haitian village",
+    location="200 Chance Ln", 
+    duration=1,
+    karma=3,
+    virtual=False,
+    status="In Progress")
+
+    order10 = Order(nonprofit_id=8, 
+    title="Help pack meals for village in Nicaragua",
+    description="Looking for someone to help pack meals for our latest shipment to Nicaraguan village",
+    location="200 Chance Ln", 
+    duration=1,
+    karma=3,
+    virtual=False,
+    status="Open")
+
+    order11 = Order(nonprofit_id=2, 
+    title="General volunteer event",
+    description="Looking for a general volunteer",
+    location="200 Somewhere Place", 
+    duration=1,
+    karma=4,
+    virtual=False,
+    status="Open")
 
     db.session.add(order1)
     db.session.add(order2)
@@ -63,6 +108,11 @@ def seed_orders():
     db.session.add(order4)
     db.session.add(order5)
     db.session.add(order6)
+    db.session.add(order7)
+    db.session.add(order8)
+    db.session.add(order9)
+    db.session.add(order10)
+    db.session.add(order11)
 
     db.session.commit()
 
