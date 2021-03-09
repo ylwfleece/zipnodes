@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
 import { addUser } from "../../store/session";
 import { useDispatch } from "react-redux";
+import logo from './zipnodes_logo.png';
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -30,6 +31,18 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
+  const onLoginDemo = async (e) => {
+    e.preventDefault();
+    const user = await login("node_demo@aa.io", "password");
+    if (!user.errors) {
+      setAuthenticated(true);
+      dispatch(addUser(user));
+      // dispatch(getPostsForUser());
+    } else {
+      setErrors(user.errors);
+    }
+  };
+
   if (authenticated) {
     return <Redirect to="/" />;
     // return <Redirect to="/reviews/new" />;
@@ -39,7 +52,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     <div className='page-container'>
       <div>
         <div className='container'>
-          <img alt='logo' style={{ padding: '5px 5rem' }} />
+          <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
           <form onSubmit={onLogin}>
             <div className='field-inputs'>
               <input
@@ -70,10 +83,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
         <div>
-          {/* <div className='container redirect-container'>
+          <div className='container redirect-container'>
             <p>Don't have an account? <nobr><a href='/sign-up'>Sign up</a></nobr></p>
             <p>Use a demo account? <nobr><a onClick={onLoginDemo} className='demo-link'>Demo</a></nobr></p>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

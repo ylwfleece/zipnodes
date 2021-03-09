@@ -32,6 +32,7 @@ def create_review():
         app_id = form.data['application_id']
         review = Review(
             writer_id = form.data['writer_id'],
+            reviewee_id = form.data['reviewee_id'],
             application_id = form.data['application_id'],
             content = form.data['content'],
             score = form.data['score'],

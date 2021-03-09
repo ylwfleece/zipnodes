@@ -8,6 +8,7 @@ import { getApplications } from '../store/applications';
 import { getReviews } from '../store/reviews';
 // import ProfileButton from "./ProfileButton";
 import LogoutButton from "./auth/LogoutButton";
+import logo from './auth/zipnodes_logo.png';
 
 const NavBar = ({ setAuthenticated }) => {
 
@@ -30,16 +31,23 @@ const NavBar = ({ setAuthenticated }) => {
     <nav>
       <div className='menu'>
         <div className='logo'>
-          <NavLink style={{ paddingRight: '15px' }} to="/" exact={true} activeClassName="active">
-            {/* <img alt='logo' style={{ maxHeight: '50px' }}></img> */}
-            home
+          <NavLink style={{ paddingRight: '5px' }} to="/" exact={true} activeClassName="active">
+            <img src={logo} alt='logo' style={{ maxHeight: '50px' }}></img>
           </NavLink>
           {user.nonprofit && 
-            <NavLink style={{ paddingRight: '15px' }} to="/orders/new" exact={true} activeClassName="active">
+            <NavLink style={{ paddingRight: '5px' }} to="/orders/new" exact={true} activeClassName="active">
               new order
             </NavLink>
           }
+          
+        </div>
+        <div>
           <LogoutButton setAuthenticated={setAuthenticated} />
+        </div>
+        <div>
+          <NavLink style={{ paddingRight: '5px' }} to={`/users/${user.id}`}exact={true} activeClassName="active">
+            profile
+          </NavLink>
         </div>
       </div>
     </nav>
