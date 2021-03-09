@@ -4,8 +4,8 @@ from app.models import db, Order
 def seed_orders():
 
     order1 = Order(nonprofit_id=4, 
-    title="Pickup food from Nascent Church",
-    description="Pickup food that will be at front door, deliver it to Senior Community Center @ 190 Selinger Way",
+    title="Pick up food from Nascent Church",
+    description="Pick up food that will be at front door, deliver it to Senior Community Center @ 190 Selinger Way",
     location="230 Intillo Lane", 
     duration=1,
     karma=4,
@@ -103,8 +103,8 @@ def seed_orders():
     status="Open")
 
     order12 = Order(nonprofit_id=4, 
-    title="Pickup food from Breaking Bread",
-    description="Pickup food that will be at front door, deliver it to Senior Community Center @ 190 Selinger Way",
+    title="Pick up food from Breaking Bread",
+    description="Pick up food that will be at front door, deliver it to Senior Community Center @ 190 Selinger Way",
     location="230 Intillo Lane", 
     duration=1,
     karma=4,
@@ -112,8 +112,8 @@ def seed_orders():
     status="Open")
 
     order13 = Order(nonprofit_id=4, 
-    title="Pickup food from Seward Co-op",
-    description="Pickup food that will be at back door, deliver it to Senior Community Center @ 190 Selinger Way",
+    title="Pick up food from Seward Co-op",
+    description="Pick up food that will be at back door, deliver it to Senior Community Center @ 190 Selinger Way",
     location="390 Cabasi Way", 
     duration=1,
     karma=4,
@@ -121,8 +121,8 @@ def seed_orders():
     status="Open")
 
     order14 = Order(nonprofit_id=4, 
-    title="Pickup food from Franklin Community Co-op",
-    description="Pickup food that will be in kitchen (ask for Sarah at front desk), deliver it to Nutritious U Food Pantry @ 100 University Ave",
+    title="Pick up food from Franklin Community Co-op",
+    description="Pick up food that will be in kitchen (ask for Sarah at front desk), deliver it to Nutritious U Food Pantry @ 100 University Ave",
     location="230 Intillo Lane", 
     duration=1,
     karma=4,

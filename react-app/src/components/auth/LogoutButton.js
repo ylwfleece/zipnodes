@@ -1,5 +1,6 @@
 import React from "react";
 import { logout } from "../../services/auth";
+import { NavLink, useHistory } from 'react-router-dom';
 
 const LogoutButton = ({setAuthenticated}) => {
   const onLogout = async (e) => {
@@ -8,7 +9,7 @@ const LogoutButton = ({setAuthenticated}) => {
     //dispatch(logoutUser())
   };
 
-  return <button className='logout-button' onClick={onLogout}>logout</button>;
+  return <NavLink to='/' className='logout-button' onClick={onLogout}>logout</NavLink>;
 };
 
 export default LogoutButton;
