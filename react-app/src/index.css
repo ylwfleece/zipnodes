@@ -171,7 +171,7 @@
     color:rgb(107, 107, 107)
   }
 
-  .order-status {
+  .order-status, .app-status {
     font-size: 18px;
     padding: 5px;
     /* color:rgb(107, 107, 107) */
@@ -210,7 +210,7 @@
     margin-top: 30px;
   }
 
-  .order-profile-container {
+  .order-profile-container, .app-profile-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -240,7 +240,7 @@
     align-items: center;
   }
 
-  .order-profile {
+  .order-profile, .app-profile {
     border: 1px solid rgb(219, 219, 219);
     padding: 20px;
     margin-bottom: 15px;
@@ -626,11 +626,19 @@ input:focus {
   color: rgb(14,164,227);
 }
 
+.cancel-link {
+  color: red;
+}
+
+.confirm-link {
+  color: green;
+}
+
 .apply-link:hover {
   font-size: 18px;
 }
 
-.apply-link-container {
+.apply-link-container, .link-container {
   padding: 4px;
   /* margin-left: 2px; */
 }
@@ -645,4 +653,8 @@ input:focus {
 
 .complete-status {
   color: darkred;
+}
+
+.open-status, .pending-status, .complete-status {
+  font-weight: bold;
 }
