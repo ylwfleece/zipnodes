@@ -211,7 +211,7 @@
     margin-top: 30px;
   }
 
-  .order-profile-container, .app-profile-container {
+  .order-profile-container, .app-profile-container, .rev-profile-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -241,7 +241,7 @@
     align-items: center;
   }
 
-  .order-profile, .app-profile {
+  .order-profile, .app-profile, .rev-profile {
     border: 1px solid rgb(219, 219, 219);
     padding: 20px;
     margin-bottom: 15px;
