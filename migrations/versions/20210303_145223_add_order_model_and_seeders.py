@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nonprofit_id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(length=40), nullable=False),
+    sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('location', sa.String(length=255), nullable=False),
     sa.Column('start_time', sa.DateTime(), nullable=True),
