@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews } from '../../store/reviews';
 import { getApplications } from "../../store/applications";
+import logo from "../auth/zipnodes_logo.png"
 
 const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -40,11 +41,11 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
         <div>
           <div className='form-container'>
             <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <img alt='logo' style={{ padding: '5px 5rem' }} />
+              <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
             </div>
             <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
               <div style={{ width: '80%' }}>
-                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>Write a review.</p>
+                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>Write a review</p>
               </div>
             </div>
             <div className='flex-container' style={{ justifyContent: 'center' }}>

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from '../../store/orders';
 import DateTimePicker from 'react-datetime-picker'
+import logo from '../auth/zipnodes_logo.png';
 
 const OrderForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -58,13 +59,13 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
     <div className='page-container'>
       <div className='container'>
         <div>
-          <div className='form-container'>
+          <div className='order-form-container'>
             <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <img alt='logo' style={{ padding: '5px 5rem' }} />
+              <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
             </div>
             <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
               <div style={{ width: '80%' }}>
-                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>Create a new order.</p>
+                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '16px', textAlign: 'center' }}>Create a new order</p>
               </div>
             </div>
             <div className='flex-container' style={{ justifyContent: 'center' }}>
@@ -97,16 +98,6 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                   />
                 </div>
                 <div className='field-inputs'>
-                  {/* <input
-                    type="text"
-                    name="startTime"
-                    placeholder='start time'
-                    onChange={updateStartTime}
-                    value={startTime}
-                  /> */}
-    
-                </div>
-                <div className='field-inputs'>
                   <input
                     type="text"
                     name="duration"
@@ -124,8 +115,9 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                     value={karma}
                   />
                 </div>
+                <p style={{ alignContent: 'center'}}>check for virtual event: </p>
                 <div className='field-inputs'>
-                  <label htmlFor="virtual">virtual: </label>
+                  {/* <label style={{ padding: '2px', marginTop: '4px' }} htmlFor="virtual">virtual: </label> */}
                   <input
                     type="checkbox"
                     name="virtual"

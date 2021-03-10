@@ -23,7 +23,7 @@ const removeApplication = () => {
 };
 
 export const getApplications = () => async (dispatch) => {
-  let applications = await fetch(`/api/applications`);
+  let applications = await fetch(`/api/applications/`);
   applications = await applications.json();
 //   application.sort((post1, post2) => {
 //       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
@@ -70,14 +70,14 @@ export const updateApplication = (appId, new_status) => async (dispatch) => {
 }
 
 export const confirmApplication = (appId) => async (dispatch) => {
-  const res = await fetch(`/api/applications/confirm/${appId}`);
+  const res = await fetch(`/api/applications/confirm/${appId}/`);
   const app = await res.json();
   dispatch(getApplications());
   return app;
 }
 
 export const cancelApplication = (appId) => async (dispatch) => {
-  const res = await fetch(`/api/applications/cancel/${appId}`);
+  const res = await fetch(`/api/applications/cancel/${appId}/`);
   const app = await res.json();
   dispatch(getApplications());
   return app;
