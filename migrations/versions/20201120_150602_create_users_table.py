@@ -3,7 +3,7 @@
 Revision ID: ffdc0a98111c
 Revises: 
 Create Date: 2020-11-20 15:06:02.230689
-
+heroku push comment
 """
 from alembic import op
 import sqlalchemy as sa
