@@ -28,7 +28,7 @@ def upgrade():
     sa.Column('duration', sa.Integer(), nullable=False),
     sa.Column('karma', sa.Integer(), nullable=False),
     sa.Column('virtual', sa.Boolean(), nullable=False),
-    sa.Column('status', sa.String(length=10), nullable=False),
+    sa.Column('status', sa.String(length=20), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['nonprofit_id'], ['users.id'], ),
