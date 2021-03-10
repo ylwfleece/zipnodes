@@ -46,7 +46,7 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
                     <p className='complete-status'>{order.status}</p>
                   }
                 </div>
-                {order.status == 'Open' && 
+                {(order.status == 'Open' && !user.nonprofit) && 
                   <div className='apply-link-container'> 
                     <Link className='apply-link' to={`/applications/new/${order.id}`}>> apply</Link>
                   </div>
