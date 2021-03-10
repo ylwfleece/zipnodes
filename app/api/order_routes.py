@@ -6,6 +6,24 @@ from flask_login import current_user, login_user, logout_user, login_required
 order_routes = Blueprint('orders', __name__)
 
 
+@order_routes.route('/update/<int:order_id>', methods=['GET'])
+def update_order(order_id):
+    """
+    Updates an order.
+    """
+    # Get the csrf_token from the request cookie and put it into the
+    # form manually to validate_on_submit can be used
+    # new_status = request.data.decode('ascii')
+    order = Order.query.filter(Order.id == order_id).first()
+    if order.status == "Unfilled":
+        order.status = "In Progress"
+    elif order.status == "In Progress":
+        order.status = "Complete"
+    db.session.add(order)
+    db.session.commit()
+    return order.to_dict()
+
+
 @order_routes.route('/', methods=['GET'])
 def get_orders():
     """
@@ -46,20 +64,5 @@ def create_order():
     return 'invalid form'
 
 
-@order_routes.route('/update/<int:order_id>', methods=['GET'])
-def update_order(order_id):
-    """
-    Updates an order.
-    """
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    # new_status = request.data.decode('ascii')
-    order = Order.query.filter(Order.id == order_id).first()
-    if order.status == "Unfilled":
-        order.status = "In Progress"
-    elif order.status == "In Progress":
-        order.status = "Complete"
-    db.session.add(order)
-    db.session.commit()
-    return order.to_dict()
+
 
