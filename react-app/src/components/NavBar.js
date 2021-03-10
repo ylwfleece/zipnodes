@@ -19,9 +19,9 @@ const NavBar = ({ setAuthenticated }) => {
 
   useEffect(() => {
     (async () => {
-        dispatch(getOrders());
-        dispatch(getApplications());
-        dispatch(getReviews());
+      dispatch(getOrders());
+      dispatch(getApplications());
+      dispatch(getReviews());
     })();
   }, [dispatch]);
 
@@ -34,15 +34,14 @@ const NavBar = ({ setAuthenticated }) => {
           <NavLink style={{ paddingRight: '5px' }} to="/" exact={true} activeClassName="active">
             <img src={logo} alt='logo' style={{ maxHeight: '50px' }}></img>
           </NavLink>
-          {user.nonprofit && 
-            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '5px' }} to="/orders/new" exact={true} activeClassName="active">
+        </div>
+        <div>
+          {user.nonprofit &&
+            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/orders/new" exact={true} activeClassName="active">
               new order
             </NavLink>
           }
-          
-        </div>
-        <div>
-          <NavLink style={{ paddingRight: '15px', paddingLeft: '5px', color: 'rgb(14,164,227)'}} to={`/users/${user.id}`}exact={true} activeClassName="active">
+          <NavLink style={{ paddingRight: '15px', paddingLeft: '5px', color: 'rgb(14,164,227)' }} to={`/users/${user.id}`} exact={true} activeClassName="active">
             profile
           </NavLink>
           <LogoutButton setAuthenticated={setAuthenticated} />
