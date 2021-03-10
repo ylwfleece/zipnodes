@@ -72,7 +72,7 @@ export const createOrder = (nonprofitId, title, description, location, startTime
 // }
 
 export const updateOrder = (order_id) => async (dispatch) => {
-  const order = await fetch(`/api/orders/update/${order_id}/`, {
+  const order = await fetch(`/api/orders/update/${order_id}`, {
     method: "POST",
     // body: caption,
   });

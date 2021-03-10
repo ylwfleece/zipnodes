@@ -60,24 +60,25 @@ export const createApplication = (node_id, order_id) => async (dispatch) => {
 // }
 
 export const updateApplication = (appId, new_status) => async (dispatch) => {
-  const res = await fetch(`/api/applications/update/${appId}/`, {
+  const res = await fetch(`/api/applications/update/${appId}`, {
     method: "POST",
     body: new_status
   });
   const app = await res.json();
   dispatch(getApplications());
   return app;
+  // heroku push
 }
 
 export const confirmApplication = (appId) => async (dispatch) => {
-  const res = await fetch(`/api/applications/confirm/${appId}/`);
+  const res = await fetch(`/api/applications/confirm/${appId}`);
   const app = await res.json();
   dispatch(getApplications());
   return app;
 }
 
 export const cancelApplication = (appId) => async (dispatch) => {
-  const res = await fetch(`/api/applications/cancel/${appId}/`);
+  const res = await fetch(`/api/applications/cancel/${appId}`);
   const app = await res.json();
   dispatch(getApplications());
   return app;
