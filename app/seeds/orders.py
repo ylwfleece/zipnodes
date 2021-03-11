@@ -157,7 +157,7 @@ def seed_orders():
     status="Open")
 
     order18 = Order(nonprofit_id=3, 
-    title="Greet students at pantry reception desk (third shift",
+    title="Greet students at pantry reception desk (third shift)",
     description="Looking for a someone to greet students during pantry open hours",
     location="100 University Ave", 
     duration=1,

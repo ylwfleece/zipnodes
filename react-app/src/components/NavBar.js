@@ -25,6 +25,13 @@ const NavBar = ({ setAuthenticated }) => {
     })();
   }, [dispatch]);
 
+  const orders = useSelector(state => state.orders);
+  const applicationss = useSelector(state => state.orders);
+  const reviews = useSelector(state => state.orders);
+
+  const notifications = [];
+
+
   const iconStyles = { fontSize: '30px', color: 'rgb(38, 38, 38)' }
 
   return (user &&
@@ -36,6 +43,11 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
         </div>
         <div>
+        {notifications.length > 0 &&
+            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/notifications" exact={true} activeClassName="active">
+              notifications
+            </NavLink>
+          }
           {user.nonprofit &&
             <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/orders/new" exact={true} activeClassName="active">
               new order
