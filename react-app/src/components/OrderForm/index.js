@@ -63,30 +63,32 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
             <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
               <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
             </div>
-            <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
+            {/* <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
               <div style={{ width: '80%' }}>
                 <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '16px', textAlign: 'center' }}>Create a new order</p>
               </div>
-            </div>
+            </div> */}
             <div className='flex-container' style={{ justifyContent: 'center' }}>
               <form onSubmit={onSubmit}>
-                <div className='field-inputs'>
-                  <input
-                    type="text"
-                    name="title"
-                    placeholder='title'
+                <div className='field-inputs' style={{height: '50px'}}>
+                <textarea
+                    style={{padding: '2px', height: '100%', width: '100%', resize: 'none', border: 'none', backgroundColor: 'rgb(250, 250, 250)'}}
                     onChange={updateTitle}
                     value={title}
-                  />
+                    placeholder='title'
+                  >
+                    
+                  </textarea>
                 </div>
-                <div className='field-inputs'>
-                  <input
-                    type="text"
-                    name="description"
-                    placeholder='description'
+                <div className='field-inputs' style={{height: '80px'}}>
+                  <textarea
+                    style={{padding: '2px', height: '100%', width: '100%', resize: 'none', border: 'none', backgroundColor: 'rgb(250, 250, 250)'}}
                     onChange={updateDescription}
                     value={description}
-                  />
+                    placeholder='description'
+                  >
+                    
+                  </textarea>
                 </div>
                 <div className='field-inputs'>
                   <input
