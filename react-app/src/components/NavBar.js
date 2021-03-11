@@ -29,32 +29,25 @@ const NavBar = ({ setAuthenticated }) => {
   const apps = useSelector(state => state.applications.list);
   const revs = useSelector(state => state.reviews.list);
 
-  // np
-  // order open and has pending apps
-  // order has accepted / confirmed app
-
-  // node
-  // app accepted
-  // new review without response
-
-
   let notifs = [];
   if (ords && apps && revs) {
     if (user.nonprofit) {
       // your open order has pending apps
       // get open orders
       const openOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'Open' && ord.has_pending_apps);
-      openOrds.forEach(ord => notifs.push(ord.title, "has pending applications"));
+      openOrds.forEach(ord => notifs.push(`${ord.title} has pending applications`));
       // your order is awaiting confirmation
       const pendingOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'Pending' && ord.has_accepted_app);
-      pendingOrds.forEach(ord => notifs.push(ord.title, "is awaiting confirmation from node"));
+      pendingOrds.forEach(ord => notifs.push(`${ord.title} is awaiting confirmation from node`));
       // your order has been confirmed
       const ipOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'In Progress' && ord.has_confirmed_app);
-      ipOrds.forEach(ord => notifs.push(ord.title, "is in progress and awaiting review"))
+      ipOrds.forEach(ord => notifs.push(`${ord.title} is in progress and awaiting review`))
+
+      console.log(notifs);
     } else {
       // your app has been accepted
       const acceptedApps = apps.filter(app => app.node_id == user.id && app.status == 'Accepted');
-      acceptedApps.forEach(app => notifs.push("app", app.id, "awaits confirmation"));
+      acceptedApps.forEach(app => notifs.push(`app ${app.id} awaits confirmation`));
       // you have a new review
       const newRevs = revs.filter(rev => rev.reviewee_id == user.id && !rev.response_id);
       newRevs.forEach(rev => notifs.push('new review awaits response'))

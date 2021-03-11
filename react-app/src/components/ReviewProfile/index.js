@@ -23,7 +23,7 @@ const ReviewProfile = ({ authenticated, setAuthenticated }) => {
                 <div className='rev-score'>score: {rev.score}</div>
               </div>
               {(!rev.response_id && rev.writer_id != user.id) &&
-                <button className='blue-button' id={rev.application_id}>respond with review</button>
+                <Link className='blue-button' id={rev.application_id} to={`/reviews/new/${rev.application_id}`}>respond with review</Link>
               }
             </>
           }

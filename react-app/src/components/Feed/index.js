@@ -157,7 +157,7 @@ function Feed() {
                                     <div className='rev-writer'>– {rev.writer.username}</div>
                                     <div className='rev-score'>score: {rev.score}</div>
                                 </div>
-                                {(!rev.response_id && rev.writer_id != user.id && rev.score > 1) && 
+                                {(!rev.response_id && rev.writer_id != user.id) && 
                                     <button className='blue-button' id={rev.application_id} onClick={addReview}>respond with review</button>
                                 }
                             </div>
