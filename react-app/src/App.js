@@ -15,6 +15,7 @@ import OrderProfile from "./components/OrderProfile";
 import ReviewProfile from "./components/ReviewProfile";
 import OrderAppsProfile from "./components/OrderAppsProfile";
 import UserProfile from "./components/UserProfile";
+import Notifications from "./components/Notifications";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -58,6 +59,14 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
+        <ProtectedRoute
+          path="/notifications"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <Notifications />
+        </ProtectedRoute>
         <ProtectedRoute
           path="/orders/new"
           exact={true}
