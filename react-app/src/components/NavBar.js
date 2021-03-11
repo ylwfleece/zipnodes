@@ -26,8 +26,8 @@ const NavBar = ({ setAuthenticated }) => {
   }, [dispatch]);
 
   const ords = useSelector(state => state.orders.list);
-  const apps = useSelector(state => state.applications);
-  const revs = useSelector(state => state.reviews);
+  const apps = useSelector(state => state.applications.list);
+  const revs = useSelector(state => state.reviews.list);
 
   // np
   // order open and has pending apps
@@ -53,8 +53,11 @@ const NavBar = ({ setAuthenticated }) => {
       ipOrds.forEach(ord => notifs.push(ord.title, "is in progress and awaiting review"))
     } else {
       // your app has been accepted
-      
+      const acceptedApps = apps.filter(app => app.node_id == user.id && app.status == 'Accepted');
+      acceptedApps.forEach(app => notifs.push("app", app.id, "awaits confirmation"));
       // you have a new review
+      const newRevs = revs.filter(rev => rev.reviewee_id == user.id && !rev.response_id);
+      newRevs.forEach(rev => notifs.push('new review awaits response'))
     }
   }
 
