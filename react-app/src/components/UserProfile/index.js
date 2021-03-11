@@ -1,38 +1,32 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
+import { updateApplication } from "../../store/applications";
+import { updateOrder } from "../../store/orders";
 
 const UserProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [load, setLoad] = useState(false);
 
   const user = useSelector((state) => state.session.user);
   const params = useParams()
-  const reviews = useSelector((state) => state.reviews.list);
+  let reviews = useSelector((state) => state.reviews.list);
   const applications = useSelector((state) => state.applications.list);
   const orders = useSelector((state) => state.orders.list);
 
+  // for np
+  // get reviews with nonprofit id 
 
-  let apps = [];
-  if (applications) {
-    if (!user.nonprofit) {
-      apps = applications.filter(app => app.node_id == user.id);
-    }
-  }
+  // for node
+  // get reviews where with writer or reviewee id
 
-  let ords = [];
-  if (orders) {
-    if (user.nonprofit) {
-      ords = orders.filter(ord => ord.nonprofit_id == user.id); // and order status == complete
-    }
-  }
-  // const applications = useSelector((state) => state.applications.list).filter(app => app.node_id == user.id && app.status == "Complete");
 
-  // const orders = useSelector((state) => state.applications.list);
   let score = 0;
   let divisor = 0;
   let karma = 0;
+  let completions = 0;
   if (reviews) {
     for (let i = 0; i < reviews.length; i++) {
       if (reviews[i].reviewee_id == user.id) {
@@ -41,62 +35,52 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
           karma += reviews[i].karma;
         }
         divisor += 1;
+        completions += 1;
       }
     }
     if (divisor > 0) {
       score = Math.round(10 * (score / divisor)) / 10;
     }
+
+    let revs = reviews.filter(rev => rev.reviewee_id == user.id);
+    reviews = revs;
   }
 
-  return (
-    <div className='page-container homepage-container'>
+  return (<div>
+    {(user && reviews) &&
       <div>
-        <div className='container'>
-          {(user && reviews) &&
-            <>
-              <div>
-                {user.username}
-              </div>
-              <div>
-                score: {score}
-              </div>
-              <div>
-                karma: {karma}
-              </div>
-            </>
-          }
-        </div>
-        <div className='container'>
-          {(!user.nonprofit && apps) &&
-            <>
-              <div style={{ paddingBottom: '0', marginBottom: '2vh' }}># orders filled: {apps.length}</div>
-              {apps.map((app) =>
-                <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '3vh' }}>
-                  <div>{app.order_title}</div>
-                  <div>{app.node.username}</div>
-                  <div>{app.order_start_time}</div>
+        <div className='profile-page-container'>
+          <div className='header-container'>
+            <div className='user-profile-name'>
+              {user.username}
+            </div>
+            <div className='user-profile-score'>
+              score: {score}
+            </div>
+            <div className='user-profile-karma'>
+              karma: {karma}
+            </div>
+            <div className='user-profile-completions'>
+              orders completed: {completions}
+            </div>
+          </div>
+          <div className='user-profile-body'>
+            {reviews.length > 0 ? reviews.map((rev) =>
+              <div key={rev.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                <div style={{ marginTop: '7px' }} className='order-title'>{rev.order_title}</div>
+                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{rev.order_start_time}</div>
+                <div className='rev-data'>
+                  <div style={{ marginBottom: '4px' }} className='rev-content'>"{rev.content}"</div>
+                  <div className='user-profile-rev-writer'>– {rev.writer.username}</div>
+                  <div className='rev-score'>score: {rev.score}</div>
                 </div>
-              )}
-            </>
-          }
-          {(user.nonprofit && ords) &&
-            <>
-              <div style={{ paddingBottom: '0', marginBottom: '2vh' }}># orders filled: {ords.length}</div>
-              {ords.map((ord) =>
-                <div key={ord.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-                  <div>{ord.title}</div>
-                  <div>{ord.description}</div>
-                  <div>starts: {ord.start_time}</div>
-                  <div>virtual: {ord.virtual.toString()}</div>
-                  <div>karma: {ord.karma}</div>
-                </div>
-              )}
-            </>
-          }
+              </div>
+            ) : <div style={{ marginTop: '100px' }}>no reviews yet</div>}
+          </div>
         </div>
       </div>
-    </div>
-
+    }
+  </div>
 
   );
 };
