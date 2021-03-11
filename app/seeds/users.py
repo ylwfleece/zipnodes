@@ -20,7 +20,7 @@ def seed_users():
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     fmsc = User(username="Feed My Starving Children", email='fmsc@aa.io',
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
-    lmn = User(username="Literacy", email='lm@aa.io',
+    lmn = User(username="Literacy Minnesota", email='lm@aa.io',
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     
 
