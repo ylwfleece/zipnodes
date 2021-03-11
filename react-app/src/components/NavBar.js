@@ -25,11 +25,38 @@ const NavBar = ({ setAuthenticated }) => {
     })();
   }, [dispatch]);
 
-  const orders = useSelector(state => state.orders);
-  const applicationss = useSelector(state => state.orders);
-  const reviews = useSelector(state => state.orders);
+  const ords = useSelector(state => state.orders.list);
+  const apps = useSelector(state => state.applications);
+  const revs = useSelector(state => state.reviews);
 
-  const notifications = [];
+  // np
+  // order open and has pending apps
+  // order has accepted / confirmed app
+
+  // node
+  // app accepted
+  // new review without response
+
+
+  let notifs = [];
+  if (ords && apps && revs) {
+    if (user.nonprofit) {
+      // your open order has pending apps
+      // get open orders
+      const openOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'Open' && ord.has_pending_apps);
+      openOrds.forEach(ord => notifs.push(ord.title, "has pending applications"));
+      // your order is awaiting confirmation
+      const pendingOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'Pending' && ord.has_accepted_app);
+      pendingOrds.forEach(ord => notifs.push(ord.title, "is awaiting confirmation from node"));
+      // your order has been confirmed
+      const ipOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'In Progress' && ord.has_confirmed_app);
+      ipOrds.forEach(ord => notifs.push(ord.title, "is in progress and awaiting review"))
+    } else {
+      // your app has been accepted
+      
+      // you have a new review
+    }
+  }
 
 
   const iconStyles = { fontSize: '30px', color: 'rgb(38, 38, 38)' }
@@ -43,9 +70,9 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
         </div>
         <div>
-        {notifications.length > 0 &&
-            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/notifications" exact={true} activeClassName="active">
-              notifications
+        {notifs.length > 0 &&
+            <NavLink style={{ color: 'red', paddingRight: '15px', paddingLeft: '5px' }} to="/notifications" exact={true} activeClassName="active">
+              notifications ({notifs.length})
             </NavLink>
           }
           {user.nonprofit &&
