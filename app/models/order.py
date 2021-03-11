@@ -26,6 +26,7 @@ class Order(db.Model, UserMixin):
     has_pending_apps = False
     has_accepted_app = False
     has_confirmed_app = False
+    confirmed_app_id = None
     for app in self.applications:
       app_node_ids.append(app.node_id)
       apps.append(app.to_dict())
@@ -33,8 +34,9 @@ class Order(db.Model, UserMixin):
         has_pending_apps = True
       elif app.status == 'Accepted':
         has_accepted_app = True
-      elif app.status == 'In Progress':
+      elif app.status == 'Confirmed':
         has_confirmed_app = True
+        confirmed_app_id = app.id
 
     return {
       "id": self.id,
@@ -52,5 +54,6 @@ class Order(db.Model, UserMixin):
       "apps": apps,
       "has_pending_apps": has_pending_apps,
       "has_accepted_app": has_accepted_app,
-      "has_confirmed_app": has_confirmed_app
+      "has_confirmed_app": has_confirmed_app,
+      "confirmed_app_id": confirmed_app_id
     }
