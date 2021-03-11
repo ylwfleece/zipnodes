@@ -23,9 +23,19 @@ class Order(db.Model, UserMixin):
   def to_dict(self):
     app_node_ids = []
     apps = []
+    has_pending_apps = False
+    has_accepted_app = False
+    has_confirmed_app = False
     for app in self.applications:
       app_node_ids.append(app.node_id)
       apps.append(app.to_dict())
+      if app.status == 'Pending':
+        has_pending_apps = True
+      elif app.status == 'Accepted':
+        has_accepted_app = True
+      elif app.status == 'In Progress':
+        has_confirmed_app = True
+
     return {
       "id": self.id,
       "nonprofit_id": self.nonprofit_id,
@@ -39,5 +49,8 @@ class Order(db.Model, UserMixin):
       "status": self.status,
       "updated_at": self.updated_at,
       "app_node_ids": app_node_ids,
-      "apps": apps
+      "apps": apps,
+      "has_pending_apps": has_pending_apps,
+      "has_accepted_app": has_accepted_app,
+      "has_confirmed_app": has_confirmed_app
     }

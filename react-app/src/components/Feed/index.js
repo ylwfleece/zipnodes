@@ -23,16 +23,16 @@ function Feed() {
     let ords = [];
     if (orders.list && user) {
         if (user.nonprofit) {
-            ords = orders.list.filter(ord => ord.status == "Open")
+            ords = orders.list.filter(ord => ord.status != "Complete")
         } else {
             ords = orders.list.filter(ord => (ord.status == "Open" && !ord.app_node_ids.includes(user.id)))
         }
     }
 
     let apps = [];
-    if (applications.list && user) {
+    if (applications.list && user && orders.list) {
         if (user.nonprofit) {
-            apps = applications.list.filter(app => app.nonprofit_id == user.id);
+            apps = applications.list.filter(app => app.nonprofit_id == user.id && orders[app.order_id].status != "Complete");
         } else {
             apps = applications.list.filter(app => app.node_id == user.id);
         }
@@ -41,9 +41,9 @@ function Feed() {
     let revs = [];
     if (reviews.list && user) {
         if (user.nonprofit) {
-            revs = reviews.list.filter(rev => rev.nonprofit_id == user.id);
+            // revs = reviews.list.filter(rev => rev.nonprofit_id == user.id);
         } else {
-            revs = reviews.list.filter(rev => rev.node_id == user.id && !rev.response_id && rev.writer_id != user.id && rev.score != 1);
+            revs = reviews.list.filter(rev => rev.reviewee_id == user.id && !rev.response_id);
         }
     }
 
@@ -100,6 +100,9 @@ function Feed() {
                                 {(user.nonprofit && ord.app_node_ids.length > 1) && 
                                     <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
                                 }
+                                {(user.nonprofit && ord.app_node_ids.length == 0) && 
+                                    <p id={ord.id}>no open apps</p>
+                                }
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open orders at this time</div>}
                     </div>
@@ -154,7 +157,7 @@ function Feed() {
                                     <div className='rev-writer'>– {rev.writer.username}</div>
                                     <div className='rev-score'>score: {rev.score}</div>
                                 </div>
-                                {(!rev.response_id && rev.writer_id != user.id) && 
+                                {(!rev.response_id && rev.writer_id != user.id && rev.score > 1) && 
                                     <button className='blue-button' id={rev.application_id} onClick={addReview}>respond with review</button>
                                 }
                             </div>
