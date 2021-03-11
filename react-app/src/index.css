@@ -290,12 +290,17 @@
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 90%
+    /* align-items: center; */
+    width: 90%;
   }
 
-  .user-profile-name, .user-profile-score, .user-profile-karma {
-    width: 30%;
+  .user-profile-review {
+    height: 25%;
+
+  }
+
+  .user-profile-name, .user-profile-score, .user-profile-karma, .user-profile-completions {
+    width: 25%;
     font-weight: 700;
   }
 

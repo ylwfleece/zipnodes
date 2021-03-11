@@ -22,7 +22,13 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const rev = await dispatch(createReview(user.id, app.node_id, appId, content, score, responseId));
+    let revieweeId;
+    if (user.nonprofit) {
+      revieweeId = app.node_id;
+    } else {
+      revieweeId = app.nonprofit_id;
+    }
+    const rev = await dispatch(createReview(user.id, revieweeId, appId, content, score, responseId));
     dispatch(getApplications())
     history.push(`/review/${rev.id}`);
   };
