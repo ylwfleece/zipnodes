@@ -95,10 +95,10 @@ function Feed() {
                                     <button className="blue-button" id={ord.id} onClick={viewOrderProfile} >view details</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length == 1) && 
-                                    <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length > 1) && 
-                                    <button id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
                                 }
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open orders at this time</div>}
@@ -124,10 +124,10 @@ function Feed() {
                                     <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>
                                 }
                                 {(user.nonprofit && app.status == 'Pending') &&
-                                    <button id={app.id} onClick={accept}>accept</button>
+                                    <button className='blue-button' id={app.id} onClick={accept}>accept</button>
                                 }
-                                {(user.nonprofit && app.status == 'Accepted') &&
-                                    <button id={app.id} onClick={addReview}>review</button>
+                                {(user.nonprofit && app.status == 'Confirmed') &&
+                                    <button className='blue-button' id={app.id} onClick={addReview}>review</button>
                                 }
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no apps need attention atm</div>}
