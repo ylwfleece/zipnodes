@@ -47,7 +47,7 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
         <div className='page-container'>
           <div className='container'>
             <div>
-              <div className='form-container'>
+              <div className='review-form-container'>
                 <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
                 </div>
@@ -56,24 +56,26 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
                     <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>Write a review for: {app.order_title}</p>
                   </div>
                 </div>
-                <div className='flex-container' style={{ justifyContent: 'center' }}>
+                <div className='flex-container' style={{ justifyContent: 'center', width: '25%'}}>
                   <form onSubmit={onSubmit}>
                     <div className='field-inputs'>
-                      <input
-                        type="textarea"
-                        name="content"
+                      <textarea
+                        style={{padding: '2px', height: '100%', width: '100%', resize: 'none', border: 'none', backgroundColor: 'rgb(250, 250, 250)'}}
                         placeholder='content'
                         onChange={updateContent}
                         value={content}
-                      />
+                        maxLength='225' minLength='1'
+                      >
+                        </textarea>
                     </div>
-                    <div className='field-inputs'>
+                    <div style={{width: '25%'}} className='field-inputs'>
                       <input
                         type="number"
                         name="score"
                         placeholder='score'
                         onChange={updateScore}
                         value={score}
+                        min="1" max="5"
                       />
                     </div>
                     <div className='submit-button-container' style={{ marginTop: '18px' }}>

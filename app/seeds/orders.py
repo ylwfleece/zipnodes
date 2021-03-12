@@ -58,8 +58,8 @@ def seed_orders():
     status="Complete")
 
     order7 = Order(nonprofit_id=2, 
-    title="General volunteer event",
-    description="Looking for a general volunteer",
+    title="Normal volunteer event",
+    description="Looking for a normal volunteer",
     location="200 Somewhere Place", 
     duration=1,
     karma=4,
@@ -94,8 +94,8 @@ def seed_orders():
     status="Open")
 
     order11 = Order(nonprofit_id=2, 
-    title="General volunteer event",
-    description="Looking for a general volunteer",
+    title="Regular volunteer event",
+    description="Looking for a regular volunteer",
     location="200 Somewhere Place", 
     duration=1,
     karma=4,

@@ -50,7 +50,7 @@ const NavBar = ({ setAuthenticated }) => {
       acceptedApps.forEach(app => notifs.push(`app ${app.id} awaits confirmation`));
       // you have a new review
       const newRevs = revs.filter(rev => rev.reviewee_id == user.id && !rev.response_id);
-      newRevs.forEach(rev => notifs.push('new review awaits response'))
+      newRevs.forEach(rev => notifs.push('new review awaits response'));
     }
   }
 
