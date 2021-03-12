@@ -405,6 +405,8 @@
   
   .ords {
     width: 725px;
+    border-radius: 2px;
+
   }
 
   .notifs-container {
@@ -428,10 +430,13 @@
   .apps {
     padding-top: 8px;
     width: 550px;
+    border-radius: 2px;
   }
 
   .revs {
     width: 625px;
+    border-radius: 2px;
+
   }
   
   .post-user-info {

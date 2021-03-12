@@ -126,11 +126,8 @@ function Feed() {
                                 {!user.nonprofit && 
                                     <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>
                                 }
-                                {(user.nonprofit && app.status == 'Pending') &&
-                                    <button className='blue-button' id={app.id} onClick={accept}>accept</button>
-                                }
-                                {(user.nonprofit && app.status == 'Confirmed') &&
-                                    <button className='blue-button' id={app.id} onClick={addReview}>review</button>
+                                {(user.nonprofit) &&
+                                    <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>
                                 }
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no apps need attention atm</div>}

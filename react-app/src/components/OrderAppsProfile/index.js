@@ -13,22 +13,21 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
   const apps = useSelector((state) => state.applications).list.filter(app => app.order_id == params.id);
   const order = useSelector((state) => state.orders[params.id]);
 
-
-
   const acceptApp = async (e) => {
     const appId = parseInt(e.target.id, 10);
     const app = await dispatch(updateApplication(appId))
   }
 
-
   return (<>
-    {(apps) &&
+    {(apps && order) &&
     <div className='homepage' style={{ marginTop: '100px' }}>
       <div className='page-container homepage-container'>
         <div className='homepage-feed'>
+          {order.title}
           {apps.length > 0 ? apps.map((app) =>
             <div key={app.id} className='container apps' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-              <div className="app-order-title">{app.order_title}</div>
+              <div className="app-order-title">{app.node.username}</div>
+              score and karma
               <div className="app-order-start">{app.order_start_time}</div>
               <div className="app-status">status: {app.status.toLowerCase()}</div>
               {!user.nonprofit &&
@@ -39,37 +38,13 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
               }
             </div>
           ) : <div style={{ marginTop: '100px' }}>no apps need attention atm</div>}
+        <div className='back-link-container'>
+          <Link className='back-link' to='/'>back to open orders</Link>
+        </div>
         </div>
       </div>
     </div>
         }
-    {/* // <div className='page-container'>
-    //   <div>
-    //     <div className='container'>
-    //       {apps && 
-    //         <div className='homepage-feed'>
-    //         {apps.map((app) =>
-    //             <div key={app.id} className='container posts' style={{ paddingTop: '0', marginBottom: '5vh' }}>
-    //                 <div>{app.node.username}</div>
-    //                 <div>score: {app.node.score}</div>
-    //                 <div>karma: {app.node.karma}</div>
-    //                 <div>{app.status}</div>
-    //                 {(user.nonprofit && app.status == 'Pending') &&
-    //                     <button id={app.id} onClick={acceptApp}>accept</button>
-    //                 }
-    //                 {(user.nonprofit && app.status == 'Accepted') &&
-    //                     <button id={app.id} onClick={addReview}>review</button>
-    //                 }
-    //             </div>
-    //         )}
-    //         </div>
-    //       }
-    //     </div>
-    //     <div>
-    //         <Link to='/'>back to open orders</Link>
-    //       </div>
-    //   </div>
-    // </div> */}
   </>);
 };
 
