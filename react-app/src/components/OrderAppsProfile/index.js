@@ -23,7 +23,9 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
     <div className='homepage' style={{ marginTop: '100px' }}>
       <div className='page-container homepage-container'>
         <div className='homepage-feed'>
-          {order.title}
+          <div className='profile-header'>
+            Applications for: {order.title}
+          </div>
           {apps.length > 0 ? apps.map((app) =>
             <div key={app.id} className='container apps' style={{ paddingTop: '0', marginBottom: '5vh' }}>
               <div className="app-order-title">{app.node.username}</div>

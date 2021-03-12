@@ -48,6 +48,11 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
               <div className='order-location'>
                 {ord_location}
               </div>
+              {user.nonprofit && 
+                <div className='order-location'>
+                  {app.node.username} (score: {app.node.score})
+                </div>
+              }
               <div className='app-status'>
                 {(app.status == 'Pending') &&
                   <>
@@ -77,7 +82,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
           }
         </div>
         <div className='back-link-container'>
-          <Link className='back-link' to='/'>back to open orders</Link>
+          <Link className='back-link' to='/'>back</Link>
         </div>
       </div>
     </div>

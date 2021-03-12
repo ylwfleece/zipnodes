@@ -409,6 +409,10 @@
 
   }
 
+  .profile-header {
+    margin-bottom: 25px;
+  }
+
   .notifs-container {
     margin-top: 100px;
     margin-left: 25%;
