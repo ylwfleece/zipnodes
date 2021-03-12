@@ -63,11 +63,6 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
             <div className='flex-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
               <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
             </div>
-            {/* <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
-              <div style={{ width: '80%' }}>
-                <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '16px', textAlign: 'center' }}>Create a new order</p>
-              </div>
-            </div> */}
             <div className='flex-container' style={{ justifyContent: 'center' }}>
               <form onSubmit={onSubmit}>
                 <div className='field-inputs' style={{height: '50px'}}>
@@ -76,8 +71,8 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                     onChange={updateTitle}
                     value={title}
                     placeholder='title'
+                    maxLength='100' minLength='1'
                   >
-                    
                   </textarea>
                 </div>
                 <div className='field-inputs' style={{height: '80px'}}>
@@ -86,6 +81,7 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                     onChange={updateDescription}
                     value={description}
                     placeholder='description'
+                    maxLength='225' minLength='1'
                   >
                     
                   </textarea>
@@ -119,7 +115,6 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                 </div>
                 <p style={{ alignContent: 'center'}}>check for virtual event: </p>
                 <div className='field-inputs'>
-                  {/* <label style={{ padding: '2px', marginTop: '4px' }} htmlFor="virtual">virtual: </label> */}
                   <input
                     type="checkbox"
                     name="virtual"
@@ -128,7 +123,7 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                     value={virtual}
                   />
                 </div>
-                <DateTimePicker 
+                <DateTimePicker
                       onChange={updateStartTime}
                       value={startTime}
                     />

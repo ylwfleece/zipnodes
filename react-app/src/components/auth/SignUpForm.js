@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 import { addUser } from "../../store/session";
 import { useDispatch } from "react-redux";
+import logo from './zipnodes_logo.png';
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [nonprofit, setNonprofit] = useState(false);
@@ -74,15 +75,16 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     <div className='page-container'>
       <div>
         <div className='container'>
-          <img  alt='logo' style={{ padding: '5px 5rem' }} />
+          <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
           <div className='paragraph-container'>
-            <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px' }}>Sign up to help more.</p>
+            {/* <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px' }}>Sign up to help more.</p> */}
           </div>
           <form onSubmit={onSignUp}>
+          check box to signup as nonprofit:
           <div className='field-inputs'>
-            <label for="nonprofit">
-                Sign up as nonprofit?
-            </label>
+            {/* <label for="nonprofit"> */}
+                
+            {/* </label> */}
             <input
               type="checkbox"
               name="nonprofit"

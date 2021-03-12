@@ -16,7 +16,7 @@ const Notifications = ({ authenticated, setAuthenticated }) => {
             // your open order has pending apps
             // get open orders
             const openOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'Open' && ord.has_pending_apps);
-            openOrds.forEach(ord => notifs.push({'message': `${ord.title} has pending applications`, 'link': `/order/${ord.id}/apps`}));
+            openOrds.forEach(ord => notifs.push({'message': `'${ord.title}' has pending applications`, 'link': `/order/${ord.id}/apps`}));
             // your order is awaiting confirmation
             const pendingOrds = ords.filter(ord => ord.nonprofit_id == user.id && ord.status == 'Pending' && ord.has_accepted_app);
             pendingOrds.forEach(ord => notifs.push({'message': `'${ord.title}' is awaiting confirmation`, 'link': `/order/${ord.id}`}));
@@ -35,11 +35,11 @@ const Notifications = ({ authenticated, setAuthenticated }) => {
 
     return (
         <div>
-            <div style={{ marginTop: '100px' }}>
+            <div className='notifs-container'>
                 {notifs.length > 0 ? notifs.map((notif, i) =>
-                    <div key={i} className='container ords'>
-                        <Link to={notif.link}>{notif.message}</Link>
-                    </div>
+                    <Link key={i} to={notif.link} className='notif'>
+                        {notif.message}
+                    </Link>
                 ) : <div style={{ marginTop: '100px' }}>no notifs at this time</div>}
             </div >
         </div>

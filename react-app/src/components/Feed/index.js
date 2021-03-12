@@ -23,7 +23,7 @@ function Feed() {
     let ords = [];
     if (orders.list && user) {
         if (user.nonprofit) {
-            ords = orders.list.filter(ord => ord.status != "Complete")
+            ords = orders.list.filter(ord => ord.status != "Complete" && ord.nonprofit_id == user.id)
         } else {
             ords = orders.list.filter(ord => (ord.status == "Open" && !ord.app_node_ids.includes(user.id)))
         }
@@ -75,7 +75,7 @@ function Feed() {
 
     return (<>
         {(view == "orders" && ords && user) &&
-            <div className='homepage'>
+            <div className='homepage' style={{ marginTop: '120px' }}>
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
@@ -110,7 +110,7 @@ function Feed() {
             </div>
         }
         {(view == "applications" && apps) &&
-            <div className='homepage'>
+            <div className='homepage' style={{ marginTop: '120px'}}>
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
@@ -139,7 +139,7 @@ function Feed() {
             </div>
         }
         {(view == "reviews" && revs) &&
-            <div className='homepage'>
+            <div className='homepage' style={{ marginTop: '120px'}}>
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
