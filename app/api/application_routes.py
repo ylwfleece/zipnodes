@@ -6,23 +6,14 @@ from flask_login import current_user, login_user, logout_user, login_required
 application_routes = Blueprint('applications', __name__)
 
 
-@application_routes.route('/update/<int:app_id>', methods=['POST'])
-def update_application(app_id):
+@application_routes.route('/accept/<int:app_id>', methods=['GET'])
+def accept_application(app_id):
     """
-    Updates an application.
+    Accepts an application.
     """
-    new_status = request.data.decode('ascii')
-    print('===============>>>>>> ', new_status)
     application = Application.query.filter(Application.id == app_id).first()
-    application.status = new_status
-    if application.status == "Confirmed":
-        application.order.status = "In Progress"
-        # np can write review whenever (after start time + duration)
-    elif application.status == "Accepted":
-        application.order.status = "Pending"
-        # ndoe can confirm application
-    elif application.status == "Cancelled" and application.order.status == "Pending":
-        application.order.status = "Open"
+    application.status = "Accepted"
+    application.order.status = "Pending"
     db.session.add(application)
     db.session.commit()
     return jsonify(application.to_dict())

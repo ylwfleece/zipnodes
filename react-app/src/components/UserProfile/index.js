@@ -33,9 +33,9 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
         score += reviews[i].score;
         if (reviews[i].score > 1) {
           karma += reviews[i].karma;
+          completions += 1;
         }
         divisor += 1;
-        completions += 1;
       }
     }
     if (divisor > 0) {

@@ -29,7 +29,7 @@ const ReviewProfile = ({ authenticated, setAuthenticated }) => {
           }
         </div>
         <div className='back-link-container'>
-          <Link className='back-link' to='/'>back to open orders</Link>
+          <Link className='back-link' to='/'>back</Link>
         </div>
       </div>
     </div>

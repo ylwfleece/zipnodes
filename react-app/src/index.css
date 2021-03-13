@@ -93,18 +93,16 @@
     padding: 4px;
   }
 
+  .order-profile-title {
+    font-size: 28px;
+    font-weight: 600;
+    padding: 4px;
+  }
+
   .rev-order-title {
     font-size: 24px;
     /* font-weight: bold; */
     padding: 4px;
-  }
-
-  .app-order-title {
-    font-weight: 600;
-    margin-top: 5px;
-    font-size: 22px;
-    /* font-weight: bold; */
-    padding: 5px;
   }
 
   .order-desc {
@@ -156,15 +154,42 @@
   }
 
   .app-order-start {
-    font-size: 20px;
+    font-size: 22px;
     /* font-weight: bold; */
-    padding: 4px;
+    padding: 5px;
+    margin-top: 10px;
+  }
+
+  .app-order-title {
+    font-weight: 600;
+    margin-top: 5px;
+    font-size: 26px;
+    /* font-weight: bold; */
+    padding: 5px;
+  }
+
+  .app-order-location {
+    font-size: 22px;
+    padding: 5px;
   }
 
   .order-virtual {
-    font-size: 20px;
+    font-size: 14px;
     padding: 5px;
     color:rgb(107, 107, 107)
+  }
+
+  .order-for {
+    font-size: 22px;
+    padding: 4px;
+    /* color:rgb(107, 107, 107) */
+  }
+
+  .order-profile-for {
+    font-size: 24px;
+    font-style: italic;
+    padding: 4px;
+    /* color:rgb(107, 107, 107) */
   }
 
   .order-karma {
@@ -231,6 +256,10 @@
       height: 90vh;
       width: 100vw;
       margin-top: 30px;
+  }
+
+  .app-form {
+    border: 1px solid black;
   }
   
   .order-profile-container, .app-profile-container, .rev-profile-container {
@@ -405,6 +434,13 @@
   
   .ords {
     width: 725px;
+    border-radius: 2px;
+
+  }
+
+  .profile-header {
+    margin-bottom: 25px;
+    font-size: 32px;
   }
 
   .notifs-container {
@@ -428,10 +464,13 @@
   .apps {
     padding-top: 8px;
     width: 550px;
+    border-radius: 2px;
   }
 
   .revs {
     width: 625px;
+    border-radius: 2px;
+
   }
   
   .post-user-info {
@@ -754,7 +793,7 @@ input:focus {
 }
 
 .apply-link-container, .link-container {
-  padding: 4px;
+  padding: 3px;
   /* margin-left: 2px; */
 }
 

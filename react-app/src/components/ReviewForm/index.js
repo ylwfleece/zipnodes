@@ -3,11 +3,16 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews } from '../../store/reviews';
 import { getApplications } from "../../store/applications";
-import logo from "../auth/zipnodes_logo.png"
+import logo from "../auth/zipnodes_logo.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const notify = (msg) => toast(msg);
+
   const appId = useParams().appId;
   const user = useSelector((state) => state.session.user);
   const review = useSelector((state) => state.reviews).list.filter(rev => rev.app_id == appId)[0]
@@ -29,7 +34,8 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
       revieweeId = app.nonprofit_id;
     }
     const rev = await dispatch(createReview(user.id, revieweeId, appId, content, score, responseId));
-    dispatch(getApplications())
+    notify("Successfully reviewed: " + app.order_title);
+    dispatch(getApplications());
     history.push(`/review/${rev.id}`);
   };
 

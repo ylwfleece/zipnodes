@@ -15,10 +15,13 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
         <div className='order-profile'>
           {order && 
             <>
-                <div className='order-title'>
+                <div style={{ color: 'black'}} className='order-profile-title'>
                     {order.title}
                 </div>
-                <div className='order-desc'>
+                <div style={{ color: 'rgb(155, 155, 155)' }} className='order-profile-for'>
+                    {order.nonprofit_username}
+                </div>
+                <div style={{marginTop: '8px'}} className='order-desc'>
                     {order.description}
                 </div>
                 <div className='order-start'>
@@ -32,7 +35,7 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
                     (virtual)
                   </div>
                 }
-                <div className='order-karma'>
+                <div style={{ marginTop: '4px' }} className='order-karma'>
                     karma: {order.karma}
                 </div>
                 <div className='order-status'>
@@ -40,7 +43,7 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
                     <p className='open-status'>{order.status}</p>
                   }
                   {(order.status == 'Pending' || order.status == 'In Progress') &&
-                    <p className='pending-status'>{order.status}</p>
+                    <p className='pending-status'>{order.status} - awaiting confirmation</p>
                   }
                   {(order.status == 'Complete') &&
                     <p className='complete-status'>{order.status}</p>
@@ -55,7 +58,7 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
           }
         </div>
         <div className='back-link-container'>
-            <Link className='back-link'to='/'>back to open orders</Link>
+            <Link className='back-link'to='/'>back</Link>
           </div>
       </div>
     </div>
