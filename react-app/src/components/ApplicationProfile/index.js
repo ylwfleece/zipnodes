@@ -17,10 +17,36 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
   const app = useSelector((state) => state.applications[params.id]);
   const orders = useSelector((state) => state.orders);
   let ord_location = "";
+  let ord_np_un = "";
   if (app && orders) {
     if (orders[app.order_id]) {
       ord_location = orders[app.order_id].location;
+      ord_np_un = orders[app.order_id].nonprofit_username;
     }
+  }
+
+  let reviews = useSelector((state) => state.reviews.list);
+
+  let score = 0;
+  let divisor = 0;
+  let karma = 0;
+  let completions = 0;
+  if (reviews && app) {
+    for (let i = 0; i < reviews.length; i++) {
+      if (reviews[i].reviewee_id == app.node_id) {
+        score += reviews[i].score;
+        if (reviews[i].score > 1) {
+          karma += reviews[i].karma;
+          //completions += 1;
+        }
+        divisor += 1;
+      }
+    }
+    if (divisor > 0) {
+      score = Math.round(10 * (score / divisor)) / 10;
+    }
+    // let revs = reviews.filter(rev => rev.reviewee_id == user.id);
+    // reviews = revs;
   }
 
   const confirmApp = async () => {
@@ -46,7 +72,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
         {app &&
           <div className='app-profile'>
             <div className='order-title'>
-              <Link to={`/order/${app.order_id}`}>{app.order_title}</Link>
+              <Link to={`/order/${app.order_id}`}>{app.order_title} for {ord_np_un}</Link>
             </div>
             <div className='order-start'>
               {app.order_start_time}
@@ -56,7 +82,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
             </div>
             {user.nonprofit &&
               <div className='order-location'>
-                {app.node.username} (score: {app.node.score})
+                {app.node.username} (score: {score} | karma: {karma})
                 </div>
             }
             <div className='app-status'>
@@ -86,9 +112,9 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
             </div>
           </div>
         }
-      </div>
-      <div className='back-link-container'>
+      <div style={{ marginLeft: '0px'}} className='back-link-container'>
         <Link className='back-link' to='/'>back</Link>
+      </div>
       </div>
     </div>
   );
