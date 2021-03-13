@@ -55,5 +55,6 @@ class Order(db.Model, UserMixin):
       "has_pending_apps": has_pending_apps,
       "has_accepted_app": has_accepted_app,
       "has_confirmed_app": has_confirmed_app,
-      "confirmed_app_id": confirmed_app_id
+      "confirmed_app_id": confirmed_app_id,
+      "nonprofit_username": self.nonprofit.username
     }

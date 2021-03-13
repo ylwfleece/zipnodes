@@ -27,7 +27,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
     // dispatch to update app to confirmed and order to inprogress
     await dispatch(confirmApplication(app.id));
     await dispatch(getOrders());
-    notify('confirmed app');
+    notify(`Successfully confirmed app for "${app.order_title}"`);
     history.push(`/order/${app.order_id}`);
     
   }
@@ -36,7 +36,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
     // dispatch to cancel app and order back to open
     await dispatch(cancelApplication(app.id));
     await dispatch(getOrders());
-    notify('cancelled app');
+    notify(`Successfully cancelled app for "${app.order_title}"`);
     history.push(`/order/${app.order_id}`);
   }
 
