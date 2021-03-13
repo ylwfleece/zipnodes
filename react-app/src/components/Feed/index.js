@@ -52,12 +52,6 @@ function Feed() {
         history.push(`/order/${orderId}`);
     }
 
-    const accept = async (e) => {
-        const appId = parseInt(e.target.id, 10);
-        const app = await dispatch(updateApplication(appId));
-        dispatch(updateOrder(app.order_id))
-    }
-
     const addReview = (e) => {
         const appId = parseInt(e.target.id, 10);
         history.push(`/reviews/new/${appId}`);
@@ -85,23 +79,23 @@ function Feed() {
                     <div className='homepage-feed'>
                         {ords.length > 0 ? ords.map((ord) =>
                             <div key={ord.id} className='container ords'>
-                                <div className="order-title">{ord.title}</div>
-                                <div className="order-start">{ord.start_time}</div>
-                                <div className="order-karma">karma: {ord.karma}</div>
-                                {ord.virtual && 
-                                    <div className="order-virtual">(virtual)</div>
+                                <div className="order-title">{ord.title} {ord.virtual && "(virtual)"}</div>
+                                {!user.nonprofit && 
+                                    <div className="order-for">{ord.nonprofit_username} </div>                              
                                 }
+                                <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{ord.start_time}</div>
+                                <div className="order-karma">{ord.karma} karma</div>
                                 {!user.nonprofit && 
                                     <button className="blue-button" id={ord.id} onClick={viewOrderProfile} >view details</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length == 1) && 
-                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open app</button>
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} application</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length > 1) && 
-                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} open apps</button>
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} applications</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length == 0) && 
-                                    <p id={ord.id}>no open apps</p>
+                                    <p style={{ fontSize: '16px' }}id={ord.id}>no open apps</p>
                                 }
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open orders at this time</div>}
@@ -130,7 +124,7 @@ function Feed() {
                                     <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>
                                 }
                             </div>
-                        ) : <div style={{marginTop: '100px'}}>no apps need attention atm</div>}
+                        ) : <div style={{marginTop: '100px'}}>no apps currently need attention</div>}
                     </div>
                 </div>
             </div>
@@ -158,7 +152,7 @@ function Feed() {
                                     <button className='blue-button' id={rev.application_id} onClick={addReview}>respond with review</button>
                                 }
                             </div>
-                        ) : <div style={{marginTop: '100px'}}>no reviews need attention atm</div>}
+                        ) : <div style={{marginTop: '100px', fontSize: '16px'}}>no reviews currently need attention</div>}
                     </div>
                 </div>
             </div>

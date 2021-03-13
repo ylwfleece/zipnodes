@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { cancelApplication, confirmApplication } from "../../store/applications";
+import { cancelApplication, confirmApplication, acceptApplication } from "../../store/applications";
 import { getOrders } from "../../store/orders";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,7 +37,6 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
         score += reviews[i].score;
         if (reviews[i].score > 1) {
           karma += reviews[i].karma;
-          //completions += 1;
         }
         divisor += 1;
       }
@@ -45,24 +44,28 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
     if (divisor > 0) {
       score = Math.round(10 * (score / divisor)) / 10;
     }
-    // let revs = reviews.filter(rev => rev.reviewee_id == user.id);
-    // reviews = revs;
+  }
+
+  const acceptApp = async () => {
+    await dispatch(acceptApplication(app.id));
+    await dispatch(getOrders());
+    notify(`Successfully accepted app for "${app.order_title}"`);
+    history.push(`/order/${app.order_id}`);
   }
 
   const confirmApp = async () => {
     // dispatch to update app to confirmed and order to inprogress
     await dispatch(confirmApplication(app.id));
     await dispatch(getOrders());
-    notify(`Successfully confirmed app for "${app.order_title}"`);
+    notify(`Successfully confirmed app for: ${app.order_title}`);
     history.push(`/order/${app.order_id}`);
-
   }
 
   const cancelApp = async () => {
     // dispatch to cancel app and order back to open
     await dispatch(cancelApplication(app.id));
     await dispatch(getOrders());
-    notify(`Successfully cancelled app for "${app.order_title}"`);
+    notify(`Successfully cancelled app for: ${app.order_title}`);
     history.push(`/order/${app.order_id}`);
   }
 
@@ -71,17 +74,17 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
       <div>
         {app &&
           <div className='app-profile'>
-            <div className='order-title'>
+            <div className='app-order-title'>
               <Link to={`/order/${app.order_id}`}>{app.order_title} for {ord_np_un}</Link>
             </div>
-            <div className='order-start'>
+            <div className='app-order-start'>
               {app.order_start_time}
             </div>
-            <div className='order-location'>
+            <div className='app-order-location'>
               {ord_location}
             </div>
             {user.nonprofit &&
-              <div className='order-location'>
+              <div className='app-order-location'>
                 {app.node.username} (score: {score} | karma: {karma})
                 </div>
             }
@@ -90,7 +93,12 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
                 <>
                   <p className='pending-status'>status: {app.status}</p>
                   <div className='link-container'>
-                    <p className='cancel-link' onClick={cancelApp}>> cancel</p>
+                    {!user.nonprofit && 
+                     <p className='cancel-link' onClick={cancelApp}>> cancel</p>
+                    }
+                    {user.nonprofit && 
+                      <p className='confirm-link' onClick={acceptApp}>> accept</p>
+                    }
                   </div>
                 </>
               }
@@ -98,8 +106,12 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
                 <>
                   <p className='pending-status'>application status: {app.status}</p>
                   <div className='link-container'>
-                    <p className='confirm-link' onClick={confirmApp}>> confirm</p>
-                    <p className='cancel-link' onClick={cancelApp}>> cancel</p>
+                    {!user.nonprofit &&
+                    <>
+                      <p className='confirm-link' onClick={confirmApp}>> confirm</p>
+                      <p className='cancel-link' onClick={cancelApp}>> cancel</p>
+                    </>
+                    }
                   </div>
                 </>
               }

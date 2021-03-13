@@ -42,10 +42,15 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
     }
   }
 
-  const acceptApp = async (e) => {
+  // const acceptApp = async (e) => {
+  //   const appId = parseInt(e.target.id, 10);
+  //   const app = await dispatch(updateApplication(appId))
+  // }
+
+  const viewAppProfile = (e) => {
     const appId = parseInt(e.target.id, 10);
-    const app = await dispatch(updateApplication(appId))
-  }
+    history.push(`/application/${appId}`);
+}
 
   return (<>
     {(apps && order) &&
@@ -62,13 +67,13 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
                 <div className="app-order-start">{app.order_start_time}</div>
                 <div className="app-status">status: {app.status.toLowerCase()}</div>
                 {!user.nonprofit &&
-                  <button className="blue-button" id={app.id}>view details</button>
+                  <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>
                 }
-                {(user.nonprofit && app.status == 'Pending') &&
-                  <button className='blue-button' id={app.id} onClick={acceptApp}>accept</button>
+                {(user.nonprofit && app.status != 'Cancelled' && order.status == 'Open') &&
+                  <button className='blue-button' id={app.id} onClick={viewAppProfile}>view details</button>
                 }
               </div>
-            ) : <div style={{ marginTop: '100px' }}>no apps need attention atm</div>}
+            ) : <div style={{ marginTop: '100px' }}>no apps need currently attention</div>}
             <div className='back-link-container'>
               <Link className='back-link' to='/'>back</Link>
             </div>

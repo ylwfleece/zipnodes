@@ -51,7 +51,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   return (
     <div className='page-container'>
       <div>
-        <div className='container'>
+        <div className='container' style={{ border: 'none' }}>
           <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
           <form onSubmit={onLogin}>
             <div className='field-inputs'>
@@ -76,16 +76,14 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               <button type="submit" className='blue-submit-button'>Log In</button>
             </div>
           </form>
+          <div className='container redirect-container' style={{ border: 'none' }}>
+            <p>Don't have an account? <nobr><a href='/sign-up'>Sign up</a></nobr></p>
+            <p>Use a demo account <nobr><a onClick={onLoginDemo} className='demo-link'>Demo</a></nobr></p>
+          </div>
           <div className='errors-container'>
             {errors.map((error) => (
               <div className='errors'>{error}</div>
             ))}
-          </div>
-        </div>
-        <div>
-          <div className='container redirect-container'>
-            <p>Don't have an account? <nobr><a href='/sign-up'>Sign up</a></nobr></p>
-            <p>Use a demo account? <nobr><a onClick={onLoginDemo} className='demo-link'>Demo</a></nobr></p>
           </div>
         </div>
       </div>

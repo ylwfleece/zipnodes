@@ -59,15 +59,11 @@ export const createApplication = (node_id, order_id) => async (dispatch) => {
 //   return 'deleted post ' + postId;
 // }
 
-export const updateApplication = (appId, new_status) => async (dispatch) => {
-  const res = await fetch(`/api/applications/update/${appId}`, {
-    method: "POST",
-    body: new_status
-  });
+export const acceptApplication = (appId) => async (dispatch) => {
+  const res = await fetch(`/api/applications/accept/${appId}`);
   const app = await res.json();
   dispatch(getApplications());
   return app;
-  // heroku push
 }
 
 export const confirmApplication = (appId) => async (dispatch) => {

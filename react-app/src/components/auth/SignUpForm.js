@@ -72,19 +72,13 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <div className='page-container'>
+    <div className='page-container' >
       <div>
-        <div className='container'>
+        <div className='container' style={{ border: 'none' }}>
           <img src={logo} alt='logo' style={{ padding: '5px 5rem' }} />
-          <div className='paragraph-container'>
-            {/* <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px' }}>Sign up to help more.</p> */}
-          </div>
           <form onSubmit={onSignUp}>
-          check box to signup as nonprofit:
-          <div className='field-inputs'>
-            {/* <label for="nonprofit"> */}
-                
-            {/* </label> */}
+            <p style={{fontSize: '16px'}}>check the box to sign up as nonprofit:</p>
+          <div className='field-inputs' style={{ backgroundColor: 'white', border: 'none' }}>
             <input
               type="checkbox"
               name="nonprofit"
@@ -92,6 +86,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               onChange={updateNonprofit}
               value={nonprofit}
             ></input>
+            {/* <label style={{ marginLeft: '0px' }} for="nonprofit"> I am a nonprofit</label> */}
           </div>
             {nonprofit ? 
               <>
@@ -167,15 +162,15 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               <div className='normalize-text file-input ' >
               </div>
             </div>
-            <div className='submit-button-container' style={{ marginTop: '18px' }}>
+            <div className='submit-button-container' style={{ marginTop: '6px' }}>
               <button type="submit" className='blue-submit-button'>Sign Up</button>
             </div>
           </form>
           <div className='errors-container'>
           </div>
         </div>
-        <div className='container redirect-container'>
-          <p>Have an account? <nobr><a href='/login'>Log in</a></nobr></p>
+        <div className='container redirect-container' style={{ border: 'none' }}>
+          <p>Already have an account? <nobr><a href='/login'>Log in</a></nobr></p>
         </div>
       </div>
     </div>

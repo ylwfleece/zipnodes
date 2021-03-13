@@ -4,10 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from '../../store/orders';
 import DateTimePicker from 'react-datetime-picker'
 import logo from '../auth/zipnodes_logo.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OrderForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const notify = (msg) => toast(msg);
 
   const user = useSelector((state) => state.session.user);
   
@@ -22,7 +26,8 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const order = await dispatch(createOrder(user.id, title, description, location, startTime, duration, karma, virtual));
-    history.push(`/order/${order.id}`)
+    notify('Successfully created order: ' + title);
+    history.push(`/order/${order.id}`);
   };
 
   const updateTitle = (e) => {
