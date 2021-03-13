@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { createReview, getReviews } from '../../store/reviews';
 import { getApplications } from "../../store/applications";
+import { getOrders } from "../../store/orders";
 import logo from "../auth/zipnodes_logo.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,11 +16,14 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
 
   const appId = useParams().appId;
   const user = useSelector((state) => state.session.user);
-  const review = useSelector((state) => state.reviews).list.filter(rev => rev.app_id == appId)[0]
+  const review = useSelector((state) => state.reviews).list.filter(rev => rev.application_id == appId)[0]
   const app = useSelector((state) => state.applications)[appId];
-  let responseId = null;
+  let responseId = 0;
   if (review) {
+    console.log(review)
     responseId = review.id;
+  } else {
+    console.log('no rev')
   }
 
   const [content, setContent] = useState("");
@@ -36,6 +40,8 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
     const rev = await dispatch(createReview(user.id, revieweeId, appId, content, score, responseId));
     notify("Successfully reviewed: " + app.order_title);
     dispatch(getApplications());
+    dispatch(getOrders());
+    dispatch(getReviews());
     history.push(`/review/${rev.id}`);
   };
 

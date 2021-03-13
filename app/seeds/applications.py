@@ -19,7 +19,7 @@ def seed_applications():
     node_id=1, status="Confirmed")
     app8 = Application(order_id=8, 
     node_id=6, status="Confirmed")
-    app9 = Application(order_id=9, 
+    app9 = Application(order_id=11, 
     node_id=1, status="Confirmed")
     app10 = Application(order_id=7, 
     node_id=6)
