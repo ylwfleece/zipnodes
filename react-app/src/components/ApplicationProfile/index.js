@@ -3,10 +3,14 @@ import { useParams, Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelApplication, confirmApplication } from "../../store/applications";
 import { getOrders } from "../../store/orders";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const notify = (msg) => toast(msg);
 
   const user = useSelector((state) => state.session.user);
   const params = useParams()
@@ -23,13 +27,16 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
     // dispatch to update app to confirmed and order to inprogress
     await dispatch(confirmApplication(app.id));
     await dispatch(getOrders());
+    notify('confirmed app');
     history.push(`/order/${app.order_id}`);
+    
   }
 
   const cancelApp = async () => {
     // dispatch to cancel app and order back to open
     await dispatch(cancelApplication(app.id));
     await dispatch(getOrders());
+    notify('cancelled app');
     history.push(`/order/${app.order_id}`);
   }
 
@@ -48,7 +55,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
               <div className='order-location'>
                 {ord_location}
               </div>
-              {user.nonprofit && 
+              {user.nonprofit &&
                 <div className='order-location'>
                   {app.node.username} (score: {app.node.score})
                 </div>

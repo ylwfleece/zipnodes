@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { ToastContainer, toast } from 'react-toastify';
 
 //redux stuff
 import { Provider } from "react-redux";
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <Provider store={store}>
+      <ToastContainer />
       <BrowserRouter>
         <App />
       </BrowserRouter>

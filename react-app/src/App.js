@@ -16,6 +16,7 @@ import ReviewProfile from "./components/ReviewProfile";
 import OrderAppsProfile from "./components/OrderAppsProfile";
 import UserProfile from "./components/UserProfile";
 import Notifications from "./components/Notifications";
+import { ToastContainer, toast } from 'react-toastify';
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
