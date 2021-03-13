@@ -29,7 +29,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
     await dispatch(getOrders());
     notify(`Successfully confirmed app for "${app.order_title}"`);
     history.push(`/order/${app.order_id}`);
-    
+
   }
 
   const cancelApp = async () => {
@@ -43,54 +43,52 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
   return (
     <div className='app-profile-container'>
       <div>
-        <div className='app-profile'>
-          {app &&
-            <>
-              <div className='order-title'>
-                <Link to={`/order/${app.order_id}`}>{app.order_title}</Link>
-              </div>
-              <div className='order-start'>
-                {app.order_start_time}
-              </div>
+        {app &&
+          <div className='app-profile'>
+            <div className='order-title'>
+              <Link to={`/order/${app.order_id}`}>{app.order_title}</Link>
+            </div>
+            <div className='order-start'>
+              {app.order_start_time}
+            </div>
+            <div className='order-location'>
+              {ord_location}
+            </div>
+            {user.nonprofit &&
               <div className='order-location'>
-                {ord_location}
-              </div>
-              {user.nonprofit &&
-                <div className='order-location'>
-                  {app.node.username} (score: {app.node.score})
+                {app.node.username} (score: {app.node.score})
                 </div>
+            }
+            <div className='app-status'>
+              {(app.status == 'Pending') &&
+                <>
+                  <p className='pending-status'>status: {app.status}</p>
+                  <div className='link-container'>
+                    <p className='cancel-link' onClick={cancelApp}>> cancel</p>
+                  </div>
+                </>
               }
-              <div className='app-status'>
-                {(app.status == 'Pending') &&
-                  <>
-                    <p className='pending-status'>status: {app.status}</p>
-                    <div className='link-container'>
-                      <p className='cancel-link' onClick={cancelApp}>> cancel</p>
-                    </div>
-                  </>
-                }
-                {(app.status == 'Accepted') &&
-                  <>
-                    <p className='pending-status'>application status: {app.status}</p>
-                    <div className='link-container'>
-                      <p className='confirm-link' onClick={confirmApp}>> confirm</p>
-                      <p className='cancel-link' onClick={cancelApp}>> cancel</p>
-                    </div>
-                  </>
-                }
-                {(app.status == 'Confirmed') &&
-                  <p className='complete-status'>application status: {app.status}</p>
-                }
-                {(app.status == 'Cancelled') &&
-                  <p className='cancel-status'>application status: {app.status}</p>
-                }
-              </div>
-            </>
-          }
-        </div>
-        <div className='back-link-container'>
-          <Link className='back-link' to='/'>back</Link>
-        </div>
+              {(app.status == 'Accepted') &&
+                <>
+                  <p className='pending-status'>application status: {app.status}</p>
+                  <div className='link-container'>
+                    <p className='confirm-link' onClick={confirmApp}>> confirm</p>
+                    <p className='cancel-link' onClick={cancelApp}>> cancel</p>
+                  </div>
+                </>
+              }
+              {(app.status == 'Confirmed') &&
+                <p className='complete-status'>application status: {app.status}</p>
+              }
+              {(app.status == 'Cancelled') &&
+                <p className='cancel-status'>application status: {app.status}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <div className='back-link-container'>
+        <Link className='back-link' to='/'>back</Link>
       </div>
     </div>
   );

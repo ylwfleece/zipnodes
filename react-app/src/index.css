@@ -232,6 +232,10 @@
       width: 100vw;
       margin-top: 30px;
   }
+
+  .app-form {
+    border: 1px solid black;
+  }
   
   .order-profile-container, .app-profile-container, .rev-profile-container {
     display: flex;
@@ -411,6 +415,7 @@
 
   .profile-header {
     margin-bottom: 25px;
+    font-size: 32px;
   }
 
   .notifs-container {
