@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, Review, db
+from app.models import User, Review, Order, db
 from app.forms import ReviewForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -36,14 +36,16 @@ def create_review():
             application_id = form.data['application_id'],
             content = form.data['content'],
             score = form.data['score'],
+            response_id = form.data['response_id']
         )
         db.session.add(review)
         db.session.commit()
-        original = Review.query.filter(Review.application_id == app_id).first()
-        if original:
-            original.response_id = review.id
-            db.session.add(original)
-            db.session.commit()
+        rev = review.to_dict()
+        order_id = rev['order_id']
+        order = Order.query.filter(Order.id == order_id).first()
+        order.status = "Complete"
+        db.session.add(order)
+        db.session.commit()
         return review.to_dict()
     return 'invalid form'
 

@@ -42,8 +42,11 @@ const OrderProfile = ({ authenticated, setAuthenticated }) => {
                   {(order.status == 'Open') &&
                     <p className='open-status'>{order.status}</p>
                   }
-                  {(order.status == 'Pending' || order.status == 'In Progress') &&
-                    <p className='pending-status'>{order.status} - awaiting confirmation</p>
+                  {(order.status == 'Pending') &&
+                    <p className='pending-status'>{order.status} - awaiting node confirmation</p>
+                  }
+                  {(order.status == 'In Progress') &&
+                    <p className='pending-status'>{order.status}</p>
                   }
                   {(order.status == 'Complete') &&
                     <p className='complete-status'>{order.status}</p>

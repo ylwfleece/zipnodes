@@ -57,7 +57,7 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
       <div className='homepage' style={{ marginTop: '100px' }}>
         <div className='page-container homepage-container'>
           <div className='homepage-feed'>
-            <div className='profile-header'>
+            <div style={{ color: 'rgb(155, 155, 155)'}} className='profile-header'>
               Applications for: {order.title}
             </div>
             {apps.length > 0 ? apps.map((app) =>

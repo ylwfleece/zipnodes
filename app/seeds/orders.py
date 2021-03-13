@@ -19,7 +19,7 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Complete")
+    status="Open")
 
     order3 = Order(nonprofit_id=5, 
     title="Attend conference as community member",
@@ -37,7 +37,7 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Pending")
 
     order5 = Order(nonprofit_id=7, 
     title="Help pack outreach supply bags",
@@ -46,7 +46,7 @@ def seed_orders():
     duration=1,
     karma=2,
     virtual=False,
-    status="Open")
+    status="Pending")
 
     order6 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Haiti",
@@ -64,7 +64,7 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Open")
+    status="Complete")
 
     order8 = Order(nonprofit_id=7, 
     title="Help pack outreach supply bags",
@@ -73,7 +73,7 @@ def seed_orders():
     duration=1,
     karma=2,
     virtual=False,
-    status="In Progress")
+    status="Complete")
 
     order9 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Haiti",
@@ -82,7 +82,7 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="In Progress")
+    status="Complete")
 
     order10 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Nicaragua",
@@ -100,7 +100,7 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=True,
-    status="Open")
+    status="Complete")
 
     order12 = Order(nonprofit_id=4, 
     title="Pick up food from Breaking Bread",

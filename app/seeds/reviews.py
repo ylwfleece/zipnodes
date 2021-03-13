@@ -3,19 +3,20 @@ from app.models import db, Review
 # Adds a demo user, you can add other users here if you want
 def seed_reviews():
 
-    review1 = Review(writer_id=8,
+    review1 = Review(writer_id=2,
     reviewee_id=1,
-    application_id=6, 
+    application_id=7, 
+    response_id=3,
     content="Did a great job! Would recommend for any manual task!",
     score=5)
     review2 = Review(writer_id=2,
     reviewee_id=1,
-    application_id=2, 
+    application_id=9, 
     content="Didn't show up...",
     score=1)
     review3 = Review(writer_id=1,
-    reviewee_id=8,
-    application_id=6, 
+    reviewee_id=2,
+    application_id=7, 
     content="Was a top-notch volunteer experience! Great for all ages.",
     score=5)
 

@@ -440,7 +440,8 @@
 
   .profile-header {
     margin-bottom: 25px;
-    font-size: 32px;
+    font-size: 28px;
+    font-style: italic;
   }
 
   .notifs-container {

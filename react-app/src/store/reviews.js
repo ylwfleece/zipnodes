@@ -48,7 +48,8 @@ export const createReview = (writer_id, reviewee_id, application_id, content, sc
         reviewee_id,
         application_id, 
         content, 
-        score
+        score,
+        response_id
     }),
   });
   const review = await res.json();
