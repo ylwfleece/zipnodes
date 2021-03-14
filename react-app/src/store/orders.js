@@ -61,7 +61,8 @@ export const createOrder = (nonprofitId, title, description, location, startTime
     }),
   });
   const order = await res.json();
-  dispatch(addOrder(order));
+  // dispatch(addOrder(order));
+  dispatch(getOrders());
   return order;
 };
 

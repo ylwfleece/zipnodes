@@ -12,8 +12,8 @@ def seed_reviews():
     review2 = Review(writer_id=2,
     reviewee_id=1,
     application_id=9, 
-    content="Didn't show up...",
-    score=1)
+    content="Was energetic and helpful!",
+    score=4)
     review3 = Review(writer_id=1,
     reviewee_id=2,
     application_id=7, 
