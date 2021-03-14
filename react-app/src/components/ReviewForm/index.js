@@ -18,18 +18,17 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
   const user = useSelector((state) => state.session.user);
   const review = useSelector((state) => state.reviews).list.filter(rev => rev.application_id == appId)[0]
   const app = useSelector((state) => state.applications)[appId];
-  let responseId = 0;
+  let responseId = null;
   if (review) {
-    console.log(review)
     responseId = review.id;
-  } else {
-    console.log('no rev')
-  }
+    console.log(responseId);
+  } 
 
   const [content, setContent] = useState("");
   const [score, setScore] = useState("");
 
   const onSubmit = async (e) => {
+    console.log('in submit')
     e.preventDefault();
     let revieweeId;
     if (user.nonprofit) {
@@ -38,10 +37,9 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
       revieweeId = app.nonprofit_id;
     }
     const rev = await dispatch(createReview(user.id, revieweeId, appId, content, score, responseId));
+    console.log(rev);
     notify("Successfully reviewed: " + app.order_title);
     dispatch(getApplications());
-    dispatch(getOrders());
-    dispatch(getReviews());
     history.push(`/review/${rev.id}`);
   };
 
