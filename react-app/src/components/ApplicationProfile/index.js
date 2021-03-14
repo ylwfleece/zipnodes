@@ -125,7 +125,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
           </div>
         }
       <div style={{ marginLeft: '0px'}} className='back-link-container'>
-        <Link className='back-link' to={`/order/${app.order_id}/apps`}>back</Link>
+        <Link className='back-link' to={`/`}>back</Link>
       </div>
       </div>
     </div>

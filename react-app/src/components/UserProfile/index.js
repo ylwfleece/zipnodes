@@ -72,7 +72,7 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
                 <div className='rev-data'>
                   <div style={{ marginBottom: '4px' }} className='rev-content'>"{rev.content}"</div>
                   <div className='user-profile-rev-writer'>– {rev.writer.username}</div>
-                  <div className='rev-score'>score: {rev.score}</div>
+                  <div className='rev-score'>score: {rev.score} {rev.score > 1 && `, earned karma: ${rev.karma}`}</div>
                 </div>
               </div>
             ) : <div style={{ marginTop: '100px' }}>no reviews yet</div>}
