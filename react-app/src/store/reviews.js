@@ -38,6 +38,7 @@ export const clearReviews = () => async (dispatch) => {
 };
 
 export const createReview = (writer_id, reviewee_id, application_id, content, score, response_id) => async (dispatch) => {
+  console.log(writer_id, reviewee_id, application_id, content, score, response_id)
     let res = await fetch(`/api/reviews/`, {
     method: "POST",
     headers: {
@@ -53,7 +54,6 @@ export const createReview = (writer_id, reviewee_id, application_id, content, sc
     }),
   });
   const review = await res.json();
-  // dispatch(addReview(review));
   dispatch(getReviews());
   return review;
 };
