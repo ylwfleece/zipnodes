@@ -16,9 +16,9 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
 
   const appId = useParams().appId;
   const user = useSelector((state) => state.session.user);
-  const review = useSelector((state) => state.reviews).list.filter(rev => rev.application_id == appId)[0]
+  const review = useSelector((state) => state.reviews).list.filter(rev => rev.application_id == appId)[0];
   const app = useSelector((state) => state.applications)[appId];
-  let responseId = null;
+  let responseId = 999999;
   if (review) {
     responseId = review.id;
     console.log(responseId);
@@ -40,6 +40,7 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
     console.log(rev);
     notify("Successfully reviewed: " + app.order_title);
     dispatch(getApplications());
+    dispatch(getOrders());
     history.push(`/review/${rev.id}`);
   };
 
