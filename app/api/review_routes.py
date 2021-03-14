@@ -31,26 +31,21 @@ def create_review():
     print('<<<<<<<<<<<< csrf', form['csrf_token'].data)
     if form.validate_on_submit():
         print('validated form')
+        app_id = form.data['application_id']
+        first_rev = Review.query.filter(Review.application_id == app_id).first()
         review = Review(
             writer_id = form.data['writer_id'],
             reviewee_id = form.data['reviewee_id'],
             application_id = form.data['application_id'],
             content = form.data['content'],
-            score = form.data['score'],
-            response_id = form.data['response_id']
+            score = form.data['score']
         )
         db.session.add(review)
         db.session.commit()
-        # look for existing review for application 
-        app_id = form.data['application_id']
-        first_rev = Review.query.filter(Review.application_id == app_id).first()
-        # if it's there update its response id with new review's id
         if first_rev: 
             first_rev.response_id = review.id
             db.session.add(first_rev)
             db.session.commit()
-        else: 
-            print('no first rev')
         rev = review.to_dict()
         order_id = rev['order_id']
         order = Order.query.filter(Order.id == order_id).first()
