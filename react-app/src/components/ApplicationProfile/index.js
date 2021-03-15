@@ -33,7 +33,7 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
   let completions = 0;
   if (reviews && app) {
     for (let i = 0; i < reviews.length; i++) {
-      if (reviews[i].reviewee_id == app.node_id) {
+      if (reviews[i].reviewee_id == app.node_id && reviews[i].score != 9) {
         score += reviews[i].score;
         if (reviews[i].score > 1) {
           karma += reviews[i].karma;

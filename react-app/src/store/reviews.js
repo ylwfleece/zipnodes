@@ -39,6 +39,9 @@ export const clearReviews = () => async (dispatch) => {
 
 export const createReview = (writer_id, reviewee_id, application_id, content, score, response_id) => async (dispatch) => {
   console.log(writer_id, reviewee_id, application_id, content, score, response_id)
+  if (score == "") {
+    score = 9
+  }
     let res = await fetch(`/api/reviews/`, {
     method: "POST",
     headers: {

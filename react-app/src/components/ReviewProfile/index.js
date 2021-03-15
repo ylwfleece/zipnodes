@@ -20,7 +20,9 @@ const ReviewProfile = ({ authenticated, setAuthenticated }) => {
               <div className='rev-data'>
                 <div style={{ marginBottom: '4px' }} className='rev-content'>"{rev.content}"</div>
                 <div className='rev-writer'>– {rev.writer.username}</div>
-                <div className='rev-score'>score: {rev.score}</div>
+                {rev.score != 9 &&
+                  <div className='rev-score'>score: {rev.score}</div>
+                }       
               </div>
               {(!rev.response_id && rev.writer_id != user.id) &&
                 <Link className='blue-button' id={rev.application_id} to={`/reviews/new/${rev.application_id}`}>respond with review</Link>
