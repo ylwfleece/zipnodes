@@ -25,9 +25,9 @@ const removeOrder = () => {
 export const getOrders = () => async (dispatch) => {
   let orders = await fetch(`/api/orders/`);
   orders = await orders.json();
-//   orders.sort((post1, post2) => {
-//       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
-//     })
+  orders.sort((order1, order2) => {
+      return Date.parse(order1.start_time) - Date.parse(order2.start_time);
+    })
   dispatch(setOrders(orders));
   return orders;
 };

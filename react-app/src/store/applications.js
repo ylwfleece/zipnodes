@@ -25,9 +25,9 @@ const removeApplication = () => {
 export const getApplications = () => async (dispatch) => {
   let applications = await fetch(`/api/applications/`);
   applications = await applications.json();
-//   application.sort((post1, post2) => {
-//       return Date.parse(post2.createdAt) - Date.parse(post1.createdAt)
-//     })
+  applications.sort((app1, app2) => {
+      return Date.parse(app1.order_start_time) - Date.parse(app2.order_start_time);
+    })
   dispatch(setApplications(applications));
   return applications;
 };

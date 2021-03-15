@@ -1,4 +1,5 @@
 from app.models import db, Order
+import datetime
 
 # Adds a demo user, you can add other users here if you want
 def seed_orders():
@@ -10,7 +11,8 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 20, hour=15, minute=30, second=0))
 
     order2 = Order(nonprofit_id=3, 
     title="Help stock shelves before pantry opens",
@@ -19,7 +21,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 18, hour=16, minute=30, second=0))
 
     order3 = Order(nonprofit_id=5, 
     title="Attend conference as community member",
@@ -28,7 +31,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 17, hour=12, minute=0, second=0))
 
     order4 = Order(nonprofit_id=2, 
     title="General volunteer event",
@@ -37,7 +41,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Pending")
+    status="Pending",
+    start_time=datetime.datetime(2021, 3, 25, hour=14, minute=30, second=0))
 
     order5 = Order(nonprofit_id=7, 
     title="Help pack outreach supply bags",
@@ -46,7 +51,8 @@ def seed_orders():
     duration=1,
     karma=2,
     virtual=False,
-    status="Pending")
+    status="Pending",
+    start_time=datetime.datetime(2021, 4, 5, hour=11, minute=0, second=0))
 
     order6 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Haiti",
@@ -55,7 +61,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Complete")
+    status="Complete",
+    start_time=datetime.datetime(2021, 3, 11, hour=13, minute=30, second=0))
 
     order7 = Order(nonprofit_id=2, 
     title="Normal volunteer event",
@@ -64,7 +71,8 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Complete")
+    status="Complete",
+    start_time=datetime.datetime(2021, 3, 10, hour=11, minute=0, second=0))
 
     order8 = Order(nonprofit_id=7, 
     title="Help pack outreach supply bags",
@@ -73,7 +81,8 @@ def seed_orders():
     duration=1,
     karma=2,
     virtual=False,
-    status="Complete")
+    status="Complete",
+    start_time=datetime.datetime(2021, 3, 12, hour=15, minute=30, second=0))
 
     order9 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Haiti",
@@ -82,7 +91,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Complete")
+    status="Complete",
+    start_time=datetime.datetime(2021, 3, 14, hour=12, minute=0, second=0))
 
     order10 = Order(nonprofit_id=8, 
     title="Help pack meals for village in Nicaragua",
@@ -91,7 +101,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 24, hour=15, minute=0, second=0))
 
     order11 = Order(nonprofit_id=2, 
     title="Regular volunteer event",
@@ -100,7 +111,8 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=True,
-    status="Complete")
+    status="Complete",
+    start_time=datetime.datetime(2021, 3, 10, hour=8, minute=0, second=0))
 
     order12 = Order(nonprofit_id=4, 
     title="Pick up food from Breaking Bread",
@@ -109,7 +121,8 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 26, hour=14, minute=30, second=0))
 
     order13 = Order(nonprofit_id=4, 
     title="Pick up food from Seward Co-op",
@@ -118,7 +131,8 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 28, hour=14, minute=0, second=0))
 
     order14 = Order(nonprofit_id=4, 
     title="Pick up food from Franklin Community Co-op",
@@ -127,7 +141,8 @@ def seed_orders():
     duration=1,
     karma=4,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 30, hour=13, minute=30, second=0))
 
     order15 = Order(nonprofit_id=9, 
     title="Tutor group of ninth graders in algebra",
@@ -136,7 +151,8 @@ def seed_orders():
     duration=1.5,
     karma=5,
     virtual=True,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 27, hour=9, minute=30, second=0))
 
     order16 = Order(nonprofit_id=3, 
     title="Greet students at pantry reception desk (first shift)",
@@ -145,7 +161,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 25, hour=12, minute=0, second=0))
 
     order17 = Order(nonprofit_id=3, 
     title="Greet students at pantry reception desk (second shift)",
@@ -154,7 +171,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 25, hour=13, minute=0, second=0))
 
     order18 = Order(nonprofit_id=3, 
     title="Greet students at pantry reception desk (third shift)",
@@ -163,7 +181,8 @@ def seed_orders():
     duration=1,
     karma=3,
     virtual=False,
-    status="Open")
+    status="Open",
+    start_time=datetime.datetime(2021, 3, 25, hour=14, minute=0, second=0))
 
     db.session.add(order1)
     db.session.add(order2)
