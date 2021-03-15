@@ -29,7 +29,7 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
   let completions = 0;
   if (reviews) {
     for (let i = 0; i < reviews.length; i++) {
-      if (reviews[i].reviewee_id == user.id) {
+      if (reviews[i].reviewee_id == user.id && reviews[i].score != 9) {
         score += reviews[i].score;
         if (reviews[i].score > 1) {
           karma += reviews[i].karma;
@@ -42,7 +42,7 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
       score = Math.round(10 * (score / divisor)) / 10;
     }
 
-    let revs = reviews.filter(rev => rev.reviewee_id == user.id);
+    let revs = reviews.filter(rev => rev.reviewee_id == user.id && rev.score != 9);
     reviews = revs;
   }
 

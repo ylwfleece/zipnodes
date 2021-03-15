@@ -22,7 +22,7 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
   if (review) {
     responseId = review.id;
     console.log(responseId);
-  } 
+  }
 
   const [content, setContent] = useState("");
   const [score, setScore] = useState("");
@@ -67,19 +67,19 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
                     <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '18px', textAlign: 'center' }}>Write a review for: {app.order_title}</p>
                   </div>
                 </div>
-                <div className='flex-container' style={{ justifyContent: 'center', width: '25%'}}>
+                <div className='flex-container' style={{ justifyContent: 'center', width: '25%' }}>
                   <form onSubmit={onSubmit}>
                     <div className='field-inputs'>
                       <textarea
-                        style={{padding: '2px', height: '100%', width: '100%', resize: 'none', border: 'none', backgroundColor: 'rgb(250, 250, 250)'}}
+                        style={{ padding: '2px', height: '100%', width: '100%', resize: 'none', border: 'none', backgroundColor: 'rgb(250, 250, 250)' }}
                         placeholder='content'
                         onChange={updateContent}
                         value={content}
                         maxLength='225' minLength='1'
                       >
-                        </textarea>
+                      </textarea>
                     </div>
-                    <div style={{width: '25%'}} className='field-inputs'>
+                    <div hidden={(review && review.score == 1)} style={{ width: '25%' }} className='field-inputs'>
                       <input
                         type="number"
                         name="score"
