@@ -1,4 +1,4 @@
-<h2>Try the site live: <a href=http://zipnodes.herokuapp.com/>Here</h2>
+# Try the live site <a href=http://zipnodes.herokuapp.com/>here</a>
 
 # Flask React Project
 
