@@ -26,7 +26,7 @@ export const getReviews = () => async (dispatch) => {
   let reviews = await fetch(`/api/reviews/`);
   reviews = await reviews.json();
   reviews.sort((rev1, rev2) => {
-      return Date.parse(rev1.order_start_time) - Date.parse(rev2.order_start_time)
+      return Date.parse(rev1.order_start_time) - Date.parse(rev2.order_start_time);
     })
   dispatch(setReviews(reviews));
   return reviews;
@@ -38,9 +38,8 @@ export const clearReviews = () => async (dispatch) => {
 };
 
 export const createReview = (writer_id, reviewee_id, application_id, content, score, response_id) => async (dispatch) => {
-  console.log(writer_id, reviewee_id, application_id, content, score, response_id)
   if (score == "") {
-    score = 9
+    score = 9;
   }
     let res = await fetch(`/api/reviews/`, {
     method: "POST",

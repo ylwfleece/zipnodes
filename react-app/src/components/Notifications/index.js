@@ -28,7 +28,7 @@ const Notifications = ({ authenticated, setAuthenticated }) => {
             const acceptedApps = apps.filter(app => app.node_id == user.id && app.status == 'Accepted');
             acceptedApps.forEach(app => notifs.push({'message': `app awaits confirmation`, 'link': `/application/${app.id}`}));
             // you have a new review
-            const newRevs = revs.filter(rev => rev.reviewee_id == user.id && !rev.response_id);
+            const newRevs = revs.filter(rev => rev.reviewee_id == user.id && !rev.response_id && rev.score != 1);
             newRevs.forEach(rev => notifs.push({'message': `new review awaits response`, 'link': `/review/${rev.id}`}));
         }
     }
