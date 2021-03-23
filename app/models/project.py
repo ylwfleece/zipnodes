@@ -30,5 +30,5 @@ class Project(db.Model, UserMixin):
       "karma_per_share": self.karma_per_share,
       "status": self.status,
       "updated_at": self.updated_at,
-      "purchases": self.purchases,
+      # "purchases": self.purchases,
     }

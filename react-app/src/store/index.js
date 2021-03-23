@@ -4,13 +4,15 @@ import sessionReducer from "./session";
 import ordersReducer from "./orders";
 import applicationsReducer from "./applications";
 import reviewsReducer from "./reviews";
+import projectsReducer from "./projects";
 
 
 const rootReducer = combineReducers({
   orders: ordersReducer,
   session: sessionReducer,
   applications: applicationsReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  projects: projectsReducer
 });
 
 let enhancer;
