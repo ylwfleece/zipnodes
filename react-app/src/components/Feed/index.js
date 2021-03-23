@@ -13,6 +13,7 @@ function Feed() {
     const orders = useSelector((state) => state.orders)
     const applications = useSelector((state) => state.applications)
     const reviews = useSelector((state) => state.reviews)
+    const projects = useSelector((state) => state.projects)
 
     const [view, setView] = useState("orders");
 
@@ -47,6 +48,16 @@ function Feed() {
         }
     }
 
+    let projs = [];
+    if (projects.list && user) {
+        if (user.nonprofit) {
+            projs = projects.list.filter(proj => proj.nonprofit_id == user.id);
+        } else {
+            projs = projects.list.filter(proj => proj.status == 'Open');
+        }
+    }
+
+
     const viewOrderProfile = (e) => {
         const orderId = parseInt(e.target.id, 10);
         history.push(`/order/${orderId}`);
@@ -67,13 +78,18 @@ function Feed() {
         history.push(`/application/${appId}`);
     }
 
+    const viewProjectProfile = (e) => {
+        const projId = parseInt(e.target.id, 10);
+        history.push(`/project/${projId}`);
+    }
+
     return (<>
         {(view == "orders" && ords && user) &&
             <div className='homepage' style={{ marginTop: '120px' }}>
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
-                    <button className="toggle-button" value="applications" onClick={toggleView}>applications</button>
-                    <button className="toggle-button" value="reviews" onClick={toggleView}>reviews</button>                 
+                    <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
+                    <button className="toggle-button" value="policies" onClick={toggleView}>policies</button>                
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
@@ -103,7 +119,7 @@ function Feed() {
                 </div>
             </div>
         }
-        {(view == "applications" && apps) &&
+        {/* {(view == "applications" && apps) &&
             <div className='homepage' style={{ marginTop: '120px'}}>
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
@@ -128,8 +144,8 @@ function Feed() {
                     </div>
                 </div>
             </div>
-        }
-        {(view == "reviews" && revs) &&
+        } */}
+        {/* {(view == "reviews" && revs) &&
             <div className='homepage' style={{ marginTop: '120px'}}>
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
@@ -153,6 +169,42 @@ function Feed() {
                                 }
                             </div>
                         ) : <div style={{marginTop: '100px', fontSize: '16px'}}>no reviews currently need attention</div>}
+                    </div>
+                </div>
+            </div>
+        } */}
+        {(view == "projects" && projs && user) &&
+            <div className='homepage' style={{ marginTop: '120px' }}>
+                <div className='toggle-bar'>
+                    <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
+                    <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
+                    <button className="toggle-button" value="policies" onClick={toggleView}>policies</button>                 
+                </div>
+                <div className='page-container homepage-container'>
+                    <div className='homepage-feed'>
+                        {projs.length > 0 ? projs.map((proj) =>
+                            <div key={proj.id} className='container ords'>
+                                <div className="order-title">{proj.title}</div>
+                                {/* {!user.nonprofit && 
+                                    <div className="order-for">{ord.nonprofit_username} </div>                              
+                                } */}
+                                <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{proj.end_time}</div>
+                                <div className="order-karma">{proj.karma_per_share} karma per share</div>
+                                <div className="order-karma">${proj.cost_per_share} cost per share</div>
+                                {!user.nonprofit && 
+                                    <button className="blue-button" id={proj.id} onClick={viewProjectProfile}>view details</button>
+                                }
+                                {/* {(user.nonprofit && ord.app_node_ids.length == 1) && 
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} application</button>
+                                }
+                                {(user.nonprofit && ord.app_node_ids.length > 1) && 
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} applications</button>
+                                }
+                                {(user.nonprofit && ord.app_node_ids.length == 0) && 
+                                    <p style={{ fontSize: '16px' }}id={ord.id}>no open apps</p>
+                                } */}
+                            </div>
+                        ) : <div style={{marginTop: '100px'}}>no open projects at this time</div>}
                     </div>
                 </div>
             </div>

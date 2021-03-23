@@ -72,9 +72,14 @@ const NavBar = ({ setAuthenticated }) => {
             </NavLink>
           }
           {user.nonprofit &&
+          <>
             <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/orders/new" exact={true} activeClassName="active">
               new order
             </NavLink>
+            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/projects/new" exact={true} activeClassName="active">
+            new project
+          </NavLink>
+          </>
           }
           <NavLink style={{ paddingRight: '15px', paddingLeft: '5px', color: 'rgb(14,164,227)' }} to={`/users/${user.id}`} exact={true} activeClassName="active">
             profile

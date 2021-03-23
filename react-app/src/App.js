@@ -9,12 +9,14 @@ import User from "./components/User";
 import OrderForm from "./components/OrderForm";
 import ApplicationForm from "./components/ApplicationForm";
 import ReviewForm from "./components/ReviewForm";
+import ProjectForm from "./components/ProjectForm";
 import Feed from "./components/Feed";
 import ApplicationProfile from "./components/ApplicationProfile";
 import OrderProfile from "./components/OrderProfile";
 import ReviewProfile from "./components/ReviewProfile";
 import OrderAppsProfile from "./components/OrderAppsProfile";
 import UserProfile from "./components/UserProfile";
+import ProjectProfile from "./components/ProjectProfile";
 import Notifications from "./components/Notifications";
 import { ToastContainer, toast } from 'react-toastify';
 import { getOrders } from "./store/orders";
@@ -24,6 +26,7 @@ import { addUser } from "./store/session";
 
 import { authenticate } from "./services/auth";
 import { useDispatch } from "react-redux";
+import { getProjects } from "./store/projects";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -39,6 +42,7 @@ function App() {
         dispatch(getOrders);
         dispatch(getApplications());
         dispatch(getReviews());
+        dispatch(getProjects());
       }
       setLoaded(true);
     })();
@@ -132,13 +136,26 @@ function App() {
           <NavBar setAuthenticated={setAuthenticated} />
           <ReviewProfile />
         </ProtectedRoute>
+        <ProtectedRoute
+          path="/projects/new"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <ProjectForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/project/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <ProjectProfile />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />
           <UsersList />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
-        </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />
           <Feed />
