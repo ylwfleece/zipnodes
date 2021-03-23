@@ -98,7 +98,7 @@ function Feed() {
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
-                    <button className="toggle-button" value="policies" onClick={toggleView}>policies</button>                
+                    <button className="toggle-button" value="bills" onClick={toggleView}>bills</button>                
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
@@ -187,7 +187,7 @@ function Feed() {
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
-                    <button className="toggle-button" value="policies" onClick={toggleView}>policies</button>                 
+                    <button className="toggle-button" value="bills" onClick={toggleView}>bills</button>                 
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
