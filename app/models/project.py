@@ -28,6 +28,8 @@ class Project(db.Model, UserMixin):
       "description": self.description,
       "end_time": self.end_time,
       "karma_per_share": self.karma_per_share,
+      "cost_per_share": self.cost_per_share,
+      "total_shares": self.total_shares,
       "status": self.status,
       "updated_at": self.updated_at,
       # "purchases": self.purchases,

@@ -28,7 +28,13 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
                     start time: {project.end_time}
                 </div>
                 <div style={{ marginTop: '4px' }} className='order-karma'>
-                    karma: {project.karma_per_share}
+                    karma per share: {project.karma_per_share}
+                </div>
+                <div style={{ marginTop: '4px' }} className='order-karma'>
+                    cost per share: {project.cost_per_share}
+                </div>
+                <div style={{ marginTop: '4px' }} className='order-karma'>
+                    total shares: {project.total_shares}
                 </div>
                 {/* <div className='order-status'>
                   {(order.status == 'Open') &&
