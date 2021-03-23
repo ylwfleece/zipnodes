@@ -43,7 +43,7 @@ function Feed() {
         if (user.nonprofit) {
             // revs = reviews.list.filter(rev => rev.nonprofit_id == user.id);
         } else {
-            revs = reviews.list.filter(rev => rev.reviewee_id == user.id && !rev.response_id);
+            revs = reviews.list.filter(rev => rev.reviewee_id == user.id && !rev.response_id && rev.score > 1);
         }
     }
 

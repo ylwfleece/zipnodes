@@ -79,11 +79,11 @@ const ReviewForm = ({ authenticated, setAuthenticated }) => {
                       >
                       </textarea>
                     </div>
-                    <div hidden={(review && review.score == 1)} style={{ width: '25%' }} className='field-inputs'>
+                    <div hidden={(review && review.score == 1)} style={{ width: '100%' }} className='field-inputs'>
                       <input
                         type="number"
                         name="score"
-                        placeholder='score'
+                        placeholder='score (score of 1 indicates absence/negligence--no karma earned'
                         onChange={updateScore}
                         value={score}
                         min="1" max="5"
