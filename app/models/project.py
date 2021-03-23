@@ -17,7 +17,7 @@ class Project(db.Model, UserMixin):
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   nonprofit = db.relationship("User", back_populates="projects")
-#   purchases = db.relationship("Purchase", back_populates="project")
+  purchases = db.relationship("Purchase", back_populates="project")
 
   def to_dict(self):
 
@@ -32,5 +32,5 @@ class Project(db.Model, UserMixin):
       "total_shares": self.total_shares,
       "status": self.status,
       "updated_at": self.updated_at,
-      # "purchases": self.purchases,
+      "purchases": self.purchases,
     }
