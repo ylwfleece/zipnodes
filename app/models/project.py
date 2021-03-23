@@ -23,7 +23,7 @@ class Project(db.Model, UserMixin):
 
     return {
       "id": self.id,
-      "nonprofit_id": self.nonprofit_id,
+      "nonprofit": self.nonprofit,
       "title": self.title,
       "description": self.description,
       "end_time": self.end_time,

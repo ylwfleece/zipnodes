@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProject, getProjects } from '../../store/projects';
 import DateTimePicker from 'react-datetime-picker'
 import logo from '../auth/zipnodes_logo.png';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProjectForm = ({ authenticated, setAuthenticated }) => {
