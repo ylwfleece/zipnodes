@@ -2,13 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
-import { updateApplication } from "../../store/applications";
+// import { getApplications } from "../../store/applications";
+// import { getOrders } from "../../store/orders";
+// import { getProjects } from "../../store/projects";
+// import { getPurchases } from "../../store/purchases";
 import { createReview, getReviews } from '../../store/reviews';
 import { updateOrder } from "../../store/orders";
 
 function Feed() {
     const dispatch = useDispatch()
     const history = useHistory();
+
+    // dispatch(getOrders());
+    // dispatch(getApplications());
+    // dispatch(getProjects());
+    // dispatch(getPurchases());
+
     const user = useSelector((state) => state.session.user)
     const orders = useSelector((state) => state.orders)
     const applications = useSelector((state) => state.applications)

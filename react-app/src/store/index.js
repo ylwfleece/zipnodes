@@ -5,6 +5,7 @@ import ordersReducer from "./orders";
 import applicationsReducer from "./applications";
 import reviewsReducer from "./reviews";
 import projectsReducer from "./projects";
+import purchasesReducer from "./purchases";
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   applications: applicationsReducer,
   reviews: reviewsReducer,
-  projects: projectsReducer
+  projects: projectsReducer,
+  purchases: purchasesReducer
 });
 
 let enhancer;

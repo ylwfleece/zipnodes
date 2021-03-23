@@ -5,11 +5,12 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
-import User from "./components/User";
+// import User from "./components/User";
 import OrderForm from "./components/OrderForm";
 import ApplicationForm from "./components/ApplicationForm";
 import ReviewForm from "./components/ReviewForm";
 import ProjectForm from "./components/ProjectForm";
+import PurchaseForm from "./components/PurchaseForm";
 import Feed from "./components/Feed";
 import ApplicationProfile from "./components/ApplicationProfile";
 import OrderProfile from "./components/OrderProfile";
@@ -17,8 +18,8 @@ import ReviewProfile from "./components/ReviewProfile";
 import OrderAppsProfile from "./components/OrderAppsProfile";
 import UserProfile from "./components/UserProfile";
 import ProjectProfile from "./components/ProjectProfile";
+import PurchaseProfile from "./components/PurchaseProfile";
 import Notifications from "./components/Notifications";
-import { ToastContainer, toast } from 'react-toastify';
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
 import { getReviews } from "./store/reviews";
@@ -27,6 +28,7 @@ import { addUser } from "./store/session";
 import { authenticate } from "./services/auth";
 import { useDispatch } from "react-redux";
 import { getProjects } from "./store/projects";
+import { getPurchases } from "./store/purchases";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -39,10 +41,12 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
         dispatch(addUser(user));
-        dispatch(getOrders);
+        dispatch(getOrders());
         dispatch(getApplications());
         dispatch(getReviews());
-        dispatch(getProjects());
+        const projects = await dispatch(getProjects());
+        console.log(projects.length)
+        dispatch(getPurchases());
       }
       setLoaded(true);
     })();
@@ -151,6 +155,22 @@ function App() {
         >
           <NavBar setAuthenticated={setAuthenticated} />
           <ProjectProfile />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/purchases/new/:projectId"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <PurchaseForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/purchase/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <PurchaseProfile />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />

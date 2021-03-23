@@ -23,12 +23,14 @@ const setProjects = (projects) => {
 // };
 
 export const getProjects = () => async (dispatch) => {
+  console.log('in getprojects')
   let projects = await fetch(`/api/projects/`);
   projects = await projects.json();
   projects.sort((proj1, proj2) => {
       return Date.parse(proj1.end_time) - Date.parse(proj2.end_time);
     })
   dispatch(setProjects(projects));
+  console.log(projects.length)
   return projects;
 };
 
