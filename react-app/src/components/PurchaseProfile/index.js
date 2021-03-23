@@ -23,6 +23,9 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
               <Link to={`/project/${purchase.project.id}`}>{purchase.project.title} for {purchase.project.nonprofit.username}</Link>
             </div>
             <div className='app-order-start'>
+              number of shares purchased: {purchase.num_shares}
+            </div>
+            <div className='app-order-start'>
               {purchase.created_at}
             </div>
             <div className='app-order-location'>

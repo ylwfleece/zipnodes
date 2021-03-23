@@ -19,5 +19,6 @@ class Purchase(db.Model, UserMixin):
       "id": self.id,
       "node": self.node.to_dict(),
       "project": self.project.to_dict(),
+      "num_shares": self.num_shares,
       "created_at": self.created_at
     }

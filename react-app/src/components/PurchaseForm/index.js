@@ -12,7 +12,7 @@ const PurchaseForm = ({ authenticated, setAuthenticated }) => {
     const history = useHistory();
     const user = useSelector((state) => state.session.user);
     const params = useParams();
-    const project = useSelector((state) => state.project[params.projectId]);
+    const project = useSelector((state) => state.projects[params.projectId]);
 
     const notify = (msg) => toast(msg);
 

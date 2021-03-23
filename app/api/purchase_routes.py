@@ -29,7 +29,7 @@ def create_purchase():
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        purchase = purchase(
+        purchase = Purchase(
             node_id = form.data['node_id'],
             project_id = form.data['project_id'],
             num_shares = form.data['num_shares']

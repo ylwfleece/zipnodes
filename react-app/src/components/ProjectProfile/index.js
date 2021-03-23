@@ -37,7 +37,7 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
                     total shares: {project.total_shares}
                 </div>
                 <div style={{ marginTop: '4px' }} className='order-karma'>
-                    <Link to='/purchases/new/:projectId'>Purchase shares</Link>
+                    <Link to={`/purchases/new/${project.id}`}>Purchase shares</Link>
                 </div>
                 {/* <div className='order-status'>
                   {(order.status == 'Open') &&

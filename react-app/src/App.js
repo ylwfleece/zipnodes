@@ -41,10 +41,11 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
         dispatch(addUser(user));
-        dispatch(getOrders);
+        dispatch(getOrders());
         dispatch(getApplications());
         dispatch(getReviews());
-        dispatch(getProjects());
+        const projects = await dispatch(getProjects());
+        console.log(projects.length)
         dispatch(getPurchases());
       }
       setLoaded(true);
@@ -152,7 +153,10 @@ function App() {
           exact={true}
           authenticated={authenticated}
         >
-          <ProtectedRoute
+          <NavBar setAuthenticated={setAuthenticated} />
+          <ProjectProfile />
+        </ProtectedRoute>
+        <ProtectedRoute
           path="/purchases/new/:projectId"
           exact={true}
           authenticated={authenticated}
@@ -164,7 +168,7 @@ function App() {
           path="/purchase/:id"
           exact={true}
           authenticated={authenticated}
-        ></ProtectedRoute>
+        >
           <NavBar setAuthenticated={setAuthenticated} />
           <PurchaseProfile />
         </ProtectedRoute>

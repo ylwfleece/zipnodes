@@ -20,10 +20,12 @@ class Project(db.Model, UserMixin):
   purchases = db.relationship("Purchase", back_populates="project")
 
   def to_dict(self):
-
+    # purchases_arr = []
+    # for purchase in self.purchases:
+    #   purchases_arr.append(purchase.to_dict())
     return {
       "id": self.id,
-      "nonprofit": self.nonprofit,
+      "nonprofit": self.nonprofit.to_dict(),
       "title": self.title,
       "description": self.description,
       "end_time": self.end_time,
@@ -32,5 +34,5 @@ class Project(db.Model, UserMixin):
       "total_shares": self.total_shares,
       "status": self.status,
       "updated_at": self.updated_at,
-      "purchases": self.purchases,
+      # "purchases": purchases_arr,
     }
