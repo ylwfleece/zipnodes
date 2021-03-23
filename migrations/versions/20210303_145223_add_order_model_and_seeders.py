@@ -34,6 +34,21 @@ def upgrade():
     sa.ForeignKeyConstraint(['nonprofit_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    # op.create_table('projects',
+    # sa.Column('id', sa.Integer(), nullable=False),
+    # sa.Column('nonprofit_id', sa.Integer(), nullable=False),
+    # sa.Column('title', sa.String(length=100), nullable=False),
+    # sa.Column('description', sa.String(length=255), nullable=False),
+    # sa.Column('end_time', sa.DateTime(), nullable=True),
+    # sa.Column('karma_per_share', sa.Integer(), nullable=False),
+    # sa.Column('cost_per_share', sa.Float(), nullable=False),
+    # sa.Column('total_shares', sa.Integer(), nullable=False),
+    # sa.Column('status', sa.String(length=20), nullable=False),
+    # sa.Column('created_at', sa.DateTime(), nullable=True),
+    # sa.Column('updated_at', sa.DateTime(), nullable=True),
+    # sa.ForeignKeyConstraint(['nonprofit_id'], ['users.id'], ),
+    # sa.PrimaryKeyConstraint('id')
+    # )
     op.drop_table('nodes')
     op.drop_table('nonprofits')
     # ### end Alembic commands ###
@@ -68,4 +83,5 @@ def downgrade():
     sa.UniqueConstraint('email', name='nodes_email_key')
     )
     op.drop_table('orders')
+    # op.drop_table('projects')
     # ### end Alembic commands ###

@@ -22,6 +22,16 @@ def seed_users():
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
     lmn = User(username="Literacy Minnesota", email='lm@aa.io',
                 password='password', zip_code='55414', karma=0, score=0, nonprofit=True)
+    cw = User(username="charity: water", email='cw@aa.io',
+                password='password', zip_code='11111', karma=0, score=0, nonprofit=True)
+    pop = User(username="Pencils of Promise", email='pop@aa.io',
+                password='password', zip_code='11111', karma=0, score=0, nonprofit=True)
+    amf = User(username="Against Malaria Foundation", email='amf@aa.io',
+                password='password', zip_code='11111', karma=0, score=0, nonprofit=True)
+    ff = User(username="Fistula Foundation", email='ff@aa.io',
+                password='password', zip_code='11111', karma=0, score=0, nonprofit=True)
+    ni = User(username="New Incentives", email='ni@aa.io',
+                password='password', zip_code='11111', karma=0, score=0, nonprofit=True)
     
 
     db.session.add(demo_node)
@@ -33,6 +43,11 @@ def seed_users():
     db.session.add(sw)
     db.session.add(fmsc)
     db.session.add(lmn)
+    db.session.add(cw)
+    db.session.add(pop)
+    db.session.add(amf)
+    db.session.add(ff)
+    db.session.add(ni)
 
     db.session.commit()
 
