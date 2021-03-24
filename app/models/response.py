@@ -18,7 +18,7 @@ class Response(db.Model, UserMixin):
     return {
       "id": self.id,
       "node": self.node.to_dict(),
-      "politic": self.politic.to_dict(),
+      "politic_id": self.politic_id,
       "answer": self.answer,
       "created_at": self.created_at
     }

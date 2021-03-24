@@ -12,6 +12,7 @@ import { getPolitics } from '../store/politics';
 // import ProfileButton from "./ProfileButton";
 import LogoutButton from "./auth/LogoutButton";
 import logo from './auth/zipnodes_logo.png';
+import { getResponses } from '../store/reponses';
 
 const NavBar = ({ setAuthenticated }) => {
 
@@ -28,6 +29,7 @@ const NavBar = ({ setAuthenticated }) => {
       dispatch(getProjects());
       dispatch(getPurchases());
       dispatch(getPolitics());
+      dispatch(getResponses());
     })();
   }, [dispatch]);
 

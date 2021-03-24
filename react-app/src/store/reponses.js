@@ -2,9 +2,9 @@ const SET_RESPONSES = "response/setResponses";
 const REMOVE_RESPONSE = "response/removeResponse";
 const ADD_RESPONSE = "response/addResponse";
 
-const setResponse = (responses) => {
+const setResponses = (responses) => {
   return {
-    type: SET_RESPONSE,
+    type: SET_RESPONSES,
     payload: responses,
   };
 };
@@ -69,7 +69,7 @@ const responsesReducer = (state = initialState, action) => {
         ...newResps,
         list: action.payload
       }
-    case ADD_response:
+    case ADD_RESPONSE:
       if (!state[action.payload.id]) {
         const newState = {
           ...state,
