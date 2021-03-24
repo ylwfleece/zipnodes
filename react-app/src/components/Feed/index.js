@@ -12,6 +12,7 @@ function Feed() {
     const applications = useSelector((state) => state.applications)
     const reviews = useSelector((state) => state.reviews)
     const projects = useSelector((state) => state.projects)
+    const politics = useSelector((state) => state.politics)
 
     const [view, setView] = useState("orders");
 
@@ -55,8 +56,14 @@ function Feed() {
         }
     }
 
-    let bils = [];
-    //if (bills)
+    let pols = [];
+    if (politics.list && user) {
+        if (user.nonprofit) {
+            pols = politics.list.filter(pol => pol.nonprofit_id == user.id);
+        } else {
+            pols = politics.list.filter(pol => pol.status == 'Open');
+        }
+    }
 
 
     const viewOrderProfile = (e) => {
@@ -90,7 +97,7 @@ function Feed() {
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
-                    <button className="toggle-button" value="bills" onClick={toggleView}>bills</button>                
+                    <button className="toggle-button" value="politics" onClick={toggleView}>politics</button>                
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
@@ -179,7 +186,7 @@ function Feed() {
                 <div className='toggle-bar'>
                     <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
                     <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
-                    <button className="toggle-button" value="bills" onClick={toggleView}>bills</button>                 
+                    <button className="toggle-button" value="politics" onClick={toggleView}>politics</button>                 
                 </div>
                 <div className='page-container homepage-container'>
                     <div className='homepage-feed'>
