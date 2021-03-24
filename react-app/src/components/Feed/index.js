@@ -91,6 +91,11 @@ function Feed() {
         history.push(`/project/${projId}`);
     }
 
+    const viewPoliticProfile = (e) => {
+        const polId = parseInt(e.target.id, 10);
+        history.push(`/politic/${polId}`);
+    }
+
     return (<>
         {(view == "orders" && ords && user) &&
             <div className='homepage' style={{ marginTop: '120px' }}>
@@ -213,6 +218,42 @@ function Feed() {
                                 } */}
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open projects at this time</div>}
+                    </div>
+                </div>
+            </div>
+        }
+        {(view == "politics" && pols && user) &&
+            <div className='homepage' style={{ marginTop: '120px' }}>
+                <div className='toggle-bar'>
+                    <button className="toggle-button" value="orders" onClick={toggleView}>orders</button>
+                    <button className="toggle-button" value="projects" onClick={toggleView}>projects</button>
+                    <button className="toggle-button" value="politics" onClick={toggleView}>politics</button>                 
+                </div>
+                <div className='page-container homepage-container'>
+                    <div className='homepage-feed'>
+                        {pols.length > 0 ? pols.map((pol) =>
+                            <div key={pol.id} className='container ords'>
+                                <div className="order-title">{pol.title}</div>
+                                {/* {!user.nonprofit && 
+                                    <div className="order-for">{ord.nonprofit_username} </div>                              
+                                } */}
+                                <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{pol.end_time}</div>
+                                {/* <div className="order-karma">{pol.karma_per_share} karma per share</div>
+                                <div className="order-karma">${pol.cost_per_share} cost per share</div> */}
+                                {!user.nonprofit && 
+                                    <button className="blue-button" id={pol.id} onClick={viewPoliticProfile}>view details</button>
+                                }
+                                {/* {(user.nonprofit && ord.app_node_ids.length == 1) && 
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} application</button>
+                                }
+                                {(user.nonprofit && ord.app_node_ids.length > 1) && 
+                                    <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} applications</button>
+                                }
+                                {(user.nonprofit && ord.app_node_ids.length == 0) && 
+                                    <p style={{ fontSize: '16px' }}id={ord.id}>no open apps</p>
+                                } */}
+                            </div>
+                        ) : <div style={{marginTop: '100px'}}>no open politics at this time</div>}
                     </div>
                 </div>
             </div>
