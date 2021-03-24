@@ -15,7 +15,7 @@ class Politic(db.Model, UserMixin):
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   nonprofit = db.relationship("User", back_populates="politics")
-#   responses = db.relationship("Response", back_populates="politic")
+  responses = db.relationship("Response", back_populates="politic")
 
   def to_dict(self):
     return {

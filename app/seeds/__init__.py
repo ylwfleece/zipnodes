@@ -6,6 +6,7 @@ from .reviews import seed_reviews, undo_reviews
 from .projects import seed_projects, undo_projects
 from .purchases import seed_purchases, undo_purchases
 from .politics import seed_politics, undo_politics
+from .responses import seed_responses, undo_responses
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -21,6 +22,7 @@ def seed():
     seed_projects()
     seed_purchases()
     seed_politics()
+    seed_responses()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -32,3 +34,4 @@ def undo():
     undo_projects()
     undo_purchases()
     undo_politics()
+    undo_responses()
