@@ -14,6 +14,7 @@ from .api.review_routes import review_routes
 from .api.project_routes import project_routes
 from .api.purchase_routes import purchase_routes
 from .api.politic_routes import politic_routes
+from .api.response_routes import response_routes
 
 from .seeds import seed_commands
 
@@ -43,6 +44,7 @@ app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(project_routes, url_prefix='/api/projects')
 app.register_blueprint(purchase_routes, url_prefix='/api/purchases')
 app.register_blueprint(politic_routes, url_prefix='/api/politics')
+app.register_blueprint(response_routes, url_prefix='/api/responses')
 db.init_app(app)
 Migrate(app, db)
 
