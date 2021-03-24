@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
   reviews = db.relationship("Review", back_populates="writer", cascade="all, delete-orphan")
   projects = db.relationship("Project", back_populates="nonprofit", cascade="all, delete-orphan")
   purchases = db.relationship("Purchase", back_populates="node", cascade="all, delete-orphan")
+  politics = db.relationship("Politic", back_populates="nonprofit", cascade="all, delete-orphan")
 
   @property
   def password(self):

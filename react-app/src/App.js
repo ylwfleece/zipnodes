@@ -11,6 +11,7 @@ import ApplicationForm from "./components/ApplicationForm";
 import ReviewForm from "./components/ReviewForm";
 import ProjectForm from "./components/ProjectForm";
 import PurchaseForm from "./components/PurchaseForm";
+import PoliticForm from "./components/PoliticForm";
 import Feed from "./components/Feed";
 import ApplicationProfile from "./components/ApplicationProfile";
 import OrderProfile from "./components/OrderProfile";
@@ -19,6 +20,7 @@ import OrderAppsProfile from "./components/OrderAppsProfile";
 import UserProfile from "./components/UserProfile";
 import ProjectProfile from "./components/ProjectProfile";
 import PurchaseProfile from "./components/PurchaseProfile";
+import PoliticProfile from "./components/PoliticProfile";
 import Notifications from "./components/Notifications";
 import { getOrders } from "./store/orders";
 import { getApplications } from "./store/applications";
@@ -29,6 +31,7 @@ import { authenticate } from "./services/auth";
 import { useDispatch } from "react-redux";
 import { getProjects } from "./store/projects";
 import { getPurchases } from "./store/purchases";
+import { getPolitics } from "./store/politics";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -41,12 +44,12 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
         dispatch(addUser(user));
-        dispatch(getOrders());
-        dispatch(getApplications());
-        dispatch(getReviews());
-        const projects = await dispatch(getProjects());
-        console.log(projects.length)
-        dispatch(getPurchases());
+        // dispatch(getOrders());
+        // dispatch(getApplications());
+        // dispatch(getReviews());
+        // dispatch(getProjects());
+        // dispatch(getPurchases());
+        // dispatch(getPolitics());
       }
       setLoaded(true);
     })();
@@ -171,6 +174,22 @@ function App() {
         >
           <NavBar setAuthenticated={setAuthenticated} />
           <PurchaseProfile />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/politics/new"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <PoliticForm />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/politic/:id"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <NavBar setAuthenticated={setAuthenticated} />
+          <PoliticProfile />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} />

@@ -6,6 +6,9 @@ import { useState, useEffect } from 'react';
 import { getOrders } from '../store/orders';
 import { getApplications } from '../store/applications';
 import { getReviews } from '../store/reviews';
+import { getProjects } from '../store/projects';
+import { getPurchases } from '../store/purchases';
+import { getPolitics } from '../store/politics';
 // import ProfileButton from "./ProfileButton";
 import LogoutButton from "./auth/LogoutButton";
 import logo from './auth/zipnodes_logo.png';
@@ -22,6 +25,9 @@ const NavBar = ({ setAuthenticated }) => {
       dispatch(getOrders());
       dispatch(getApplications());
       dispatch(getReviews());
+      dispatch(getProjects());
+      dispatch(getPurchases());
+      dispatch(getPolitics());
     })();
   }, [dispatch]);
 
@@ -78,6 +84,9 @@ const NavBar = ({ setAuthenticated }) => {
             </NavLink>
             <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/projects/new" exact={true} activeClassName="active">
             new project
+          </NavLink>
+          <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/politics/new" exact={true} activeClassName="active">
+            new politic
           </NavLink>
           </>
           }
