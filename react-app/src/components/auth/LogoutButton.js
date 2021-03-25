@@ -11,7 +11,7 @@ const LogoutButton = ({setAuthenticated}) => {
     //dispatch(logoutUser())
   };
 
-  return <NavLink to='/login' className='logout-button' onClick={onLogout}>logout</NavLink>;
+  return <NavLink to='/login' className='menu-item' onClick={onLogout}>logout</NavLink>;
 };
 
 export default LogoutButton;
