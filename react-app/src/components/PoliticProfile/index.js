@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
-import { createResponse } from "../../store/reponses";
+import { createResponse, getResponses } from "../../store/reponses";
+import { getPolitics } from "../../store/politics";
 
 const PoliticProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -14,21 +15,36 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
   const [responded, setResponded] = useState(false);
 
   let response;
-  let yays = 0;
-  let nays = 0;
+  // let yays = 0;
+  // let nays = 0;
   if (politic) {
     politic.responses.forEach(res => {
       if (res.node.id == user.id) {
         response = res;
       }
+      // if (res.answer == 'Y') {
+      //   yays += 1;
+      // } else {
+      //   nays += 1;
+      // }
     });
   }
 
+  const updateResponded = () => {
+    setResponded(true);
+  }
+
   const respond = async (e) => {
-    await dispatch(createResponse(user.id, politic.id, e.target.value));
-    setResponded(true)
+    const ans = e.target.value;
+    await dispatch(createResponse(user.id, politic.id, ans));
+    // if (ans == 'Y') {
+    //   yays += 1;
+    // } else {
+    //   nays += 1;
+    // }
+    updateResponded();
+    await dispatch(getPolitics());
     // toastify
-    // history.push(`/politic/${politic.id}`);
   }
 
   return (
@@ -49,7 +65,7 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
               <div className='order-start'>
                 question: {politic.question}
               </div>
-              {!response ?
+              {(!response && !responded) ?
                 <div style={{ marginTop: '4px' }} className='order-karma'>
                   <button value="Y" onClick={respond}>yay</button>
                   <button value="N" onClick={respond}>nay</button>

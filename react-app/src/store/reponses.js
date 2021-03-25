@@ -50,7 +50,8 @@ export const createResponse = (node_id, politic_id, answer) => async (dispatch) 
     }),
   });
   const response = await res.json();
-  dispatch(addResponse(response));
+  //dispatch(addResponse(response));
+  dispatch(getResponses());
   return response;
 };
 
