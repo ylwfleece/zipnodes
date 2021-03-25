@@ -20,9 +20,10 @@ class Project(db.Model, UserMixin):
   purchases = db.relationship("Purchase", back_populates="project")
 
   def to_dict(self):
-    # purchases_arr = []
-    # for purchase in self.purchases:
-    #   purchases_arr.append(purchase.to_dict())
+    karma_produced = 0
+    if self.status == 'Complete':
+      for pur in self.purchases:
+        karma_produced += pur.num_shares * self.millikarma_per_share/1000 * 2
     return {
       "id": self.id,
       "nonprofit": self.nonprofit.to_dict(),
@@ -34,5 +35,6 @@ class Project(db.Model, UserMixin):
       "total_shares": self.total_shares,
       "status": self.status,
       "updated_at": self.updated_at,
+      "karma_produced": karma_produced
       # "purchases": purchases_arr,
     }
