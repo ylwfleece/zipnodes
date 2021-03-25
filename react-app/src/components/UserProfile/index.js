@@ -121,20 +121,71 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
               </>
             }
           </div>
-          {/* render body based on user and view */}
-          
+          {/* render toggle bar based on user type */}
+          <div className='profile-toggle-bar'>
+            <button className="toggle-button" value="reviews" onClick={toggleView}>reviews</button>
+            <button className="toggle-button" value={user.nonprofit ? "projects" : "purchases"} onClick={toggleView}>{user.nonprofit ? "projects" : "purchases"}</button>
+            <button className="toggle-button" value={user.nonprofit ? "politics" : "responses"} onClick={toggleView}>{user.nonprofit ? "politics" : "responses"}</button>
+          </div>
+          {/* render body based on view */}
           <div className='user-profile-body'>
-            {reviews.length > 0 ? reviews.map((rev) =>
+            {(view == 'reviews' && reviews.length > 0) && reviews.map((rev) =>
               <div key={rev.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                 <div style={{ marginTop: '7px' }} className='order-title'>{rev.order_title}</div>
-                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{rev.order_start_time}</div>
                 <div className='rev-data'>
                   <div style={{ marginBottom: '4px' }} className='rev-content'>"{rev.content}"</div>
                   <div className='user-profile-rev-writer'>– {rev.writer.username}</div>
                   <div className='rev-score'>score: {rev.score} {rev.score > 1 && `, earned karma: ${rev.karma}`}</div>
                 </div>
+                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{rev.updated_at}</div>
               </div>
-            ) : <div style={{ marginTop: '100px' }}>no reviews yet</div>}
+            )}
+            {(view == 'projects' && projects.length > 0) && projects.map((proj) =>
+              <div key={proj.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                <div style={{ marginTop: '7px' }} className='order-title'>{proj.title}</div>
+                <div className='rev-data'>
+                  {/* <div style={{ marginBottom: '4px' }} className='rev-content'>"{proj.content}"</div> */}
+                  {/* <div className='user-profile-rev-writer'>– {proj.writer.username}</div> */}
+                  <div className='rev-score'>karma produced: {proj.karma_produced}</div>
+                </div>
+                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{proj.end_time}</div>
+              </div>
+            )}
+            {(view == 'politics' && politics.length > 0) && politics.map((pol) =>
+              <div key={pol.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                <div style={{ marginTop: '7px' }} className='order-title'>{pol.title}</div>
+                <div className='rev-data'>
+                  <div style={{ marginBottom: '4px' }} className='rev-score'>responses: {pol.responses.length}</div>
+                  <div style={{ marginBottom: '4px' }} className='rev-score'>karma produced: {pol.responses.length}</div>
+                  {/* <div className='user-profile-rev-writer'>– {rev.writer.username}</div>
+                  <div className='rev-score'>score: {rev.score} {rev.score > 1 && `, earned karma: ${rev.karma}`}</div> */}
+                </div>
+                  <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{pol.end_time}</div>
+              </div>
+            )}
+            {(view == 'purchases' && purchases.length > 0) && purchases.map((pur) =>
+              <div key={pur.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                <div style={{ marginTop: '7px' }} className='order-title'>{pur.id} {pur.project.title}</div>
+                <div className='rev-data'>
+                  <div style={{ marginBottom: '4px' }} className='rev-content'>shares: {pur.num_shares}</div>
+                  <div className='user-profile-rev-writer'>total cost: {pur.num_shares * pur.project.cost_per_share}</div>
+                  <div className='rev-score'>karma gained: {pur.num_shares * pur.project.millikarma_per_share / 1000}</div>
+                </div>
+                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{pur.created_at}</div>
+              </div>
+            )}
+            {(view == 'responses' && responses.length > 0) && responses.map((res) =>
+              <div key={res.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
+                <div style={{ marginTop: '7px' }} className='order-title'>{res.politic_question}</div>
+                <div style={{ marginTop: '7px' }} className='rev-score'>{res.answer}ay</div>
+                <div style={{ marginTop: '2px', fontSize: '18px' }} className='order-start'>{res.created_at}</div>
+                <div className='rev-data'>
+                  {/* <div style={{ marginBottom: '4px' }} className='rev-content'>{res.content}</div> */}
+                  {/* <div className='user-profile-rev-writer'>{res.writer.username}</div> */}
+                  {/* <div className='rev-score'>score: {res.score} {rev.score > 1 && `, earned karma: ${rev.karma}`}</div> */}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
