@@ -27,9 +27,6 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
               <div style={{ color: 'black' }} className='order-profile-title'>
                 {project.title}
               </div>
-              {/* <div style={{ color: 'rgb(155, 155, 155)' }} className='order-profile-for'>
-                    {order.nonprofit_username}
-                </div> */}
               <div style={{ marginTop: '8px' }} className='order-desc'>
                 {project.description}
               </div>
@@ -65,25 +62,6 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
               {(!user.nonprofit && project.status == 'Complete' && project.available_shares > 0) && 
                 <p>complete</p>         
               }
-              {/* <div className='order-status'>
-                  {(order.status == 'Open') &&
-                    <p className='open-status'>{order.status}</p>
-                  }
-                  {(order.status == 'Pending') &&
-                    <p className='pending-status'>{order.status} - awaiting node confirmation</p>
-                  }
-                  {(order.status == 'In Progress') &&
-                    <p className='pending-status'>{order.status}</p>
-                  }
-                  {(order.status == 'Complete') &&
-                    <p className='complete-status'>{order.status}</p>
-                  }
-                </div> */}
-              {/* {(order.status == 'Open' && !user.nonprofit) && 
-                  <div className='apply-link-container'> 
-                    <Link className='apply-link' to={`/applications/new/${order.id}`}>> apply</Link>
-                  </div>
-                } */}
             </>
           }
         </div>
