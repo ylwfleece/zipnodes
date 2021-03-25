@@ -26,10 +26,13 @@ const ApplicationProfile = ({ authenticated, setAuthenticated }) => {
               number of shares purchased: {purchase.num_shares}
             </div>
             <div className='app-order-start'>
-              {purchase.created_at}
+              cost: ${(purchase.num_shares * purchase.project.cost_per_share).toFixed(2)}
             </div>
-            <div className='app-order-location'>
-              status: {purchase.project.status}
+            <div className='app-order-start'>
+              purchased {purchase.created_at}
+            </div>
+            <div className='app-order-start'>
+              project status: {purchase.project.status}
             </div>
             {/* {user.nonprofit &&
               <div className='app-order-location'>

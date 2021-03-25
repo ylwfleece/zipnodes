@@ -63,7 +63,7 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
               }
               <p>yays: {politic.yays}, nays: {politic.nays}</p>
               <div style={{ marginTop: '4px' }} className='order-karma'>
-                end time: {politic.end_time}
+                polling closes: {politic.end_time}
               </div>
             </>
           }

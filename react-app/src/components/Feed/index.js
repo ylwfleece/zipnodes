@@ -50,7 +50,7 @@ function Feed() {
     let projs = [];
     if (projects.list && user) {
         if (user.nonprofit) {
-            projs = projects.list.filter(proj => proj.nonprofit_id == user.id);
+            projs = projects.list.filter(proj => proj.nonprofit.id == user.id && proj.status == 'Open');
         } else {
             projs = projects.list.filter(proj => proj.status == 'Open');
         }
@@ -59,7 +59,7 @@ function Feed() {
     let pols = [];
     if (politics.list && user) {
         if (user.nonprofit) {
-            pols = politics.list.filter(pol => pol.nonprofit_id == user.id);
+            pols = politics.list.filter(pol => pol.nonprofit.id == user.id && pol.status == 'Open');
         } else {
             pols = politics.list.filter(pol => pol.status == 'Open');
         }
@@ -147,9 +147,8 @@ function Feed() {
                                 {/* <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">closes {proj.end_time}</div> */}
                                 <div className="order-karma">{proj.millikarma_per_share} millikarma</div>
                                 <div className="order-karma">${proj.cost_per_share}</div>
-                                {!user.nonprofit && 
-                                    <button className="blue-button" id={proj.id} onClick={viewProjectProfile}>view details</button>
-                                }
+                                <button className="blue-button" id={proj.id} onClick={viewProjectProfile}>view details</button>
+                                
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open projects at this time</div>}
                     </div>
@@ -169,9 +168,8 @@ function Feed() {
                             <div key={pol.id} className='container ords'>
                                 <div style={{paddingLeft: '15px', paddingRight: '15px'}} className="order-title">{pol.title}</div>
                                 <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{pol.question}</div>
-                                {!user.nonprofit && 
-                                    <button style={{marginTop: '5px'}} className="blue-button" id={pol.id} onClick={viewPoliticProfile}>view details</button>
-                                }
+                                <button style={{marginTop: '5px'}} className="blue-button" id={pol.id} onClick={viewPoliticProfile}>view details</button>
+                                
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open politics at this time</div>}
                     </div>
