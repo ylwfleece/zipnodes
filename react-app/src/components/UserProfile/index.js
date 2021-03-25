@@ -121,8 +121,12 @@ const UserProfile = ({ authenticated, setAuthenticated }) => {
               </>
             }
           </div>
-          {/* render body based on user and view */}
-          
+          {/* render toggle bar and body based on user and view */}
+          <div className='profile-toggle-bar'>
+            <button className="toggle-button" value="reviews" onClick={toggleView}>reviews</button>
+            <button className="toggle-button" value={user.nonprofit ? "projects" : "purchases"} onClick={toggleView}>{user.nonprofit ? "projects" : "purchases"}</button>
+            <button className="toggle-button" value={user.nonprofit ? "politics" : "responses"} onClick={toggleView}>{user.nonprofit ? "politics" : "responses"}</button>
+          </div>
           <div className='user-profile-body'>
             {reviews.length > 0 ? reviews.map((rev) =>
               <div key={rev.id} className='user-profile-review' style={{ paddingTop: '0', marginBottom: '5vh' }}>
