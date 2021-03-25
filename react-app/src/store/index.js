@@ -7,6 +7,7 @@ import reviewsReducer from "./reviews";
 import projectsReducer from "./projects";
 import purchasesReducer from "./purchases";
 import politicsReducer from "./politics";
+import responsesReducer from "./reponses";
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   reviews: reviewsReducer,
   projects: projectsReducer,
   purchases: purchasesReducer,
-  politics: politicsReducer
+  politics: politicsReducer,
+  responses: responsesReducer
 });
 
 let enhancer;

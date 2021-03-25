@@ -15,9 +15,18 @@ class Politic(db.Model, UserMixin):
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
   nonprofit = db.relationship("User", back_populates="politics")
-#   responses = db.relationship("Response", back_populates="politic")
+  responses = db.relationship("Response", back_populates="politic")
 
   def to_dict(self):
+    responses_arr = []
+    yays = 0
+    nays = 0
+    for response in self.responses:
+      responses_arr.append(response.to_dict())
+      if response.answer == 'Y':
+        yays += 1
+      else:
+        nays += 1
     return {
       "id": self.id,
       "nonprofit": self.nonprofit.to_dict(),
@@ -27,4 +36,7 @@ class Politic(db.Model, UserMixin):
       "end_time": self.end_time,
       "status": self.status,
       "updated_at": self.updated_at,
+      "responses": responses_arr,
+      "yays": yays,
+      "nays": nays
     }
