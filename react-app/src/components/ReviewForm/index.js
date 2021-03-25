@@ -5,7 +5,7 @@ import { createReview, getReviews } from '../../store/reviews';
 import { getApplications } from "../../store/applications";
 import { getOrders } from "../../store/orders";
 import logo from "../auth/zipnodes_logo.png";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ReviewForm = ({ authenticated, setAuthenticated }) => {

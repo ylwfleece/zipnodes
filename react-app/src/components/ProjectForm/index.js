@@ -119,7 +119,6 @@ const ProjectForm = ({ authenticated, setAuthenticated }) => {
                 <div className='submit-button-container' style={{ marginTop: '4px' }}>
                   <button type="submit" className='blue-submit-button'>Submit Project</button>
                 </div>
-                
               </form>
             </div>
             <div className='errors-container'>
