@@ -83,11 +83,12 @@ const PoliticForm = ({ authenticated, setAuthenticated }) => {
                     value={question}
                   />
                 </div>
+                <p style={{marginBottom: '0px'}}>end date and time: </p>
                 <DateTimePicker
                       onChange={updateEndTime}
                       value={endTime}
                     />
-                <div className='submit-button-container' style={{ marginTop: '18px' }}>
+                <div className='submit-button-container' style={{ marginTop: '5px' }}>
                   <button type="submit" className='blue-submit-button'>Submit Politic</button>
                 </div>
                 
