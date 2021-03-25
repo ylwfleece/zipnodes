@@ -19,7 +19,13 @@ const NavBar = ({ setAuthenticated }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session.user);
+
+  const [dropdown, setDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdown(!dropdown);
+  };
 
   useEffect(() => {
     (async () => {
@@ -62,37 +68,51 @@ const NavBar = ({ setAuthenticated }) => {
     }
   }
 
-
   const iconStyles = { fontSize: '30px', color: 'rgb(38, 38, 38)' }
+
+  let postButtons = (
+    <div className="dropdown-menu popout" onClick={toggleDropdown}>
+      <div className='dropdown-item'>
+        <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/orders/new" exact={true} activeClassName="active">
+          new order
+                   </NavLink>
+      </div>
+      <div className='dropdown-item' onClick={toggleDropdown}>
+        <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/projects/new" exact={true} activeClassName="active">
+          new project
+                 </NavLink>
+      </div>
+      <div className='dropdown-item' onClick={toggleDropdown}>
+        <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/politics/new" exact={true} activeClassName="active">
+          new politic
+                 </NavLink>
+      </div>
+    </div>
+  )
 
   return (user &&
     <nav>
       <div className='menu'>
-        <div className='logo'>
+        <div className='left-menu'>
           <NavLink style={{ paddingRight: '5px' }} to="/" exact={true} activeClassName="active">
             <img src={logo} alt='logo' style={{ maxHeight: '50px' }}></img>
           </NavLink>
         </div>
-        <div>
-        {notifs.length > 0 &&
-            <NavLink style={{ color: 'red', paddingRight: '15px', paddingLeft: '5px' }} to="/notifications" exact={true} activeClassName="active">
-              notifications ({notifs.length})
+        <div className='right-menu'>
+          {notifs.length > 0 &&
+            <NavLink className="menu-item" style={{ color: 'red' }} to="/notifications" exact={true} activeClassName="active">
+              notifications({notifs.length})
             </NavLink>
           }
           {user.nonprofit &&
-          <>
-            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/orders/new" exact={true} activeClassName="active">
-              new order
-            </NavLink>
-            <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/projects/new" exact={true} activeClassName="active">
-            new project
-          </NavLink>
-          <NavLink style={{ color: 'rgb(14,164,227)', paddingRight: '15px', paddingLeft: '5px' }} to="/politics/new" exact={true} activeClassName="active">
-            new politic
-          </NavLink>
-          </>
+            <>
+              <a onClick={toggleDropdown} className="menu-item" id='dropdown-menu-button'>post
+                    {/* <img src={user.profilePhotoUrl} alt='profilepic' /> */}
+              </a>
+              {dropdown && postButtons}
+            </>
           }
-          <NavLink style={{ paddingRight: '15px', paddingLeft: '5px', color: 'rgb(14,164,227)' }} to={`/users/${user.id}`} exact={true} activeClassName="active">
+          <NavLink className="menu-item" style={{ color: 'rgb(14,164,227)' }} to={`/users/${user.id}`} exact={true} activeClassName="active">
             profile
           </NavLink>
           <LogoutButton setAuthenticated={setAuthenticated} />
