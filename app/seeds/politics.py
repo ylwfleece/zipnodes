@@ -11,12 +11,19 @@ def seed_politics():
 
     pol2 = Politic(nonprofit_id=2, 
     title='Police release name, photo and background story of mass shooter',
-    description='Boulder police released information about the shooter who killed 10 people on Monday, March 22. Some people believe that shooter information should be minimized to avoid glorification.',
-    question='Do you support the Boulder Police Department\'s decision to release information?',
+    description='Boulder police released information about the shooter who killed 10 people on Monday, March 22. Some people believe that shooter publicization should be minimized to avoid glorification.',
+    question='Do you support the Boulder Police Department\'s decision to publicize this information?',
+    end_time=datetime.datetime(2021, 3, 31, hour=23, minute=59, second=59))
+
+    pol3 = Politic(nonprofit_id=2, 
+    title='Hennepin Co. Municipal Elections',
+    description='Municipal elections are Thur, Apr 27.',
+    question='Do you plan to vote?',
     end_time=datetime.datetime(2021, 3, 31, hour=23, minute=59, second=59))
 
     db.session.add(pol1)
     db.session.add(pol2)
+    db.session.add(pol3)
 
     db.session.commit()
 

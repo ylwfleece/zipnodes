@@ -48,12 +48,22 @@ def seed_projects():
     status="Open",
     end_time=datetime.datetime(2021, 3, 30, hour=15, minute=30, second=0))
 
+    proj6 = Project(nonprofit_id=7, 
+    title="Outreach bus token fund",
+    description="Raising money for next month's bus tokens for outreach workers to distribute.",
+    millikarma_per_share=1,
+    cost_per_share=0.02,
+    total_shares=115000,
+    status="Open",
+    end_time=datetime.datetime(2021, 3, 31, hour=15, minute=0, second=0))
+
 
     db.session.add(proj1)
     db.session.add(proj2)
     db.session.add(proj3)
     db.session.add(proj4)
     db.session.add(proj5)
+    db.session.add(proj6)
 
     db.session.commit()
 

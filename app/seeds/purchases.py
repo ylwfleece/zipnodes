@@ -11,8 +11,13 @@ def seed_purchases():
     project_id=2,
     num_shares=100)
 
+    pur3 = Purchase(node_id=6,
+    project_id=1,
+    num_shares=500)
+
     db.session.add(pur1)
     db.session.add(pur2)
+    db.session.add(pur3)
 
     db.session.commit()
 
