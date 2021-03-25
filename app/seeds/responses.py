@@ -11,8 +11,13 @@ def seed_responses():
     politic_id=2,
     answer='N')
 
+    res3 = Response(node_id=6, 
+    politic_id=2,
+    answer='N')
+
     db.session.add(res1)
     db.session.add(res2)
+    db.session.add(res3)
 
     db.session.commit()
 
