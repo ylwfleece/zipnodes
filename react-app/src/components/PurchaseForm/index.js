@@ -39,10 +39,10 @@ const PurchaseForm = ({ authenticated, setAuthenticated }) => {
                         <div className='application-form-container'>
                             <div className='paragraph-container flex-container' style={{ width: '100%', padding: '0', marginTop: '0', justifyContent: 'center' }}>
                                 <div style={{ width: '80%' }}>
-                                    <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontStyle: 'italic', fontSize: '26px', textAlign: 'center' }}>Purchase shares of: {project.title}:</p>
+                                    <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontStyle: 'italic', fontSize: '26px', textAlign: 'center' }}>Purchase shares of {project.title}:</p>
                                     <p className='paragraph' style={{ color: 'black', fontWeight: '600', fontSize: '26px', textAlign: 'center' }}>{project.nonprofit.username}</p>
                                     <p className='paragraph' style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>cost per share: {project.cost_per_share}</p>
-                                    <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>karma per share: {project.karma_per_share}</p>
+                                    <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>millikarma per share: {project.millikarma_per_share}</p>
                                     <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>available shares: </p>
                                 </div>
                             </div>

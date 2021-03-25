@@ -202,8 +202,8 @@ function Feed() {
                                     <div className="order-for">{ord.nonprofit_username} </div>                              
                                 } */}
                                 <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{proj.end_time}</div>
-                                <div className="order-karma">{proj.karma_per_share} karma per share</div>
-                                <div className="order-karma">${proj.cost_per_share} cost per share</div>
+                                <div className="order-karma">{proj.millikarma_per_share} millikarma</div>
+                                <div className="order-karma">${proj.cost_per_share}</div>
                                 {!user.nonprofit && 
                                     <button className="blue-button" id={proj.id} onClick={viewProjectProfile}>view details</button>
                                 }
