@@ -111,11 +111,12 @@ const ProjectForm = ({ authenticated, setAuthenticated }) => {
                     value={totalShares}
                   />
                 </div>
+                <p style={{marginBottom: '0px'}}>end date and time: </p>
                 <DateTimePicker
                       onChange={updateEndTime}
                       value={endTime}
                     />
-                <div className='submit-button-container' style={{ marginTop: '18px' }}>
+                <div className='submit-button-container' style={{ marginTop: '4px' }}>
                   <button type="submit" className='blue-submit-button'>Submit Project</button>
                 </div>
                 

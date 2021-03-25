@@ -128,11 +128,12 @@ const OrderForm = ({ authenticated, setAuthenticated }) => {
                     value={virtual}
                   />
                 </div>
+                <p style={{marginBottom: '0px'}}>start date and time: </p>
                 <DateTimePicker
                       onChange={updateStartTime}
                       value={startTime}
                     />
-                <div className='submit-button-container' style={{ marginTop: '18px' }}>
+                <div className='submit-button-container' style={{ marginTop: '5px' }}>
                   <button type="submit" className='blue-submit-button'>Submit Order</button>
                 </div>
                 

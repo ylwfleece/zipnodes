@@ -41,24 +41,30 @@ const PurchaseForm = ({ authenticated, setAuthenticated }) => {
                                 <div style={{ width: '80%' }}>
                                     <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontStyle: 'italic', fontSize: '26px', textAlign: 'center' }}>Purchase shares of {project.title}:</p>
                                     <p className='paragraph' style={{ color: 'black', fontWeight: '600', fontSize: '26px', textAlign: 'center' }}>{project.nonprofit.username}</p>
-                                    <p className='paragraph' style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>cost per share: {project.cost_per_share}</p>
-                                    <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>millikarma per share: {project.millikarma_per_share}</p>
+                                    <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '24px', textAlign: 'center' }}>cost per share: ${project.cost_per_share}</p>
+                                    <p className='paragraph' style={{ color: 'rgb(155, 155, 155)', fontSize: '22px', textAlign: 'center' }}>millikarma per share: {project.millikarma_per_share}</p>
                                     <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>available shares: {project.available_shares}</p>
+                                    <p className='paragraph' style={{ color: 'black', fontSize: '22px', fontWeight: '600', textAlign: 'center' }}>purchase cost: ${(numShares * project.cost_per_share).toFixed(2)}</p>
                                 </div>
                             </div>
                             <div className='flex-container' style={{ justifyContent: 'center' }}>
                                 <form onSubmit={onSubmit}>
                                     <div className='field-inputs'>
                                         <input
-                                            type="text"
+                                            type="number"
                                             name="numShares"
                                             placeholder='number of shares'
+                                            min="1" max={project.available_shares}
                                             onChange={updateNumShares}
                                             value={numShares}
                                         />
                                     </div>
                                     <div className='submit-button-container' style={{ marginTop: '18px' }}>
+                                        {numShares <= project.available_shares ?
                                         <button type="submit" className='blue-submit-button'>Submit Purchase</button>
+                                        :
+                                        <p style={{color: 'red'}}>only {project.available_shares} shares available</p>
+                                        }
                                     </div>
                                 </form>
                             </div>
