@@ -5,6 +5,17 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 project_routes = Blueprint('projects', __name__)
 
+@project_routes.route('/update/<int:project_id>', methods=['GET'])
+def update_project(project_id):
+    """
+    Updates a project.
+    """
+    project = Project.query.filter(Project.id == project_id).first()
+    project.status = "Complete"
+    db.session.add(project)
+    db.session.commit()
+    return jsonify(project.to_dict())
+
 
 @project_routes.route('/', methods=['GET'])
 def get_projects():
