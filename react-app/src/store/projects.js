@@ -53,6 +53,13 @@ export const createProject = (nonprofit_id, title, description, millikarma_per_s
   return project;
 };
 
+export const updateProject = (project_id) => async (dispatch) => {
+  const res = await fetch(`/api/projects/update/${project_id}`);
+  const project = await res.json();
+  dispatch(getProjects());
+  return project;
+}
+
 // export const deletePost = (postId) => async (dispatch) => {
 //   await fetch(`/api/posts/delete/${postId}`);
 //   dispatch(getPostsForUser());
