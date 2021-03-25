@@ -21,9 +21,12 @@ class Project(db.Model, UserMixin):
 
   def to_dict(self):
     karma_produced = 0
+    available_shares = self.total_shares
     if self.status == 'Complete':
       for pur in self.purchases:
         karma_produced += pur.num_shares * self.millikarma_per_share/1000 * 2
+    for pur in self.purchases:
+      available_shares -= pur.num_shares
     return {
       "id": self.id,
       "nonprofit": self.nonprofit.to_dict(),
@@ -35,6 +38,7 @@ class Project(db.Model, UserMixin):
       "total_shares": self.total_shares,
       "status": self.status,
       "updated_at": self.updated_at,
-      "karma_produced": karma_produced
+      "karma_produced": karma_produced,
+      "available_shares": available_shares
       # "purchases": purchases_arr,
     }
