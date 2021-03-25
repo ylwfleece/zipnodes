@@ -43,7 +43,7 @@ const PurchaseForm = ({ authenticated, setAuthenticated }) => {
                                     <p className='paragraph' style={{ color: 'black', fontWeight: '600', fontSize: '26px', textAlign: 'center' }}>{project.nonprofit.username}</p>
                                     <p className='paragraph' style={{ color: 'black', fontSize: '24px', textAlign: 'center' }}>cost per share: {project.cost_per_share}</p>
                                     <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>millikarma per share: {project.millikarma_per_share}</p>
-                                    <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>available shares: </p>
+                                    <p className='paragraph' style={{ color: 'black', fontSize: '22px', textAlign: 'center' }}>available shares: {project.available_shares}</p>
                                 </div>
                             </div>
                             <div className='flex-container' style={{ justifyContent: 'center' }}>
