@@ -64,7 +64,7 @@ const OrderAppsProfile = ({ authenticated, setAuthenticated }) => {
               <div key={app.id} className='container apps' style={{ paddingTop: '0', marginBottom: '5vh' }}>
                 <div className="app-order-title">{app.node.username}</div>
               {getScoreAndKarma(app.node_id)}
-                <div className="app-order-start">{app.order_start_time}</div>
+                <div className="app-order-start">submitted {app.updated_at}</div>
                 <div className="app-status">status: {app.status.toLowerCase()}</div>
                 {!user.nonprofit &&
                   <button className="blue-button" id={app.id} onClick={viewAppProfile}>view details</button>

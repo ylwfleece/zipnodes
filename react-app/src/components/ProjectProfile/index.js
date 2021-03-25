@@ -40,7 +40,10 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
                 cost per share: {project.cost_per_share}
               </div>
               <div style={{ marginTop: '4px' }} className='order-karma'>
-                total shares: {project.total_shares}
+                shares issued: {project.total_shares}
+              </div>
+              <div style={{ marginTop: '4px' }} className='order-karma'>
+                available shares: {project.available_shares}
               </div>
               {/* np can mark complete */}
               {/* np cannot mark complete */}
@@ -52,11 +55,11 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
                 </div>
               }
               {(user.nonprofit && project.status == 'Complete') &&
-                <p>complete</p>
+                <p>status: Complete</p>
               }
               {(!user.nonprofit && project.status == 'Open' && project.available_shares > 0) && 
                 <div style={{ marginTop: '4px' }} className='order-karma'>
-                  <Link to={`/purchases/new/${project.id}`}>Purchase shares</Link>
+                  <Link style={{color: "green", fontWeight: '500'}}to={`/purchases/new/${project.id}`}>Purchase shares</Link>
                 </div>             
               }
               {(!user.nonprofit && project.status == 'Complete' && project.available_shares > 0) && 
