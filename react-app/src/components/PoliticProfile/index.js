@@ -55,13 +55,13 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
               <div className='order-start'>
                 question: {politic.question}
               </div>
-              {(!response && !responded) ?
+              {(!response && !responded && !user.nonprofit) &&
                 <div style={{ marginTop: '4px' }} className='order-karma'>
                   <button value="Y" onClick={respond}>yay</button>
                   <button value="N" onClick={respond}>nay</button>
-                </div> :
-                <p>yays: {politic.yays}, nays: {politic.nays}</p>
+                </div> 
               }
+              <p>yays: {politic.yays}, nays: {politic.nays}</p>
               <div style={{ marginTop: '4px' }} className='order-karma'>
                 end time: {politic.end_time}
               </div>
