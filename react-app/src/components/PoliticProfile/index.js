@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { createResponse, getResponses } from "../../store/reponses";
 import { getPolitics } from "../../store/politics";
+import { toast } from 'react-toastify';
 
 const PoliticProfile = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const notify = (msg) => toast(msg);
 
   const user = useSelector((state) => state.session.user);
   const params = useParams()
@@ -15,18 +17,11 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
   const [responded, setResponded] = useState(false);
 
   let response;
-  // let yays = 0;
-  // let nays = 0;
   if (politic) {
     politic.responses.forEach(res => {
       if (res.node.id == user.id) {
         response = res;
       }
-      // if (res.answer == 'Y') {
-      //   yays += 1;
-      // } else {
-      //   nays += 1;
-      // }
     });
   }
 
@@ -37,14 +32,9 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
   const respond = async (e) => {
     const ans = e.target.value;
     await dispatch(createResponse(user.id, politic.id, ans));
-    // if (ans == 'Y') {
-    //   yays += 1;
-    // } else {
-    //   nays += 1;
-    // }
     updateResponded();
     await dispatch(getPolitics());
-    // toastify
+    notify("Successfully responded: " + ans + "ay");
   }
 
   return (
@@ -75,25 +65,6 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
               <div style={{ marginTop: '4px' }} className='order-karma'>
                 end time: {politic.end_time}
               </div>
-              {/* <div className='order-status'>
-                  {(order.status == 'Open') &&
-                    <p className='open-status'>{order.status}</p>
-                  }
-                  {(order.status == 'Pending') &&
-                    <p className='pending-status'>{order.status} - awaiting node confirmation</p>
-                  }
-                  {(order.status == 'In Progress') &&
-                    <p className='pending-status'>{order.status}</p>
-                  }
-                  {(order.status == 'Complete') &&
-                    <p className='complete-status'>{order.status}</p>
-                  }
-                </div> */}
-              {/* {(order.status == 'Open' && !user.nonprofit) && 
-                  <div className='apply-link-container'> 
-                    <Link className='apply-link' to={`/applications/new/${order.id}`}>> apply</Link>
-                  </div>
-                } */}
             </>
           }
         </div>
