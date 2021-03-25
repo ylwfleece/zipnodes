@@ -17,13 +17,13 @@ const ProjectForm = ({ authenticated, setAuthenticated }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [karmaPerShare, setKarmaPerShare] = useState("");
+  const [milliKarmaPerShare, setMilliKarmaPerShare] = useState("");
   const [costPerShare, setCostPerShare] = useState("");
   const [totalShares, setTotalShares] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const project = await dispatch(createProject(user.id, title, description, karmaPerShare, costPerShare, totalShares, endTime));
+    const project = await dispatch(createProject(user.id, title, description, milliKarmaPerShare, costPerShare, totalShares, endTime));
     notify('Successfully created project: ' + title);
     history.push(`/project/${project.id}`);
   };
@@ -36,8 +36,8 @@ const ProjectForm = ({ authenticated, setAuthenticated }) => {
     setDescription(e.target.value);
   };
 
-  const updateKarmaPerShare = (e) => {
-    setKarmaPerShare(e.target.value);
+  const updateMilliKarmaPerShare = (e) => {
+    setMilliKarmaPerShare(e.target.value);
   };
 
   const updateEndTime = (e) => {
@@ -87,10 +87,10 @@ const ProjectForm = ({ authenticated, setAuthenticated }) => {
                 <div className='field-inputs'>
                   <input
                     type="number"
-                    name="karmaPerShare"
-                    placeholder='karma per share'
-                    onChange={updateKarmaPerShare}
-                    value={karmaPerShare}
+                    name="milliKarmaPerShare"
+                    placeholder='millikarma per share'
+                    onChange={updateMilliKarmaPerShare}
+                    value={milliKarmaPerShare}
                   />
                 </div>
                 <div className='field-inputs'>

@@ -39,6 +39,28 @@ class User(db.Model, UserMixin):
 
 
   def to_dict(self):
+    purchase_karma = 0
+    response_karma = 0
+    purchase_ids = []
+    response_ids = []
+    project_ids = []
+    politic_ids = []
+    # for node
+    if not self.nonprofit:
+      # calculate karma from purchases and responses and construct purchase/response id arrays
+      for purchase in self.purchases:
+        purchase_karma += (purchase.num_shares * purchase.project.millikarma_per_share / 1000)
+        purchase_ids.append(purchase.id)
+      for response in self.responses:
+        response_karma += 1
+        response_ids.append(response.id)
+    # for nonprofit
+    else:
+      # get all purchases for projects 
+      for project in self.projects:
+        project_ids.append(project.id)
+      for politic in self.politics:
+        politic_ids.append(politic.id)   
     return {
       "id": self.id,
       "nonprofit": self.nonprofit,
@@ -46,5 +68,11 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "zip_code": self.zip_code,
       "karma": self.karma,
-      "score": self.score
+      "score": self.score,
+      "purchase_karma": purchase_karma,
+      "response_karma": response_karma,
+      "purchase_ids": purchase_ids,
+      "response_ids": response_ids,
+      "project_ids": project_ids,
+      "politic_ids": politic_ids,
     }

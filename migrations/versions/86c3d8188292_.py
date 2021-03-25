@@ -24,7 +24,7 @@ def upgrade():
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('end_time', sa.DateTime(), nullable=True),
-    sa.Column('karma_per_share', sa.Integer(), nullable=False),
+    sa.Column('millikarma_per_share', sa.Integer(), nullable=False),
     sa.Column('cost_per_share', sa.Float(), nullable=False),
     sa.Column('total_shares', sa.Integer(), nullable=False),
     sa.Column('status', sa.String(length=35), nullable=False),

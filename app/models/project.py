@@ -10,7 +10,7 @@ class Project(db.Model, UserMixin):
   title = db.Column(db.String(100), nullable = False)
   description = db.Column(db.String(255), nullable = False)
   end_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-  karma_per_share = db.Column(db.Integer, nullable = False, default=0)
+  millikarma_per_share = db.Column(db.Integer, nullable = False, default=0)
   cost_per_share = db.Column(db.Float, nullable = False, default=0)
   total_shares = db.Column(db.Integer, nullable = False, default=0)
   status = db.Column(db.String(35), nullable = False, default="Open")
@@ -29,7 +29,7 @@ class Project(db.Model, UserMixin):
       "title": self.title,
       "description": self.description,
       "end_time": self.end_time,
-      "karma_per_share": self.karma_per_share,
+      "millikarma_per_share": self.millikarma_per_share,
       "cost_per_share": self.cost_per_share,
       "total_shares": self.total_shares,
       "status": self.status,

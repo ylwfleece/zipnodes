@@ -33,7 +33,7 @@ def create_project():
             nonprofit_id = form.data['nonprofit_id'],
             title = form.data['title'],
             description = form.data['description'],
-            karma_per_share = form.data['karma_per_share'],
+            millikarma_per_share = form.data['millikarma_per_share'],
             end_time = form.data['end_time'],
             cost_per_share = form.data['cost_per_share'],
             total_shares = form.data['total_shares']

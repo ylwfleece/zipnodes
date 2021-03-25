@@ -23,7 +23,6 @@ const setPolitics = (politics) => {
 // };
 
 export const getPolitics = () => async (dispatch) => {
-  console.log('in getpolitics')
   let politics = await fetch(`/api/politics/`);
   politics = await politics.json();
   politics.sort((pol1, pol2) => {

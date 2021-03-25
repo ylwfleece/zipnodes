@@ -28,7 +28,7 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
                     start time: {project.end_time}
                 </div>
                 <div style={{ marginTop: '4px' }} className='order-karma'>
-                    karma per share: {project.karma_per_share}
+                    millikarma per share: {project.karma_per_share}
                 </div>
                 <div style={{ marginTop: '4px' }} className='order-karma'>
                     cost per share: {project.cost_per_share}
