@@ -5,7 +5,7 @@ def seed_projects():
 
     proj1 = Project(nonprofit_id=10, 
     title="Well in Uganda",
-    description="Fundraising for a standard well [in a Ugandan village], most residents walk 10-20 miles a day for dirty water.",
+    description="Fundraising for a standard well East Ugandan village, most residents walk 10-20 miles a day for dirty water.",
     millikarma_per_share=4,
     cost_per_share=0.03,
     total_shares=300000,
@@ -23,7 +23,7 @@ def seed_projects():
 
     proj3 = Project(nonprofit_id=12, 
     title="Sending 1000 nets to Tanzania",
-    description="Fundraising for a shipment of 1000 insecticide-treated nets to village outside [].",
+    description="Fundraising for a shipment of 1000 insecticide-treated nets to village outside Dodoma.",
     millikarma_per_share=3,
     cost_per_share=0.02,
     total_shares=100000,
@@ -32,7 +32,7 @@ def seed_projects():
 
     proj4 = Project(nonprofit_id=13, 
     title="Fistula Surgery",
-    description="Fundraising for one obstetric fistula surgery in [].",
+    description="Fundraising for one obstetric fistula surgery for a woman in Kabul.",
     millikarma_per_share=2,
     cost_per_share=0.05,
     total_shares=120000,
@@ -41,7 +41,7 @@ def seed_projects():
 
     proj5 = Project(nonprofit_id=14, 
     title="Vaccine incentive program in Nigeria",
-    description="Fundraising for a vaccine incentive program for residents of [].",
+    description="Fundraising for a vaccine incentive program for residents of Lagos.",
     millikarma_per_share=1,
     cost_per_share=0.01,
     total_shares=200000,
