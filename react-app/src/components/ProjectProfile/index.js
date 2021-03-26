@@ -30,19 +30,19 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
               <div style={{ marginTop: '8px' }} className='order-desc'>
                 {project.description}
               </div>
-              <div className='order-start'>
-                start time: {project.end_time}
+              <div style={{ color: "rgb(107, 107, 107)" }}className='order-start'>
+                purchasing ends: {project.end_time}
               </div>
-              <div style={{ marginTop: '4px' }} className='order-karma'>
-                millikarma per share: {project.karma_per_share}
+              <div style={{ marginTop: '4px' }} className='order-karma-black'>
+                millikarma per share: {project.millikarma_per_share}
               </div>
-              <div style={{ marginTop: '4px' }} className='order-karma'>
+              <div style={{ marginTop: '4px' }} className='order-karma-black'>
                 cost per share: {project.cost_per_share}
               </div>
-              <div style={{ marginTop: '4px' }} className='order-karma'>
+              <div style={{ marginTop: '4px' }} className='order-karma-black'>
                 shares issued: {project.total_shares}
               </div>
-              <div style={{ marginTop: '4px' }} className='order-karma'>
+              <div style={{ marginTop: '4px' }} className='order-karma-black'>
                 available shares: {project.available_shares}
               </div>
               {/* np can mark complete */}
@@ -59,7 +59,7 @@ const ProjectProfile = ({ authenticated, setAuthenticated }) => {
               }
               {(!user.nonprofit && project.status == 'Open' && project.available_shares > 0) && 
                 <div style={{ marginTop: '4px' }} className='order-karma'>
-                  <Link style={{color: "green", fontWeight: '500'}}to={`/purchases/new/${project.id}`}>Purchase shares</Link>
+                  <Link style={{color: "green", fontWeight: '500', paddingTop: '10px'}}to={`/purchases/new/${project.id}`}>Purchase shares</Link>
                 </div>             
               }
               {(!user.nonprofit && project.status == 'Complete' && project.available_shares > 0) && 

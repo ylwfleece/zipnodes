@@ -112,10 +112,10 @@ function Feed() {
                                 {!user.nonprofit && 
                                     <div className="order-for">{ord.nonprofit_username} </div>                              
                                 }
-                                <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{ord.start_time}</div>
+                                <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">starts {ord.start_time}</div>
                                 <div className="order-karma">{ord.karma} karma</div>
                                 {!user.nonprofit && 
-                                    <button className="blue-button" id={ord.id} onClick={viewOrderProfile} >view details</button>
+                                    <button className="blue-button" id={ord.id} onClick={viewOrderProfile}>view details</button>
                                 }
                                 {(user.nonprofit && ord.app_node_ids.length == 1) && 
                                     <button className='blue-button' id={ord.id} onClick={viewApps}>view {ord.app_node_ids.length} application</button>
@@ -144,9 +144,12 @@ function Feed() {
                         {projs.length > 0 ? projs.map((proj) =>
                             <div key={proj.id} className='container ords'>
                                 <div className="order-title">{proj.title}</div>
-                                {/* <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">closes {proj.end_time}</div> */}
+                                {!user.nonprofit && 
+                                    <div className="order-for">{proj.nonprofit.username} </div>                              
+                                }
                                 <div className="order-karma">{proj.millikarma_per_share} millikarma</div>
-                                <div className="order-karma">${proj.cost_per_share}</div>
+                                <div style={{ fontStyle: 'italic' }} className="order-karma">${proj.cost_per_share} / share</div>
+                                {/* <div style={{ marginBottom: '0px', color: 'black', fontStyle: 'italic' }} className="order-karma">ends {proj.end_time}</div> */}
                                 <button className="blue-button" id={proj.id} onClick={viewProjectProfile}>view details</button>
                                 
                             </div>
@@ -167,9 +170,8 @@ function Feed() {
                         {pols.length > 0 ? pols.map((pol) =>
                             <div key={pol.id} className='container ords'>
                                 <div style={{paddingLeft: '15px', paddingRight: '15px'}} className="order-title">{pol.title}</div>
-                                <div style={{ marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{pol.question}</div>
-                                <button style={{marginTop: '5px'}} className="blue-button" id={pol.id} onClick={viewPoliticProfile}>view details</button>
-                                
+                                <div style={{ paddingLeft: '15px', paddingRight: '15px', marginBottom: '0px', fontStyle: 'italic' }} className="order-start">{pol.question}</div>
+                                <button style={{marginTop: '9px'}} className="blue-button" id={pol.id} onClick={viewPoliticProfile}>view details</button>
                             </div>
                         ) : <div style={{marginTop: '100px'}}>no open politics at this time</div>}
                     </div>
