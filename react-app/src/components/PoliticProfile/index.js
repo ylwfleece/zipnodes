@@ -52,16 +52,23 @@ const PoliticProfile = ({ authenticated, setAuthenticated }) => {
               <div style={{ marginTop: '8px' }} className='order-desc'>
                 {politic.description}
               </div>
-              <div className='order-start'>
-                question: {politic.question}
+              <div style={{fontStyle: 'italic'}} className='order-start'>
+                > {politic.question}
               </div>
               {(!response && !responded && !user.nonprofit) &&
                 <div style={{ marginTop: '4px' }} className='order-karma'>
-                  <button value="Y" onClick={respond}>yay</button>
-                  <button value="N" onClick={respond}>nay</button>
+                  <button style={{ marginLeft: '5px', color: 'green' }} value="Y" onClick={respond}>yay</button>
+                  <button style={{ marginLeft: '5px', color: 'red' }} value="N" onClick={respond}>nay</button>
                 </div> 
               }
-              <p>yays: {politic.yays}, nays: {politic.nays}</p>
+              <div style={{ marginTop: '4px' }} className='order-karma-black-lg'>
+                yays: {politic.yays}, nays: {politic.nays}
+              </div>
+              {response && 
+                <div style={{ marginTop: '4px' }} className='order-karma'>
+                  you responded: {response.answer}ay
+                </div>
+              }
               <div style={{ marginTop: '4px' }} className='order-karma'>
                 polling closes: {politic.end_time}
               </div>
