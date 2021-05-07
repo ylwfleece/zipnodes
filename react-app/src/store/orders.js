@@ -16,11 +16,11 @@ const addOrder = (order) => {
     }
 }
 
-const removeOrder = () => {
-  return {
-    type: REMOVE_ORDER,
-  };
-};
+// const removeOrder = () => {
+//   return {
+//     type: REMOVE_ORDER,
+//   };
+// };
 
 export const getOrders = () => async (dispatch) => {
   let orders = await fetch(`/api/orders/`);
